@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr" data-racine="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Outil de craquage</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="stylesheet" href="../assets/css/commun.css">
+  <link rel="stylesheet" href="../assets/css/outils.css">
+</head>
+<body>
+  <a class="lien-evitement" href="#cadre">Aller au contenu</a>
+  <header class="entete">
+    <a class="marque" href="../index.html"><img src="../assets/img/logo-argos.svg" alt=""><span>Cellule ARGOS<small>Pièce du dossier 3</small></span></a>
+    <nav aria-label="Navigation"><a href="../seance-3/index.html">← Retour au dossier 3</a></nav>
+  </header>
+  <main class="scene-outil">
+    <div class="outil" id="cadre" hidden>
+<p class="fil-ariane"><a href="../seance-3/index.html">← Retour au dossier 3</a></p>
+      <h1>Outil de craquage</h1>
+      <p class="intro">Cet outil calcule l'empreinte de chaque mot d'un dictionnaire, puis la compare aux <strong id="nb-comptes">40</strong> empreintes de la fuite. S'il trouve la même empreinte, le mot de passe est retrouvé. <strong>Un mot de passe courant tombe en un instant.</strong></p>
+      <div class="bloc-outil">
+        <h2>1. Dictionnaire des mots de passe courants</h2>
+        <p class="aide-champ">Une liste de mots de passe parmi les plus utilisés au monde.</p>
+        <div class="barre-boutons"><button type="button" class="bouton" id="bouton-courants">Lancer le craquage</button></div>
+      </div>
+      <div class="bloc-outil">
+        <h2>2. Votre dictionnaire personnalisé</h2>
+        <p class="aide-champ" id="info-perso">Construisez d'abord un dictionnaire avec l'outil « <a href="dictionnaire.html">Dictionnaire personnalisé</a> », puis revenez ici.</p>
+        <div class="barre-boutons"><button type="button" class="bouton" id="bouton-perso" disabled>Lancer le craquage</button></div>
+      </div>
+      <p class="progression" id="progression-craquage" hidden></p>
+      <div class="zone-resultat" id="resultat-craquage" tabindex="-1" aria-live="polite"></div>
+    </div>
+  </main>
+  <footer class="pied">Environnement pédagogique fictif — toute ressemblance avec des personnes ou des services réels serait fortuite.</footer>
+  <script type="module" src="../assets/js/craquage.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="fr" data-racine="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Dictionnaire personnalisé</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="stylesheet" href="../assets/css/commun.css">
+  <link rel="stylesheet" href="../assets/css/outils.css">
+</head>
+<body>
+  <a class="lien-evitement" href="#cadre">Aller au contenu</a>
+  <header class="entete">
+    <a class="marque" href="../index.html"><img src="../assets/img/logo-argos.svg" alt=""><span>Cellule ARGOS<small>Pièce du dossier 3</small></span></a>
+    <nav aria-label="Navigation"><a href="../seance-3/index.html">← Retour au dossier 3</a></nav>
+  </header>
+  <main class="scene-outil">
+    <div class="outil" id="cadre" hidden>
+<p class="fil-ariane"><a href="../seance-3/index.html">← Retour au dossier 3</a></p>
+      <h1>Générateur de dictionnaire personnalisé</h1>
+      <p class="intro">À partir de quelques mots liés à la cible (voir votre fiche cible), l'outil fabrique les variantes qu'un humain choisit souvent : minuscules, Majuscule initiale, MAJUSCULES, et chacune suivie d'une année (<span id="plage-annees">1990–2026</span>) ou d'une date.</p>
+      <div class="bloc-outil">
+        <div class="champ-bloc"><label for="mots">Mots liés à la cible</label><textarea id="mots" placeholder="Robin, Pixel, Montrive…"></textarea><p class="aide-champ">Séparez par des virgules. Pensez au prénom, au nom, à l'animal, à la ville, à la classe…</p></div>
+        <div class="champ-bloc"><label for="dates">Dates importantes (jj.mm) — facultatif</label><input type="text" id="dates" placeholder="14.10"><p class="aide-champ">Par exemple une date de naissance.</p></div>
+        <div class="options-ligne"><span class="option"><input type="checkbox" id="avec-annees" checked><label for="avec-annees">Ajouter les années (<span id="plage-annees2">1990–2026</span>)</label></span></div>
+        <div class="barre-boutons"><button type="button" class="bouton" id="bouton-generer">Générer le dictionnaire</button><span class="doux">Candidats générés : <strong id="compte-candidats">0</strong></span></div>
+        <div class="apercu-candidats" id="apercu"></div>
+        <p id="lien-craquage" hidden style="margin-top:1rem"><a class="bouton secondaire" href="craquage.html">Utiliser ce dictionnaire pour craquer →</a></p>
+      </div>
+    </div>
+  </main>
+  <footer class="pied">Environnement pédagogique fictif — toute ressemblance avec des personnes ou des services réels serait fortuite.</footer>
+  <script type="module" src="../assets/js/dictionnaire.js"></script>
+</body>
+</html>

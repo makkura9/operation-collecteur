@@ -1,0 +1,14 @@
+{
+  "titre": "Générateur de dictionnaire personnalisé",
+  "suggestions": [
+    "Robin",
+    "Dupont",
+    "Pixel",
+    "Montrive",
+    "2M7",
+    "Barcelone"
+  ],
+  "annee_min": 1990,
+  "annee_max": 2026,
+  "note": "À partir de quelques mots liés à la cible (prénom, animal, ville…), l'outil fabrique les variantes qu'un humain choisit souvent : minuscules, Majuscule initiale, + une année, + jour et mois."
+}

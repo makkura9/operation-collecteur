@@ -1,0 +1,54 @@
+{
+  "titre": "Journal de connexion",
+  "intro": "Connexions récentes au compte de Robin : messagerie MontriveMail et espace de stockage Nuagik.",
+  "colonnes": [
+    "Date et heure",
+    "Service",
+    "Appareil",
+    "Lieu estimé",
+    "Résultat"
+  ],
+  "lignes": [
+    {
+      "date": "2027-02-16T07:58",
+      "service": "MontriveMail",
+      "appareil": "Kora K5 (téléphone habituel)",
+      "lieu": "Montrive",
+      "resultat": "Réussie",
+      "suspecte": false
+    },
+    {
+      "date": "2027-02-17T20:31",
+      "service": "MontriveMail",
+      "appareil": "Kora K5 (téléphone habituel)",
+      "lieu": "Montrive",
+      "resultat": "Réussie",
+      "suspecte": false
+    },
+    {
+      "date": "2027-02-18T02:13",
+      "service": "MontriveMail",
+      "appareil": "Ordinateur inconnu",
+      "lieu": "Localisation inconnue",
+      "resultat": "Réussie",
+      "suspecte": true
+    },
+    {
+      "date": "2027-02-18T02:14",
+      "service": "Nuagik (stockage)",
+      "appareil": "Ordinateur inconnu",
+      "lieu": "Localisation inconnue",
+      "resultat": "Réussie",
+      "suspecte": true
+    },
+    {
+      "date": "2027-02-18T07:12",
+      "service": "MontriveMail",
+      "appareil": "Kora K5 (téléphone habituel)",
+      "lieu": "Montrive",
+      "resultat": "Réussie",
+      "suspecte": false
+    }
+  ],
+  "note": "Le 18 février à 02 h 13, une connexion réussit depuis un ordinateur inconnu, avec le bon mot de passe — le même que celui du stockage Nuagik. Robin n'a pourtant donné que « azerty123 » au Collecteur. La messagerie et le stockage partagent le même mot de passe : lequel ? Et comment a-t-il été retrouvé ?"
+}

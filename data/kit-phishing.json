@@ -1,0 +1,17 @@
+{
+  "titre": "Journal du kit de phishing (saisi par la police)",
+  "intro": "Extrait du serveur du Collecteur : ce que la fausse page « horizons-jeunesse.co » a réellement reçu, le 17 février 2027.",
+  "colonnes": [
+    "Horodatage",
+    "Adresse e-mail saisie",
+    "Mot de passe saisi"
+  ],
+  "lignes": [
+    {
+      "date": "2027-02-17T21:06:12",
+      "email": "robin.dupont@montrivemail.ch",
+      "motdepasse": "azerty123"
+    }
+  ],
+  "note": "Un seul essai, puis la page a été fermée. Le mot de passe saisi n'est pas le vrai : Robin a tapé « azerty123 » par méfiance. Alors comment le Collecteur a-t-il ouvert sa messagerie la nuit suivante ?"
+}

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr" data-racine="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Calculateur de temps de recherche</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="stylesheet" href="../assets/css/commun.css">
+  <link rel="stylesheet" href="../assets/css/outils.css">
+</head>
+<body>
+  <a class="lien-evitement" href="#cadre">Aller au contenu</a>
+  <header class="entete">
+    <a class="marque" href="../index.html"><img src="../assets/img/logo-argos.svg" alt=""><span>Cellule ARGOS<small>Pièce du dossier 3</small></span></a>
+    <nav aria-label="Navigation"><a href="../seance-3/index.html">← Retour au dossier 3</a></nav>
+  </header>
+  <main class="scene-outil">
+    <div class="outil" id="cadre" hidden>
+<p class="fil-ariane"><a href="../seance-3/index.html">← Retour au dossier 3</a></p>
+      <h1>Calculateur de temps de recherche</h1>
+      <p class="intro">Combien de temps faudrait-il pour trouver un mot de passe en essayant toutes les possibilités ? Comparez un mot de passe fait de caractères au hasard et une phrase de passe faite de mots tirés au hasard.</p>
+      <div class="bloc-outil">
+        <div class="options-ligne" role="radiogroup" aria-label="Type de mot de passe">
+          <span class="option"><input type="radio" name="mode" id="mode-car" value="caracteres" checked><label for="mode-car">Caractères au hasard</label></span>
+          <span class="option"><input type="radio" name="mode" id="mode-mots" value="mots"><label for="mode-mots">Mots tirés au hasard</label></span>
+        </div>
+        <div id="bloc-caracteres">
+          <p class="aide-champ">Quels caractères sont possibles, et combien en tout ?</p>
+          <div class="options-ligne">
+            <span class="option"><input type="checkbox" id="minuscules" checked><label for="minuscules">minuscules (26)</label></span>
+            <span class="option"><input type="checkbox" id="majuscules" checked><label for="majuscules">MAJUSCULES (26)</label></span>
+            <span class="option"><input type="checkbox" id="chiffres" checked><label for="chiffres">chiffres (10)</label></span>
+            <span class="option"><input type="checkbox" id="symboles"><label for="symboles">symboles (~30)</label></span>
+          </div>
+          <div class="champ-bloc" style="max-width:16rem"><label for="longueur">Longueur (nombre de caractères)</label><input type="number" id="longueur" min="1" max="64" value="9"></div>
+        </div>
+        <div id="bloc-mots" hidden>
+          <div class="options-ligne">
+            <span class="champ-bloc" style="max-width:18rem"><label for="taille-liste">Taille de la liste de mots</label><input type="number" id="taille-liste" min="1" value="7776"><span class="aide-champ">7776 = une liste de référence courante.</span></span>
+            <span class="champ-bloc" style="max-width:14rem"><label for="nombre-mots">Nombre de mots</label><input type="number" id="nombre-mots" min="1" max="20" value="5"></span>
+          </div>
+        </div>
+        <fieldset style="border:1px solid var(--bord);border-radius:10px;padding:0.6rem 1rem;margin-top:0.6rem">
+          <legend>Vitesse d'essai (ordre de grandeur)</legend>
+          <div class="options-ligne" role="radiogroup">
+            <span class="option"><input type="radio" name="vitesse" id="v-gpu" value="1e10" checked><label for="v-gpu">Carte graphique récente, hachage rapide : ~10<sup>10</sup>/s</label></span>
+            <span class="option"><input type="radio" name="vitesse" id="v-lent" value="1e5"><label for="v-lent">Hachage lent (conçu pour les mots de passe) : ~10<sup>5</sup>/s</label></span>
+            <span class="option"><input type="radio" name="vitesse" id="v-perso" value="perso"><label for="v-perso">Autre :</label><input type="number" id="vitesse-perso" min="1" value="1000000000" disabled style="max-width:12rem"><span class="aide-champ">essais/s</span></span>
+          </div>
+        </fieldset>
+        <div class="zone-resultat" id="resultat-calc" aria-live="polite"></div>
+        <p class="aide-champ">Les vitesses sont des ordres de grandeur, pour comparer. Le temps affiché est le temps <em>moyen</em> (la moitié des possibilités).</p>
+      </div>
+    </div>
+  </main>
+  <footer class="pied">Environnement pédagogique fictif — toute ressemblance avec des personnes ou des services réels serait fortuite.</footer>
+  <script type="module" src="../assets/js/calculateur.js"></script>
+</body>
+</html>

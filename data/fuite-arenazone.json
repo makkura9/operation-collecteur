@@ -1,0 +1,208 @@
+{
+  "_commentaire": "Fuite FICTIVE du forum ArenaZone (été 2023). Empreintes SHA-256 non salées des mots de passe. Données générées par scripts/generer_fuite.py.",
+  "service": "ArenaZone",
+  "annee": 2023,
+  "note": "Empreintes SHA-256 sans sel : c'est justement l'erreur du forum (voir fiche enseignant).",
+  "comptes": [
+    {
+      "pseudo": "SilentWisp",
+      "email": "silentwisp@mailexemple.ch",
+      "empreinte": "8f5cabbad4ca969219d46cc5f1aec73e4c1d8546667fb72ae275ae4f3838735c"
+    },
+    {
+      "pseudo": "Dragon_Slayer",
+      "email": "k.meunier@mailexemple.ch",
+      "empreinte": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
+    },
+    {
+      "pseudo": "OrkanWolf",
+      "email": "orkanwolf@mailexemple.ch",
+      "empreinte": "da03200e6dd441f1113ac443a96bc22872d8a32dde45b172ee4d59d3339ae435"
+    },
+    {
+      "pseudo": "TurboSnail",
+      "email": "turbosnail@mailexemple.ch",
+      "empreinte": "a522d9023ef45f505a679f8dfc9236443ed5b4a12edcbff938518517979ad313"
+    },
+    {
+      "pseudo": "PandaRoux",
+      "email": "pandaroux@mailexemple.ch",
+      "empreinte": "4e8fb54da4415978afb49f7192002d44c2fea81bc7a5c8ffb4a9d559b2532f73"
+    },
+    {
+      "pseudo": "Lola2010",
+      "email": "lola.baud@mailexemple.ch",
+      "empreinte": "f3029a66c61b61b41b428963a2fc134154a5383096c776f3b4064733c5463d90"
+    },
+    {
+      "pseudo": "JaguarX",
+      "email": "jaguarx@mailexemple.ch",
+      "empreinte": "1baa9865ad561d65c20f2a91acb1d21c6fbd9d860e3b4dc5fe7b60ef11e308f5"
+    },
+    {
+      "pseudo": "StormRider",
+      "email": "stormrider@mailexemple.ch",
+      "empreinte": "0c5ac3e3ddfb65d8eaf4208991acd3322144642fe6f4614a2b02ddc4a589f924"
+    },
+    {
+      "pseudo": "KoalaBleu",
+      "email": "koalableu@mailexemple.ch",
+      "empreinte": "ba3d77e9b9110dad126463117ed394fbe585d97053885a08c19c5b57ee176585"
+    },
+    {
+      "pseudo": "MidnightOwl",
+      "email": "midnightowl@mailexemple.ch",
+      "empreinte": "002a4787a9774914b30049cf0943853c8259cd8d3cf0cd020c0995fe88655848"
+    },
+    {
+      "pseudo": "ValkyrieZ",
+      "email": "valkyriez@mailexemple.ch",
+      "empreinte": "4e01dfff437dbf26f6619784f6cf527b42223a25b01a88713afc279dfd387761"
+    },
+    {
+      "pseudo": "DocBrown",
+      "email": "docbrown@mailexemple.ch",
+      "empreinte": "eafc1ddfac0f771d849f93ea5ce1a559e8ee37f402abaa460e99abb6a6912cef"
+    },
+    {
+      "pseudo": "ShadowFox",
+      "email": "shadowfox@mailexemple.ch",
+      "empreinte": "8f892a66445124b492f444246b519206f5c9cfcea53d8d0dced9fcab9d487464"
+    },
+    {
+      "pseudo": "NovaBlitz",
+      "email": "novablitz@mailexemple.ch",
+      "empreinte": "638572eed17038195694c128047bda058b74508672d58b7659f83ab47c4c99f5"
+    },
+    {
+      "pseudo": "CyberKira",
+      "email": "cyberkira@mailexemple.ch",
+      "empreinte": "94c1ca55d7aa720dd1d1d82ed2f83fb243babdde809870925a1f0f70521ab816"
+    },
+    {
+      "pseudo": "MissGalaxy",
+      "email": "missgalaxy@mailexemple.ch",
+      "empreinte": "f106f3797490b85b9cb8fcf1417cb6b75d38fb6dd732adc9dd0714bd9d627b04"
+    },
+    {
+      "pseudo": "ZeldaFan",
+      "email": "zeldafan@mailexemple.ch",
+      "empreinte": "3c68da0b24e781bfe1f93fd8d71ae67cdaf85d3fbcbd883ee907b577b95ab9e2"
+    },
+    {
+      "pseudo": "FrostByte",
+      "email": "frostbyte@mailexemple.ch",
+      "empreinte": "dad2f3bdb22f729557f6569f413ab068ebafd527d5694dd7e7d7260360301b73"
+    },
+    {
+      "pseudo": "RiftWalker",
+      "email": "riftwalker@mailexemple.ch",
+      "empreinte": "ebe5174a070ff54001b00290c5ee0f7c4c364ae9ca090dc99440f27ffdc98aee"
+    },
+    {
+      "pseudo": "PixelMancer",
+      "email": "pixelmancer@mailexemple.ch",
+      "empreinte": "408e1565c4d82759b4c8d073054126f4ca84c1988397b7585234698c57442577"
+    },
+    {
+      "pseudo": "WildTulip",
+      "email": "wildtulip@mailexemple.ch",
+      "empreinte": "fcc88e7740cc52da80806893ffca8a9d7bb9f282c617e5618d01bc3b0c89801e"
+    },
+    {
+      "pseudo": "ElfeVert",
+      "email": "elfevert@mailexemple.ch",
+      "empreinte": "a3a721fedb132436c3599949914c1511600b53ada8a8933eb4e2f8dfa3821e2a"
+    },
+    {
+      "pseudo": "NightOwl",
+      "email": "y.ferreira@mailexemple.ch",
+      "empreinte": "6382deaf1f5dc6e792b76db4a4a7bf2ba468884e000b25e7928e621e27fb23cb"
+    },
+    {
+      "pseudo": "BlueComet",
+      "email": "bluecomet@mailexemple.ch",
+      "empreinte": "caa842c5a6feeb80e192f7d6ec017551cb857a924e9c0a7e05086e3b780af8ee"
+    },
+    {
+      "pseudo": "GeckoVert",
+      "email": "geckovert@mailexemple.ch",
+      "empreinte": "1d9eb68cc94e6d92abe445c6a19b6127f64b73b3b23f658c04bf6bbc25fc82f9"
+    },
+    {
+      "pseudo": "RogueByte",
+      "email": "roguebyte@mailexemple.ch",
+      "empreinte": "70c13690e36690ae344c4a378ac03983b598ff0cf4edf0059b9b4c88eec7fe70"
+    },
+    {
+      "pseudo": "EchoDelta",
+      "email": "echodelta@mailexemple.ch",
+      "empreinte": "c902b6ed55f42c77efe5808fe9d536a06a402c5fdd55767b935aaf635f228979"
+    },
+    {
+      "pseudo": "PixelWarrior",
+      "email": "t.schmidt@mailexemple.ch",
+      "empreinte": "e93e24c1b877a15df5e4a8cbb20f351b891b750779cf5e8fb99119a7142d89cf"
+    },
+    {
+      "pseudo": "RobinPxl",
+      "email": "robin.dupont@montrivemail.ch",
+      "empreinte": "2192df59dd211541b3ccee00a2ccc60b1ec989faf8c03ab090681b422f05f4fd"
+    },
+    {
+      "pseudo": "GhostPepper",
+      "email": "ghostpepper@mailexemple.ch",
+      "empreinte": "827bdfe80f6ea87de490bce84e60922be49a2e6638618993273cfbd70a517375"
+    },
+    {
+      "pseudo": "CaptainNemo",
+      "email": "captainnemo@mailexemple.ch",
+      "empreinte": "c6f39826a2f0db0955b8ffc6d6048bde938ec769ca6edd356d01abc53e8355b1"
+    },
+    {
+      "pseudo": "MrPotato",
+      "email": "mrpotato@mailexemple.ch",
+      "empreinte": "1ddd339dcf69e0a9799e67919ad6d5d12397a9486acca24d2c4b48d9db9e3105"
+    },
+    {
+      "pseudo": "PhoenixK",
+      "email": "phoenixk@mailexemple.ch",
+      "empreinte": "0a936a376c848fdcd2694bfeb33fef6c26e390e3d6df1558d9a9f879c3ad0217"
+    },
+    {
+      "pseudo": "ReineDesNeiges",
+      "email": "a.rochat@mailexemple.ch",
+      "empreinte": "8d16498453b03d4420d90362d71e6c36bb1564aeea53f36f206746e7cb5a5175"
+    },
+    {
+      "pseudo": "VioletHaze",
+      "email": "violethaze@mailexemple.ch",
+      "empreinte": "c9807160d7a4b8d660d45b58baddb26d3a7b46a672396f8d1b8243745cd32e8f"
+    },
+    {
+      "pseudo": "HappyCamper",
+      "email": "happycamper@mailexemple.ch",
+      "empreinte": "0537595b3b8f5ce98694ca6e87bb612deb827c774c78c274b4deb4b21aedb710"
+    },
+    {
+      "pseudo": "TomCrusoe",
+      "email": "tomcrusoe@mailexemple.ch",
+      "empreinte": "6ccc2d3ef6bb4f5f2c000853fd00bc623e457a9225f6c66c7f8cc4a8fb7d878c"
+    },
+    {
+      "pseudo": "NeoMatrix",
+      "email": "neomatrix@mailexemple.ch",
+      "empreinte": "f35986f2d0d73ef672e9b90afa9a89c6c7abfd3555fe7c63e94411e588950f82"
+    },
+    {
+      "pseudo": "LunaStar",
+      "email": "lunastar@mailexemple.ch",
+      "empreinte": "e69d630031a4d006f3647087caf989ee26bbb98d60df1dde6ae46450fe51fd48"
+    },
+    {
+      "pseudo": "SkyRunner",
+      "email": "skyrunner@mailexemple.ch",
+      "empreinte": "0b6c7f0dceed156981dfd714faadd84f932b1454a194a7c7bdad1e37ec21d5ac"
+    }
+  ]
+}
