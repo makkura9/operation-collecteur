@@ -160,31 +160,31 @@
           "titre": "Brouillons",
           "texte": "Le dossier Brouillons de la messagerie de Robin.",
           "url": "montrivemail/brouillons.html",
-          "dispo": false
+          "dispo": true
         },
         {
           "titre": "Décodeur Base64",
           "texte": "Pour lire un texte encodé.",
           "url": "outils/base64.html",
-          "dispo": false
+          "dispo": true
         },
         {
           "titre": "Roue de César",
           "texte": "Pour essayer tous les décalages.",
           "url": "outils/cesar.html",
-          "dispo": false
+          "dispo": true
         },
         {
           "titre": "Déchiffreur de Vigenère",
           "texte": "Pour déchiffrer avec une clé.",
           "url": "outils/vigenere.html",
-          "dispo": false
+          "dispo": true
         },
         {
           "titre": "Analyseur de fréquences",
           "texte": "Bonus : compter les lettres d'un message.",
           "url": "outils/frequences.html",
-          "dispo": false
+          "dispo": true
         }
       ],
       "sortie": {

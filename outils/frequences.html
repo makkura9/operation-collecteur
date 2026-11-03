@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fr" data-racine="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Analyseur de fréquences</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="stylesheet" href="../assets/css/commun.css">
+  <link rel="stylesheet" href="../assets/css/outils.css">
+</head>
+<body>
+  <a class="lien-evitement" href="#cadre">Aller au contenu</a>
+  <header class="entete">
+    <a class="marque" href="../index.html"><img src="../assets/img/logo-argos.svg" alt=""><span>Cellule ARGOS<small>Pièce du dossier 4</small></span></a>
+    <nav aria-label="Navigation"><a href="../seance-4/index.html">← Retour au dossier 4</a></nav>
+  </header>
+  <main class="scene-outil">
+    <div class="outil" id="cadre" hidden>
+<p class="fil-ariane"><a href="../seance-4/index.html">← Retour au dossier 4</a></p>
+      <h1>Analyseur de fréquences</h1>
+      <p class="intro">Bonus. En français, les lettres n'apparaissent pas à la même fréquence (le E domine). Un chiffre de César décale ces fréquences sans les lisser : on peut donc le casser sans essayer tous les décalages. Vigenère, lui, « lisse » les fréquences.</p>
+      <div class="bloc-outil">
+        <div class="zone-texte"><label for="entree">Texte à analyser</label><textarea id="entree" spellcheck="false">LE RENARD BRUN SAUTE PAR DESSUS LE CHIEN PARESSEUX. CE PANGRAMME IMPARFAIT SERT A COMPTER LES LETTRES.</textarea></div>
+        <div class="barre-boutons"><button type="button" class="bouton secondaire" id="pre-remplir">Charger le message Vigenère</button><span class="doux">Lettres comptées : <strong id="total">0</strong></span></div>
+        <div class="graphe-freq" id="graphe"></div>
+        <div class="legende-freq"><span><span class="ech texte"></span>votre texte</span><span><span class="ech ref"></span>français (référence)</span></div>
+        <p class="aide-champ">Fréquences de référence : ordres de grandeur, elles varient selon le texte.</p>
+      </div>
+    </div>
+  </main>
+  <footer class="pied">Environnement pédagogique fictif — toute ressemblance avec des personnes ou des services réels serait fortuite.</footer>
+  <script type="module" src="../assets/js/frequences.js"></script>
+</body>
+</html>

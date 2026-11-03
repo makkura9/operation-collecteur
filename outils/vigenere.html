@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="fr" data-racine="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Déchiffreur de Vigenère</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="stylesheet" href="../assets/css/commun.css">
+  <link rel="stylesheet" href="../assets/css/outils.css">
+</head>
+<body>
+  <a class="lien-evitement" href="#cadre">Aller au contenu</a>
+  <header class="entete">
+    <a class="marque" href="../index.html"><img src="../assets/img/logo-argos.svg" alt=""><span>Cellule ARGOS<small>Pièce du dossier 4</small></span></a>
+    <nav aria-label="Navigation"><a href="../seance-4/index.html">← Retour au dossier 4</a></nav>
+  </header>
+  <main class="scene-outil">
+    <div class="outil" id="cadre" hidden>
+<p class="fil-ariane"><a href="../seance-4/index.html">← Retour au dossier 4</a></p>
+      <h1>Déchiffreur de Vigenère</h1>
+      <p class="intro">Vigenère utilise un mot-clé répété : il résiste mieux que César, mais pas indéfiniment. Donnez le texte et la clé.</p>
+      <div class="bloc-outil">
+        <div class="zone-texte"><label for="entree">Texte chiffré</label><textarea id="entree" spellcheck="false"></textarea></div>
+        <div class="champ-bloc" style="max-width:18rem"><label for="cle">Clé</label><input type="text" id="cle" placeholder="le symbole du Collecteur" spellcheck="false"></div>
+        <div class="barre-boutons"><button type="button" class="bouton" id="dechiffrer">Déchiffrer</button><button type="button" class="bouton secondaire" id="pre-remplir">Charger le brouillon du Collecteur</button></div>
+        <div class="zone-texte"><label for="sortie">Résultat</label><div class="sortie-lecture" id="sortie" role="textbox" aria-readonly="true" aria-live="polite"></div></div>
+      </div>
+    </div>
+  </main>
+  <footer class="pied">Environnement pédagogique fictif — toute ressemblance avec des personnes ou des services réels serait fortuite.</footer>
+  <script type="module" src="../assets/js/vigenere.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fr" data-racine="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Roue de César</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="stylesheet" href="../assets/css/commun.css">
+  <link rel="stylesheet" href="../assets/css/outils.css">
+</head>
+<body>
+  <a class="lien-evitement" href="#cadre">Aller au contenu</a>
+  <header class="entete">
+    <a class="marque" href="../index.html"><img src="../assets/img/logo-argos.svg" alt=""><span>Cellule ARGOS<small>Pièce du dossier 4</small></span></a>
+    <nav aria-label="Navigation"><a href="../seance-4/index.html">← Retour au dossier 4</a></nav>
+  </header>
+  <main class="scene-outil">
+    <div class="outil" id="cadre" hidden>
+<p class="fil-ariane"><a href="../seance-4/index.html">← Retour au dossier 4</a></p>
+      <h1>Roue de César</h1>
+      <p class="intro">Le chiffre de César décale chaque lettre d'un même nombre de rangs. Il n'y a que 25 décalages possibles : on les essaie tous (force brute). Message découpé en <strong id="nb-fragments">12</strong> fragments — chargez le vôtre par votre numéro de binôme.</p>
+      <div class="bloc-outil">
+        <div class="ligne-fragment">
+          <div class="champ-bloc" style="max-width:12rem"><label for="numero">Numéro de binôme</label><input type="number" id="numero" min="1" max="16" value="1"></div>
+          <button type="button" class="bouton" id="charger">Charger mon fragment</button>
+        </div>
+        <p id="info-fragment"></p>
+        <div class="zone-texte"><label for="entree">Texte chiffré (vous pouvez aussi coller le vôtre)</label><textarea id="entree" spellcheck="false"></textarea></div>
+        <h2>Les 25 décalages</h2>
+        <p class="aide-champ">Cherchez la ligne qui donne du français lisible : c'est le bon décalage.</p>
+        <div class="cadre-table"><table class="table-decalages"><tbody id="decalages"></tbody></table></div>
+      </div>
+    </div>
+  </main>
+  <footer class="pied">Environnement pédagogique fictif — toute ressemblance avec des personnes ou des services réels serait fortuite.</footer>
+  <script type="module" src="../assets/js/cesar.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+{
+  "_commentaire": "Messages chiffrés de la séance 4. Généré par scripts/generer_chiffres.py. Aucun texte en clair, aucune clé ici.",
+  "convention": "Majuscules sans accents ; espaces et ponctuation conservés et non chiffrés ; en Vigenère, la clé n'avance que sur les lettres.",
+  "base64": {
+    "chiffre": "S2Vuem8sIHRvbiBjb21wdGUgZXN0IHByw6p0ID8gUsOpcG9uZHMgZGFucyBjZSBicm91aWxsb24uIFJpZW4gcGFyIFNNUy4g4oCUIEM="
+  },
+  "cesar": {
+    "consigne": "Chaque binôme saisit son numéro (1 à 12) et reçoit son fragment, chiffré par décalage (César). Trouvez le bon décalage par force brute, puis la classe remet les fragments dans l'ordre.",
+    "nombre_fragments": 12,
+    "fragments": [
+      {
+        "numero": 1,
+        "position": 1,
+        "chiffre": "NHQCR,"
+      },
+      {
+        "numero": 2,
+        "position": 2,
+        "chiffre": "H WHYAPY"
+      },
+      {
+        "numero": 3,
+        "position": 3,
+        "chiffre": "OP XLTYEPYLYE"
+      },
+      {
+        "numero": 4,
+        "position": 4,
+        "chiffre": "FE GRJJV RL"
+      },
+      {
+        "numero": 5,
+        "position": 5,
+        "chiffre": "ANLJSJWJ. QF"
+      },
+      {
+        "numero": 6,
+        "position": 6,
+        "chiffre": "YHA AOP JKPNA"
+      },
+      {
+        "numero": 7,
+        "position": 7,
+        "chiffre": "GMAPCZS"
+      },
+      {
+        "numero": 8,
+        "position": 8,
+        "chiffre": ": CRANURAN."
+      },
+      {
+        "numero": 9,
+        "position": 9,
+        "chiffre": "XYYTVX"
+      },
+      {
+        "numero": 10,
+        "position": 10,
+        "chiffre": "EG DTQWKNNQP"
+      },
+      {
+        "numero": 11,
+        "position": 11,
+        "chiffre": "ZOQDR KDBSTQD."
+      },
+      {
+        "numero": 12,
+        "position": 12,
+        "chiffre": "— P"
+      },
+      {
+        "numero": 13,
+        "position": 1,
+        "chiffre": "NHQCR,",
+        "copie_de": 1
+      },
+      {
+        "numero": 14,
+        "position": 2,
+        "chiffre": "H WHYAPY",
+        "copie_de": 2
+      },
+      {
+        "numero": 15,
+        "position": 3,
+        "chiffre": "OP XLTYEPYLYE",
+        "copie_de": 3
+      },
+      {
+        "numero": 16,
+        "position": 4,
+        "chiffre": "FE GRJJV RL",
+        "copie_de": 4
+      }
+    ]
+  },
+  "vigenere": {
+    "chiffre": "ECEHT XIIFQVV XIIW, LMGX SMLVXA USFHV, KTZV HP UFRMZZZP. ZFFBV KIWMTLTZXI EWLNHCIW DMJ JTKKYCMJ IG IKXPVUEGB CI EZRMG. RV Q'ZKTYIM UY HQWM. MWE GZUGXX ZVGPDIE E'IIKPVK PX AFMC UVQX. BL XCIEWYMIICIJ XHCK, WLCW XXA 500 WVLVTW, EM MIYLIIWQ UMI-VVYY URVD. — K",
+    "indice": "La clé est le symbole du Collecteur — vous l'avez obtenue en reconstituant le message précédent."
+  }
+}

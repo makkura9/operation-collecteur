@@ -67,3 +67,43 @@ code, .mono { font-family: var(--police-code); }
   .options-ligne { gap: 0.5rem 0.9rem; }
   .bloc-outil { padding: 0.9rem 0.9rem; }
 }
+
+/* ----- Outils de chiffrement (séance 4) ----- */
+.zone-texte { display: grid; gap: 0.3rem; margin-bottom: 0.8rem; }
+.zone-texte label { font-weight: 700; }
+.zone-texte textarea { width: 100%; min-height: 4.5rem; font-family: var(--police-code); font-size: 0.95rem; }
+.sortie-lecture { background: var(--fond-2); border: 1px solid var(--bord); border-radius: 8px; padding: 0.7rem; min-height: 3rem; white-space: pre-wrap; font-family: var(--police-code); color: var(--texte); }
+.ligne-fragment { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: end; margin-bottom: 0.8rem; }
+.ligne-fragment .champ-bloc { margin-bottom: 0; }
+#info-fragment { color: var(--accent); margin: 0.3rem 0; }
+
+.table-decalages { width: 100%; border-collapse: collapse; font-size: 0.92rem; margin-top: 0.6rem; }
+.table-decalages td { padding: 0.25rem 0.6rem; border-bottom: 1px solid var(--bord); }
+.num-decalage { font-family: var(--police-code); color: var(--texte-doux); width: 3rem; white-space: nowrap; }
+.resultat-decalage { letter-spacing: 0.04em; }
+.table-decalages tr:hover td { background: rgba(61, 214, 198, 0.08); }
+
+/* Graphe de fréquences */
+.graphe-freq { display: grid; gap: 3px; margin-top: 0.6rem; }
+.ligne-freq { display: grid; grid-template-columns: 1.4rem 1fr 3.2rem; align-items: center; gap: 0.5rem; }
+.freq-lettre { font-family: var(--police-code); font-weight: 700; text-align: center; }
+.freq-barres { position: relative; height: 1.1rem; background: var(--fond-2); border-radius: 4px; overflow: hidden; }
+.barre-texte { position: absolute; left: 0; top: 0; height: 100%; background: var(--accent); opacity: 0.85; }
+.barre-ref { position: absolute; left: 0; top: 0; height: 100%; border-right: 2px dashed var(--alerte); background: transparent; }
+.freq-val { font-family: var(--police-code); font-size: 0.82rem; color: var(--texte-doux); text-align: right; }
+.legende-freq { display: flex; gap: 1.2rem; flex-wrap: wrap; font-size: 0.88rem; margin-top: 0.6rem; }
+.legende-freq .ech { display: inline-block; width: 1.1rem; height: 0.7rem; vertical-align: middle; margin-right: 0.3rem; }
+.legende-freq .ech.texte { background: var(--accent); }
+.legende-freq .ech.ref { border-right: 2px dashed var(--alerte); }
+
+/* Brouillons */
+.liste-brouillons { display: grid; gap: 1rem; }
+.brouillon { background: var(--carte); border: 1px solid var(--bord); border-radius: var(--rayon); padding: 0.9rem 1.1rem; }
+.brouillon.chiffre { border-left: 4px solid var(--accent); }
+.brouillon.clair { border-left: 4px solid var(--alerte); background: var(--fond-2); }
+.brouillon-tete { display: flex; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
+.brouillon-etiquette { font-weight: 800; color: var(--accent); }
+.brouillon.clair .brouillon-etiquette { color: var(--alerte); }
+.brouillon-auteur { color: var(--texte-doux); font-size: 0.85rem; margin: 0.1rem 0 0.5rem; }
+.brouillon-contenu { white-space: pre-wrap; word-break: break-word; font-family: var(--police-code); font-size: 0.9rem; background: var(--fond); border-radius: 8px; padding: 0.7rem; margin: 0; }
+.brouillon-note { font-size: 0.9rem; color: var(--texte-doux); margin: 0.6rem 0 0; }
