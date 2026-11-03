@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr" data-racine="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Historique de navigation — MontriveMail</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="stylesheet" href="../assets/css/commun.css">
+  <link rel="stylesheet" href="../assets/css/agence.css">
+  <link rel="stylesheet" href="../assets/css/montrivemail.css">
+</head>
+<body class="page-outil-fond">
+  <a class="lien-evitement" href="#cadre">Aller au contenu</a>
+  <header class="entete">
+    <a class="marque" href="../index.html">
+      <img src="../assets/img/logo-argos.svg" alt="">
+      <span>Cellule ARGOS<small>Pièce du dossier 2</small></span>
+    </a>
+    <nav aria-label="Navigation"><a href="../seance-2/index.html">← Retour au dossier 2</a></nav>
+  </header>
+
+  <main class="page-outil" id="cadre" hidden>
+    <p class="fil-ariane"><a href="index.html">← Retour à la messagerie</a></p>
+    <h1>Historique de navigation de Robin</h1>
+    <p class="doux" id="periode"></p>
+    <p>Repérez le clic du <strong>17 février à 21&nbsp;h&nbsp;06</strong> : sur quel site Robin est-il allé&nbsp;? Regardez attentivement l'adresse&nbsp;: le <strong>domaine</strong> est mis en gras.</p>
+    <p><label for="filtre">Filtrer la liste&nbsp;: </label><input type="search" id="filtre" placeholder="mot, date ou adresse" autocomplete="off"></p>
+    <div class="cadre-table">
+      <table class="tableau">
+        <caption class="sr-seulement">Pages visitées par Robin</caption>
+        <thead><tr><th scope="col">Date et heure</th><th scope="col">Titre de la page</th><th scope="col">Adresse</th></tr></thead>
+        <tbody id="corps-historique"></tbody>
+      </table>
+    </div>
+    <p id="aucun" hidden>Aucune page ne correspond à ce filtre.</p>
+    <noscript><p>Cette page a besoin de JavaScript pour fonctionner.</p></noscript>
+  </main>
+
+  <footer class="pied">Environnement pédagogique fictif — toute ressemblance avec des personnes ou des services réels serait fortuite.</footer>
+  <script type="module" src="../assets/js/historique.js"></script>
+</body>
+</html>

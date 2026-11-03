@@ -80,11 +80,35 @@ export function nombreClos() {
   return Object.keys(lire("persistant").closes).length;
 }
 
-/** Bouton « Nouveau binôme » : efface tout ce qui a été mémorisé sur cet ordinateur. */
+/** Annexes : petites données de travail d'une pièce (ex. réponses de la grille de classement). */
+const memoireAnnexes = {};
+
+export function lireAnnexe(nom) {
+  const cle = "argos." + nom;
+  try {
+    const brut = window.localStorage.getItem(cle);
+    if (brut) return JSON.parse(brut);
+  } catch (erreur) { /* repli sur la mémoire */ }
+  return memoireAnnexes[cle] ?? null;
+}
+
+export function ecrireAnnexe(nom, valeur) {
+  const cle = "argos." + nom;
+  memoireAnnexes[cle] = valeur;
+  try { window.localStorage.setItem(cle, JSON.stringify(valeur)); } catch (erreur) { /* ignoré */ }
+}
+
+/** Bouton « Nouveau binôme » : efface tout ce qui a été mémorisé sur cet ordinateur (progression et annexes). */
 export function reinitialiser() {
   ecrire("persistant", VIDE());
   ecrire("ouverture", VIDE());
+  for (const cle of Object.keys(memoireAnnexes)) delete memoireAnnexes[cle];
   for (const type of ["localStorage", "sessionStorage"]) {
-    try { window[type].removeItem(CLE); } catch (erreur) { /* ignoré */ }
+    try {
+      const espace = window[type];
+      for (const cle of Object.keys(espace)) {
+        if (cle.startsWith("argos.")) espace.removeItem(cle);
+      }
+    } catch (erreur) { /* ignoré */ }
   }
 }

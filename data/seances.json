@@ -59,19 +59,19 @@
           "titre": "MontriveMail",
           "texte": "La boîte de réception de Robin (25 messages).",
           "url": "montrivemail/",
-          "dispo": false
+          "dispo": true
         },
         {
           "titre": "Grille de classement",
           "texte": "Classez chaque message et justifiez votre choix.",
           "url": "montrivemail/classement.html",
-          "dispo": false
+          "dispo": true
         },
         {
           "titre": "Historique de navigation",
           "texte": "Les pages visitées par Robin dans la soirée du 17 février.",
           "url": "montrivemail/historique.html",
-          "dispo": false
+          "dispo": true
         }
       ],
       "sortie": {

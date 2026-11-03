@@ -1,0 +1,788 @@
+{
+  "indices": [
+    {
+      "id": "expediteur",
+      "texte": "Adresse de l'expéditeur douteuse ou qui ne correspond pas à l'organisation"
+    },
+    {
+      "id": "domaine-lien",
+      "texte": "Le lien mène vers un autre domaine que celui annoncé"
+    },
+    {
+      "id": "levier",
+      "texte": "Pression ou émotion pour agir vite (urgence, peur, curiosité)"
+    },
+    {
+      "id": "identifiants",
+      "texte": "Demande de mot de passe, d'identifiants ou de données de carte"
+    },
+    {
+      "id": "offre",
+      "texte": "Offre trop belle pour être vraie (gain, remboursement, argent facile)"
+    },
+    {
+      "id": "argent",
+      "texte": "Demande d'argent, de cartes cadeau ou d'un IBAN"
+    },
+    {
+      "id": "coherent",
+      "texte": "Rien d'anormal : expéditeur, lien et demande sont cohérents"
+    }
+  ],
+  "categories": [
+    {
+      "id": "legitime",
+      "texte": "Légitime",
+      "aide": "Un vrai message, à traiter normalement."
+    },
+    {
+      "id": "phishing",
+      "texte": "Phishing",
+      "aide": "Faux message qui cherche à vous faire saisir identifiants ou données sur une fausse page."
+    },
+    {
+      "id": "arnaque",
+      "texte": "Arnaque",
+      "aide": "Demande d'argent ou promesse de gain, sans fausse page de connexion."
+    }
+  ],
+  "mails": [
+    {
+      "id": "m-agence-facture",
+      "dossier": "reception",
+      "date": "2027-02-26T09:30",
+      "de": {
+        "nom": "Horizons Jeunesse",
+        "adresse": "facturation@horizons-jeunesse.ch"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "Votre facture est disponible sur votre espace client",
+      "corps": [
+        "Bonjour Robin Dupont,",
+        "Votre facture n° HJ-2027-0312 (voyage à Barcelone) est disponible sur votre espace client.",
+        "[[l1]]",
+        "Date limite de paiement : vendredi 12 mars 2027.",
+        "Horizons Jeunesse — Voyages scolaires et séjours de groupe"
+      ],
+      "liens": {
+        "l1": {
+          "texte": "Accéder à mon espace client",
+          "reel": "http://portail.horizons-jeunesse.ch/factures",
+          "page": "portail-http"
+        }
+      },
+      "lu": false,
+      "categorie": "legitime",
+      "indices_valides": [
+        "coherent"
+      ],
+      "explication": "Légitime. L'expéditeur et le domaine du lien sont corrects (horizons-jeunesse.ch) et le contexte est connu. À noter : l'adresse du lien commence par http:// (sans S), donc la connexion n'est pas protégée. Ce n'est pas un signe de fraude, mais une faiblesse du site de l'agence : on y reviendra en séance 5.",
+      "piege_inverse": false
+    },
+    {
+      "id": "m-agence-faux",
+      "dossier": "reception",
+      "date": "2027-02-17T21:04",
+      "de": {
+        "nom": "Horizons Jeunesse",
+        "adresse": "facturation@horizons-jeunesse.co"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "Confirmation d'inscription — vérification de votre paiement",
+      "corps": [
+        "Bonjour Robin Dupont,",
+        "Nous avons bien enregistré l'inscription de la classe 2M7 du Gymnase de Montrive pour le voyage à Barcelone, du 5 au 9 avril 2027.",
+        "Participants : 22 · Prix par personne : 650 CHF",
+        "Date limite de paiement : vendredi 12 mars 2027",
+        "Avant l'émission de votre facture, nous devons vérifier votre accès :",
+        "[[l1]]",
+        "Sans vérification avant vendredi, votre inscription pourrait être suspendue.",
+        "Horizons Jeunesse — Voyages scolaires et séjours de groupe"
+      ],
+      "liens": {
+        "l1": {
+          "texte": "Se connecter à l'espace client",
+          "reel": "https://horizons-jeunesse.co/espace-client",
+          "page": "connexion-agence"
+        }
+      },
+      "lu": true,
+      "categorie": "phishing",
+      "indices_valides": [
+        "domaine-lien",
+        "expediteur",
+        "identifiants",
+        "levier"
+      ],
+      "explication": "Phishing. Le message copie la mise en page du vrai mail de confirmation, mais l'adresse se termine par horizons-jeunesse.co (et non .ch). Il demande de se connecter « avant vendredi » pour éviter une suspension. C'est le piège sur lequel Robin a cliqué le 17 février à 21 h 06.",
+      "piege_inverse": false
+    },
+    {
+      "id": "m-banque-alerte",
+      "dossier": "reception",
+      "date": "2027-02-16T20:22",
+      "de": {
+        "nom": "Banque de Montrive Sécurité",
+        "adresse": "alerte@banque-montrive-securite.co"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "Activité suspecte sur votre compte : confirmez votre identité",
+      "corps": [
+        "Bonjour,",
+        "Un paiement inhabituel a été bloqué. Confirmez votre identité et votre code d'accès à l'e-banking pour débloquer votre compte.",
+        "[[l1]]",
+        "Service sécurité"
+      ],
+      "liens": {
+        "l1": {
+          "texte": "Confirmer mon identité",
+          "reel": "https://banque-montrive-securite.co/identite",
+          "page": "connexion-banque"
+        }
+      },
+      "lu": false,
+      "categorie": "phishing",
+      "indices_valides": [
+        "expediteur",
+        "domaine-lien",
+        "levier",
+        "identifiants"
+      ],
+      "explication": "Phishing. La vraie banque écrit depuis banque-montrive.ch et ne demande jamais votre code d'accès par un lien. L'alerte joue sur la peur et l'autorité pour que vous cliquiez sans réfléchir.",
+      "piege_inverse": false
+    },
+    {
+      "id": "m-maman-ce-soir",
+      "dossier": "reception",
+      "date": "2027-02-16T17:55",
+      "de": {
+        "nom": "Sophie Dupont",
+        "adresse": "sophie.dupont@montrivemail.ch"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "Ce soir",
+      "corps": [
+        "Coucou Robin,",
+        "Je rentre vers 19 h. Peux-tu sortir le linge de la machine et mettre les pâtes à cuire à 18 h 30 ?",
+        "Bisous, maman"
+      ],
+      "liens": {},
+      "lu": true,
+      "categorie": "legitime",
+      "indices_valides": [
+        "coherent"
+      ],
+      "explication": "Légitime. Un proche, son adresse habituelle, un message du quotidien.",
+      "piege_inverse": false
+    },
+    {
+      "id": "m-faux-favre-cartes",
+      "dossier": "reception",
+      "date": "2027-02-16T10:36",
+      "de": {
+        "nom": "C. Favre",
+        "adresse": "c.favre.gymnase@montrivemail-service.co"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "Petit service urgent",
+      "corps": [
+        "Bonjour Robin,",
+        "Je suis en réunion et je ne peux pas appeler. J'ai besoin de trois cartes cadeau de 50 CHF pour un cadeau de fin d'année pour la classe. Peux-tu les acheter et m'envoyer les codes par retour de mail ? Je te rembourse demain.",
+        "Discrétion s'il te plaît, c'est une surprise.",
+        "C. Favre"
+      ],
+      "liens": {},
+      "lu": false,
+      "categorie": "arnaque",
+      "indices_valides": [
+        "expediteur",
+        "levier",
+        "argent"
+      ],
+      "explication": "Arnaque. Le nom « C. Favre » s'affiche, mais l'adresse n'est pas celle du gymnase (montrivemail-service.co). On joue sur l'autorité du maître et l'urgence pour obtenir des cartes cadeau. Un vrai enseignant ne demande pas cela par e-mail : on vérifie par un autre canal, par exemple en lui parlant en classe.",
+      "piege_inverse": false
+    },
+    {
+      "id": "m-dentiste-rappel",
+      "dossier": "reception",
+      "date": "2027-02-16T09:00",
+      "de": {
+        "nom": "Cabinet dentaire du Quai",
+        "adresse": "rendezvous@cabinet-dentaire-quai.ch"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "Rappel : votre rendez-vous du 24 février",
+      "corps": [
+        "Bonjour,",
+        "Nous vous rappelons votre rendez-vous du mercredi 24 février à 16 h 30. Si vous ne pouvez pas venir, merci de nous prévenir par téléphone au moins 24 heures à l'avance, au numéro habituel du cabinet.",
+        "Le secrétariat du cabinet"
+      ],
+      "liens": {},
+      "lu": true,
+      "categorie": "legitime",
+      "indices_valides": [
+        "coherent"
+      ],
+      "explication": "Légitime. Le rendez-vous est connu, le message ne contient aucun lien et renvoie au numéro habituel.",
+      "piege_inverse": false
+    },
+    {
+      "id": "m-colis-douane",
+      "dossier": "reception",
+      "date": "2027-02-14T07:48",
+      "de": {
+        "nom": "Colibri Express",
+        "adresse": "suivi@colibri-express-suivi.co"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "Votre colis est en attente : frais de douane de 2,90 CHF",
+      "corps": [
+        "Bonjour,",
+        "Votre colis n° CE-48213907 n'a pas pu être livré : des frais de douane de 2,90 CHF restent à régler.",
+        "Réglez-les dans les 24 heures, sinon le colis sera renvoyé à l'expéditeur.",
+        "[[l1]]",
+        "Colibri Express"
+      ],
+      "liens": {
+        "l1": {
+          "texte": "Payer 2,90 CHF maintenant",
+          "reel": "https://colibri-express-suivi.co/payer",
+          "page": "paiement-colis"
+        }
+      },
+      "lu": false,
+      "categorie": "phishing",
+      "indices_valides": [
+        "expediteur",
+        "domaine-lien",
+        "levier",
+        "identifiants"
+      ],
+      "explication": "Phishing. Le nom du transporteur est repris, mais l'adresse est celle d'un autre domaine (colibri-express-suivi.co). Le délai de 24 heures et la toute petite somme poussent à payer sans réfléchir, et la page demande ensuite des données de carte.",
+      "piege_inverse": false
+    },
+    {
+      "id": "m-video-paiement",
+      "dossier": "reception",
+      "date": "2027-02-13T08:02",
+      "de": {
+        "nom": "Vidéorama",
+        "adresse": "facturation@videorama-abonnement.co"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "Paiement refusé : mettez à jour votre carte",
+      "corps": [
+        "Bonjour,",
+        "Votre abonnement Vidéorama sera interrompu aujourd'hui : votre dernier paiement a été refusé. Mettez à jour votre moyen de paiement.",
+        "[[l1]]",
+        "Le service client Vidéorama"
+      ],
+      "liens": {
+        "l1": {
+          "texte": "Mettre à jour ma carte",
+          "reel": "https://videorama-abonnement.co/carte",
+          "page": "paiement-video"
+        }
+      },
+      "lu": false,
+      "categorie": "phishing",
+      "indices_valides": [
+        "expediteur",
+        "domaine-lien",
+        "levier",
+        "identifiants"
+      ],
+      "explication": "Phishing. Robin n'a pas forcément d'abonnement : un message qui tombe « au hasard » est souvent envoyé à des milliers de personnes. Le domaine (videorama-abonnement.co) n'est pas celui du service, et la page réclame des données de carte.",
+      "piege_inverse": false
+    },
+    {
+      "id": "m-montrivemail-pleine",
+      "dossier": "reception",
+      "date": "2027-02-12T06:15",
+      "de": {
+        "nom": "Support MontriveMail",
+        "adresse": "support@montrivemail-assistance.co"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "Votre boîte de réception est pleine à 98 %",
+      "corps": [
+        "Bonjour,",
+        "Pour continuer à recevoir vos messages, augmentez la capacité de votre boîte en confirmant votre mot de passe.",
+        "[[l1]]",
+        "Sans action de votre part sous 24 heures, vos nouveaux messages seront refusés."
+      ],
+      "liens": {
+        "l1": {
+          "texte": "Libérer de l'espace",
+          "reel": "https://montrivemail-assistance.co/espace",
+          "page": "connexion-montrivemail"
+        }
+      },
+      "lu": true,
+      "categorie": "phishing",
+      "indices_valides": [
+        "expediteur",
+        "domaine-lien",
+        "levier",
+        "identifiants"
+      ],
+      "explication": "Phishing. Le vrai MontriveMail écrit depuis montrivemail.ch ; ici le domaine est montrivemail-assistance.co. Aucun service sérieux ne demande de confirmer votre mot de passe par un lien, et la menace de refuser vos messages met la pression.",
+      "piege_inverse": false
+    },
+    {
+      "id": "m-lea-compta",
+      "dossier": "reception",
+      "date": "2027-02-11T18:30",
+      "de": {
+        "nom": "Léa Morel",
+        "adresse": "lea.morel@montrivemail.ch"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "Compta du voyage : tu as le tableau ?",
+      "corps": [
+        "Salut Robin,",
+        "Tu peux m'envoyer le tableau de la cagnotte quand tu as 5 minutes ? M. Favre le demande pour jeudi.",
+        "Merci ! Léa"
+      ],
+      "liens": {},
+      "lu": true,
+      "categorie": "legitime",
+      "indices_valides": [
+        "coherent"
+      ],
+      "explication": "Légitime. Une camarade que vous connaissez, depuis sa vraie adresse, pour une demande attendue, sans lien ni pièce jointe.",
+      "piege_inverse": false
+    },
+    {
+      "id": "m-banque-conditions",
+      "dossier": "reception",
+      "date": "2027-02-10T09:12",
+      "de": {
+        "nom": "Banque de Montrive",
+        "adresse": "info@banque-montrive.ch"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "IMPORTANT : nouvelles conditions générales dès le 1er mars",
+      "corps": [
+        "Madame, Monsieur,",
+        "Nos conditions générales évoluent le 1er mars 2027. Vous les retrouverez dans votre e-banking, rubrique « Documents ». Pour y accéder, ouvrez l'application de la banque ou saisissez vous-même l'adresse de la banque dans votre navigateur.",
+        "Aucune action n'est nécessaire de votre part.",
+        "Banque de Montrive"
+      ],
+      "liens": {},
+      "lu": true,
+      "categorie": "legitime",
+      "indices_valides": [
+        "coherent"
+      ],
+      "explication": "Légitime. Le mot « IMPORTANT » peut inquiéter, mais le message ne contient aucun lien, ne demande ni mot de passe ni virement, et explique comment aller sur le site par vos propres moyens : c'est exactement le bon réflexe.",
+      "piege_inverse": true
+    },
+    {
+      "id": "m-video-curiosite",
+      "dossier": "reception",
+      "date": "2027-02-09T21:47",
+      "de": {
+        "nom": "Lucas",
+        "adresse": "lucas.photos@montrivemail-partage.co"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "Tu as vu cette vidéo de toi ?? 😱",
+      "corps": [
+        "Regarde, quelqu'un a publié ça de toi... j'hallucine.",
+        "[[l1]]"
+      ],
+      "liens": {
+        "l1": {
+          "texte": "Voir la vidéo",
+          "reel": "https://montrivemail-partage.co/video",
+          "page": "connexion-video"
+        }
+      },
+      "lu": true,
+      "categorie": "phishing",
+      "indices_valides": [
+        "expediteur",
+        "domaine-lien",
+        "levier",
+        "identifiants"
+      ],
+      "explication": "Phishing. Le prénom est inventé et l'adresse n'est pas celle d'un vrai camarade. La curiosité (« une vidéo de toi ») pousse à cliquer vite, puis la page exige une connexion pour « voir la vidéo ».",
+      "piege_inverse": false
+    },
+    {
+      "id": "m-concours-smartphone",
+      "dossier": "reception",
+      "date": "2027-02-09T10:40",
+      "de": {
+        "nom": "Jeu concours de la rentrée",
+        "adresse": "gagnant@concours-rentree-gagnants.co"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "Félicitations, vous avez gagné un smartphone !",
+      "corps": [
+        "Vous avez été tiré au sort parmi 10 000 participants !",
+        "Pour recevoir votre smartphone, réglez simplement 4,90 CHF de frais d'envoi.",
+        "[[l1]]",
+        "Offre valable 48 heures."
+      ],
+      "liens": {
+        "l1": {
+          "texte": "Réclamer mon lot",
+          "reel": "https://concours-rentree-gagnants.co/lot",
+          "page": "paiement-concours"
+        }
+      },
+      "lu": true,
+      "categorie": "arnaque",
+      "indices_valides": [
+        "offre",
+        "levier",
+        "expediteur"
+      ],
+      "explication": "Arnaque. Vous n'avez participé à aucun concours : un gain inattendu est un appât. On vous demande de payer des frais pour recevoir un « cadeau » qui n'existe pas, avec un délai de 48 heures pour vous presser.",
+      "piege_inverse": false
+    },
+    {
+      "id": "m-volley-entrainement",
+      "dossier": "reception",
+      "date": "2027-02-08T20:14",
+      "de": {
+        "nom": "Volley-Club de Montrive",
+        "adresse": "comite@vcmontrive.ch"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "Entraînement de jeudi déplacé",
+      "corps": [
+        "Salut à toutes et à tous,",
+        "L'entraînement de jeudi est déplacé à 19 h 30 en raison d'un match de la première équipe. Merci de votre compréhension.",
+        "Le comité"
+      ],
+      "liens": {},
+      "lu": true,
+      "categorie": "legitime",
+      "indices_valides": [
+        "coherent"
+      ],
+      "explication": "Légitime. Le club dont Robin est membre, une information pratique, rien à cliquer.",
+      "piege_inverse": false
+    },
+    {
+      "id": "m-crypto-doubler",
+      "dossier": "reception",
+      "date": "2027-02-07T15:33",
+      "de": {
+        "nom": "Alex Conseil",
+        "adresse": "alex.conseil@gains-garantis-crypto.co"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "Doublez votre argent en 48 heures",
+      "corps": [
+        "Des centaines de personnes ont déjà doublé leur mise.",
+        "Investissez dès 200 CHF en jetons numériques : gain garanti, sans risque.",
+        "Répondez à ce message pour recevoir le guide. Offre limitée aux 50 premiers."
+      ],
+      "liens": {},
+      "lu": true,
+      "categorie": "arnaque",
+      "indices_valides": [
+        "offre",
+        "levier",
+        "argent",
+        "expediteur"
+      ],
+      "explication": "Arnaque. Aucun placement ne garantit de doubler son argent en 48 heures sans risque. La rareté (« les 50 premiers ») et la promesse de gain sont des leviers classiques.",
+      "piege_inverse": false
+    },
+    {
+      "id": "m-cyclo-commande",
+      "dossier": "reception",
+      "date": "2027-02-05T15:48",
+      "de": {
+        "nom": "Cyclo Montrive",
+        "adresse": "commandes@cyclo-montrive.ch"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "Votre commande est expédiée",
+      "corps": [
+        "Bonjour Robin,",
+        "Votre commande n° 20483 (éclairage avant, 1 pièce) a été remise au transporteur. Livraison estimée : 2 à 3 jours ouvrables. Aucun paiement supplémentaire n'est à effectuer.",
+        "[[l1]]",
+        "Cyclo Montrive"
+      ],
+      "liens": {
+        "l1": {
+          "texte": "Suivre ma commande",
+          "reel": "https://cyclo-montrive.ch/suivi/20483",
+          "page": "legitime"
+        }
+      },
+      "lu": true,
+      "categorie": "legitime",
+      "indices_valides": [
+        "coherent"
+      ],
+      "explication": "Légitime. Vous avez passé cette commande, le lien reste sur le domaine du magasin (cyclo-montrive.ch) et rien n'est demandé en plus.",
+      "piege_inverse": false
+    },
+    {
+      "id": "m-agence-sousdomaine",
+      "dossier": "reception",
+      "date": "2027-02-04T12:11",
+      "de": {
+        "nom": "Horizons Jeunesse",
+        "adresse": "service@horizons-jeunesse.ch.verification-client.co"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "Votre dossier voyage doit être vérifié",
+      "corps": [
+        "Bonjour,",
+        "Pour finaliser votre inscription, vérifiez les informations de votre groupe avant le 8 février.",
+        "[[l1]]",
+        "Horizons Jeunesse — Service client"
+      ],
+      "liens": {
+        "l1": {
+          "texte": "Vérifier mon dossier",
+          "reel": "https://horizons-jeunesse.ch.verification-client.co/dossier",
+          "page": "connexion-agence"
+        }
+      },
+      "lu": true,
+      "categorie": "phishing",
+      "indices_valides": [
+        "domaine-lien",
+        "expediteur",
+        "levier",
+        "identifiants"
+      ],
+      "explication": "Phishing. L'adresse commence par horizons-jeunesse.ch, mais ce n'est qu'un sous-domaine : le vrai domaine est la partie juste avant l'extension, soit verification-client.co. Il ne faut jamais lire une adresse de gauche à droite en s'arrêtant au premier nom connu.",
+      "piege_inverse": false
+    },
+    {
+      "id": "m-partello-suspendu",
+      "dossier": "reception",
+      "date": "2027-02-03T22:10",
+      "de": {
+        "nom": "Support Partello",
+        "adresse": "securite@partello-support.co"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "Votre compte Partello sera suspendu",
+      "corps": [
+        "Bonjour,",
+        "Nous avons détecté une activité inhabituelle sur votre compte. Vérifiez votre identité dans les 12 heures, sinon votre compte sera définitivement supprimé.",
+        "[[l1]]",
+        "L'équipe Support"
+      ],
+      "liens": {
+        "l1": {
+          "texte": "Vérifier mon compte",
+          "reel": "https://partello-support.co/verification",
+          "page": "connexion-partello"
+        }
+      },
+      "lu": true,
+      "categorie": "phishing",
+      "indices_valides": [
+        "expediteur",
+        "domaine-lien",
+        "levier",
+        "identifiants"
+      ],
+      "explication": "Phishing. Le vrai Partello écrit depuis partello.ch, pas depuis partello-support.co. La menace de suppression en 12 heures est un levier de peur, et la page demande votre mot de passe.",
+      "piege_inverse": false
+    },
+    {
+      "id": "m-favre-autorisation",
+      "dossier": "reception",
+      "date": "2027-02-01T16:45",
+      "de": {
+        "nom": "C. Favre",
+        "adresse": "c.favre@gymnase-montrive.ch"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "URGENT : autorisation parentale à rendre demain",
+      "corps": [
+        "Bonjour à toutes et à tous,",
+        "Je vous rappelle que l'autorisation parentale pour le voyage à Barcelone doit m'être remise signée demain, mardi, au début du cours de 8 h 15. Sans ce document, je ne pourrai pas valider l'inscription de l'élève concerné.",
+        "Merci de votre ponctualité.",
+        "C. Favre, maître de classe 2M7"
+      ],
+      "liens": {},
+      "lu": true,
+      "categorie": "legitime",
+      "indices_valides": [
+        "coherent"
+      ],
+      "explication": "Légitime. Le ton est pressant (« URGENT ») et le message parle d'une autorisation, mais l'adresse est bien celle du gymnase, il n'y a ni lien ni pièce jointe, et la demande correspond à ce que M. Favre annonce en classe. Un message qui a l'air suspect peut être authentique.",
+      "piege_inverse": true
+    },
+    {
+      "id": "m-virelo-remboursement",
+      "dossier": "reception",
+      "date": "2027-01-28T13:05",
+      "de": {
+        "nom": "Virelo",
+        "adresse": "remboursement@virelo-rembours.co"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "Vous avez droit à un remboursement de 48,50 CHF",
+      "corps": [
+        "Bonjour,",
+        "Suite à un double prélèvement, un remboursement de 48,50 CHF est en attente sur votre compte. Indiquez vos coordonnées pour le recevoir.",
+        "[[l1]]",
+        "Service des remboursements"
+      ],
+      "liens": {
+        "l1": {
+          "texte": "Recevoir mon remboursement",
+          "reel": "https://virelo-rembours.co/rembourser",
+          "page": "paiement-virelo"
+        }
+      },
+      "lu": true,
+      "categorie": "phishing",
+      "indices_valides": [
+        "offre",
+        "expediteur",
+        "domaine-lien",
+        "identifiants"
+      ],
+      "explication": "Phishing. Un remboursement que vous n'attendiez pas est un appât. L'adresse (virelo-rembours.co) n'est pas celle du service de paiement, et la page demande des identifiants et des données de carte.",
+      "piege_inverse": false
+    },
+    {
+      "id": "m-cashfacile-job",
+      "dossier": "reception",
+      "date": "2027-01-13T19:50",
+      "de": {
+        "nom": "Cash Facile",
+        "adresse": "recrutement@cash-facile.co"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "Gagne 500 CHF sans bouger de chez toi",
+      "corps": [
+        "Salut !",
+        "Tu as 18 ans ou plus ? Deviens agent de transfert : tu reçois de l'argent sur ton compte, tu en gardes une partie et tu renvoies le reste. 500 CHF par opération, sans diplôme, sans expérience.",
+        "Réponds avec ton IBAN, c'est tout. Tu peux aussi nous écrire sur Partello : @cash_facile_ch."
+      ],
+      "liens": {},
+      "lu": true,
+      "categorie": "arnaque",
+      "indices_valides": [
+        "offre",
+        "argent",
+        "expediteur"
+      ],
+      "explication": "Arnaque. Recevoir de l'argent sur son compte puis le renvoyer en gardant une commission, c'est devenir une « mule financière » : une infraction. Un « job » payé 500 CHF sans compétence est le signal d'alerte. Retenez cette annonce : on la retrouvera.",
+      "piege_inverse": false
+    },
+    {
+      "id": "m-favre-musee",
+      "dossier": "reception",
+      "date": "2027-01-12T14:02",
+      "de": {
+        "nom": "C. Favre",
+        "adresse": "c.favre@gymnase-montrive.ch"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "Sortie au musée : départ à 8 h 15 jeudi",
+      "corps": [
+        "Bonjour,",
+        "Nous partirons jeudi à 8 h 15 devant l'entrée principale du gymnase. Prévoyez des chaussures confortables et un pique-nique.",
+        "C. Favre"
+      ],
+      "liens": {},
+      "lu": true,
+      "categorie": "legitime",
+      "indices_valides": [
+        "coherent"
+      ],
+      "explication": "Légitime. Même expéditeur que d'habitude, information pratique, aucune demande sensible.",
+      "piege_inverse": false
+    },
+    {
+      "id": "m-gymnase-culture",
+      "dossier": "reception",
+      "date": "2026-11-30T09:10",
+      "de": {
+        "nom": "Secrétariat du gymnase",
+        "adresse": "secretariat@gymnase-montrive.ch"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "Semaine culturelle : inscriptions ouvertes",
+      "corps": [
+        "Bonjour,",
+        "Les inscriptions aux ateliers de la semaine culturelle sont ouvertes jusqu'au 10 décembre. Le programme est affiché dans le hall et remis par les maîtres de classe.",
+        "Le secrétariat"
+      ],
+      "liens": {},
+      "lu": true,
+      "categorie": "legitime",
+      "indices_valides": [
+        "coherent"
+      ],
+      "explication": "Légitime. Adresse du gymnase, information générale, rien à saisir ni à payer.",
+      "piege_inverse": false
+    },
+    {
+      "id": "m-agence-confirmation",
+      "dossier": "reception",
+      "date": "2026-11-23T10:05",
+      "de": {
+        "nom": "Horizons Jeunesse",
+        "adresse": "info@horizons-jeunesse.ch"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "Confirmation d'inscription — voyage à Barcelone",
+      "corps": [
+        "Bonjour Robin Dupont,",
+        "Nous avons bien enregistré l'inscription de la classe 2M7 du Gymnase de Montrive pour le voyage à Barcelone, du 5 au 9 avril 2027.",
+        "Participants : 22 · Prix par personne : 650 CHF",
+        "Date limite de paiement : vendredi 12 mars 2027",
+        "La facture vous sera adressée par e-mail. Vous la retrouverez ensuite dans votre espace client, avec les coordonnées bancaires de l'agence pour votre virement.",
+        "Pour toute question, contactez-nous au numéro indiqué sur notre site.",
+        "Horizons Jeunesse — Voyages scolaires et séjours de groupe"
+      ],
+      "liens": {},
+      "lu": true,
+      "categorie": "legitime",
+      "indices_valides": [
+        "coherent"
+      ],
+      "explication": "Légitime. L'expéditeur est sur le domaine horizons-jeunesse.ch, il n'y a pas de lien à cliquer et le message renvoie vers le numéro du site officiel. C'est ce vrai mail que Léa a partiellement partagé en story : le Collecteur s'en inspirera.",
+      "piege_inverse": false
+    },
+    {
+      "id": "m-partello-mention",
+      "dossier": "reception",
+      "date": "2026-10-02T11:05",
+      "de": {
+        "nom": "Partello",
+        "adresse": "no-reply@partello.ch"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "lea.mrl vous a mentionné dans une publication",
+      "corps": [
+        "Léa Morel (lea.mrl) a parlé de vous dans une publication.",
+        "[[l1]]",
+        "Vous recevez ce message parce que les notifications par e-mail sont activées dans vos réglages."
+      ],
+      "liens": {
+        "l1": {
+          "texte": "Voir la publication",
+          "reel": "https://partello.ch/p/l5",
+          "page": "legitime"
+        }
+      },
+      "lu": true,
+      "categorie": "legitime",
+      "indices_valides": [
+        "coherent"
+      ],
+      "explication": "Légitime. Notification que vous attendiez (vous venez d'être mentionné), expéditeur et lien sur le même domaine, aucune demande de mot de passe.",
+      "piege_inverse": false
+    }
+  ]
+}

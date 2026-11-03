@@ -1,0 +1,241 @@
+{
+  "bandeau": "Simulation : ne saisissez aucune vraie information. Cette page est fausse, et rien de ce que vous tapez n'est envoyé ni enregistré.",
+  "message_final": {
+    "titre": "Vous venez de saisir des informations sur une page frauduleuse.",
+    "texte": "Dans la réalité, elles seraient maintenant entre les mains de l'attaquant. Ici, rien n'a été enregistré.",
+    "conseils": [
+      "Regardez l'adresse dans la barre du navigateur : le vrai domaine de cette page est {domaine}.",
+      "Le cadenas ne prouve pas que le site est honnête : il indique seulement que la connexion est chiffrée.",
+      "Pour vérifier, allez sur le site par vos propres moyens (saisissez vous-même l'adresse) ou contactez l'organisation par un autre canal."
+    ]
+  },
+  "pages": {
+    "connexion-partello": {
+      "type": "connexion",
+      "marque": "Partello",
+      "couleur": "#d24a1e",
+      "titre": "Vérification de votre compte",
+      "texte": "Pour protéger votre compte, confirmez votre identité.",
+      "champs": [
+        {
+          "nom": "identifiant",
+          "libelle": "Identifiant ou e-mail",
+          "type": "text"
+        },
+        {
+          "nom": "secret",
+          "libelle": "Mot de passe",
+          "type": "password"
+        }
+      ],
+      "bouton": "Vérifier mon compte"
+    },
+    "connexion-montrivemail": {
+      "type": "connexion",
+      "marque": "MontriveMail",
+      "couleur": "#2d4a8a",
+      "titre": "Augmenter la capacité de votre boîte",
+      "texte": "Confirmez votre mot de passe pour libérer de l'espace.",
+      "champs": [
+        {
+          "nom": "identifiant",
+          "libelle": "Adresse e-mail",
+          "type": "text"
+        },
+        {
+          "nom": "secret",
+          "libelle": "Mot de passe",
+          "type": "password"
+        }
+      ],
+      "bouton": "Libérer de l'espace"
+    },
+    "connexion-banque": {
+      "type": "connexion",
+      "marque": "Banque de Montrive",
+      "couleur": "#14604a",
+      "titre": "Confirmation d'identité",
+      "texte": "Pour débloquer votre compte, saisissez vos identifiants d'e-banking.",
+      "champs": [
+        {
+          "nom": "identifiant",
+          "libelle": "Numéro de contrat",
+          "type": "text"
+        },
+        {
+          "nom": "secret",
+          "libelle": "Code d'accès à l'e-banking",
+          "type": "password"
+        }
+      ],
+      "bouton": "Confirmer mon identité"
+    },
+    "connexion-video": {
+      "type": "connexion",
+      "marque": "Partage de vidéos",
+      "couleur": "#4a4f5c",
+      "titre": "Connectez-vous pour voir la vidéo",
+      "texte": "Saisissez vos identifiants de messagerie pour accéder au contenu.",
+      "champs": [
+        {
+          "nom": "identifiant",
+          "libelle": "Adresse e-mail",
+          "type": "text"
+        },
+        {
+          "nom": "secret",
+          "libelle": "Mot de passe",
+          "type": "password"
+        }
+      ],
+      "bouton": "Voir la vidéo"
+    },
+    "paiement-colis": {
+      "type": "paiement",
+      "marque": "Colibri Express",
+      "couleur": "#c98a00",
+      "titre": "Régler les frais de douane",
+      "montant": "2,90 CHF",
+      "champs": [
+        {
+          "nom": "titulaire",
+          "libelle": "Nom sur la carte",
+          "type": "text",
+          "placeholder": "Prénom Nom (exemple)"
+        },
+        {
+          "nom": "numero",
+          "libelle": "Numéro de carte",
+          "type": "text",
+          "placeholder": "0000 0000 0000 0000 (exemple)"
+        },
+        {
+          "nom": "expiration",
+          "libelle": "Date d'expiration",
+          "type": "text",
+          "placeholder": "MM/AA (exemple)"
+        },
+        {
+          "nom": "code",
+          "libelle": "Code de sécurité",
+          "type": "password",
+          "placeholder": "000 (exemple)"
+        }
+      ],
+      "bouton": "Payer 2,90 CHF"
+    },
+    "paiement-virelo": {
+      "type": "paiement",
+      "marque": "Virelo",
+      "couleur": "#6a3fb5",
+      "titre": "Recevoir votre remboursement de 48,50 CHF",
+      "montant": "48,50 CHF",
+      "champs": [
+        {
+          "nom": "titulaire",
+          "libelle": "Nom sur la carte",
+          "type": "text",
+          "placeholder": "Prénom Nom (exemple)"
+        },
+        {
+          "nom": "numero",
+          "libelle": "Numéro de carte",
+          "type": "text",
+          "placeholder": "0000 0000 0000 0000 (exemple)"
+        },
+        {
+          "nom": "expiration",
+          "libelle": "Date d'expiration",
+          "type": "text",
+          "placeholder": "MM/AA (exemple)"
+        },
+        {
+          "nom": "code",
+          "libelle": "Code de sécurité",
+          "type": "password",
+          "placeholder": "000 (exemple)"
+        }
+      ],
+      "bouton": "Recevoir mon remboursement"
+    },
+    "paiement-concours": {
+      "type": "paiement",
+      "marque": "Jeu concours de la rentrée",
+      "couleur": "#c2336b",
+      "titre": "Frais d'envoi de votre lot",
+      "montant": "4,90 CHF",
+      "champs": [
+        {
+          "nom": "titulaire",
+          "libelle": "Nom sur la carte",
+          "type": "text",
+          "placeholder": "Prénom Nom (exemple)"
+        },
+        {
+          "nom": "numero",
+          "libelle": "Numéro de carte",
+          "type": "text",
+          "placeholder": "0000 0000 0000 0000 (exemple)"
+        },
+        {
+          "nom": "expiration",
+          "libelle": "Date d'expiration",
+          "type": "text",
+          "placeholder": "MM/AA (exemple)"
+        },
+        {
+          "nom": "code",
+          "libelle": "Code de sécurité",
+          "type": "password",
+          "placeholder": "000 (exemple)"
+        }
+      ],
+      "bouton": "Payer 4,90 CHF"
+    },
+    "paiement-video": {
+      "type": "paiement",
+      "marque": "Vidéorama",
+      "couleur": "#a31f2e",
+      "titre": "Mettre à jour votre moyen de paiement",
+      "montant": "",
+      "champs": [
+        {
+          "nom": "titulaire",
+          "libelle": "Nom sur la carte",
+          "type": "text",
+          "placeholder": "Prénom Nom (exemple)"
+        },
+        {
+          "nom": "numero",
+          "libelle": "Numéro de carte",
+          "type": "text",
+          "placeholder": "0000 0000 0000 0000 (exemple)"
+        },
+        {
+          "nom": "expiration",
+          "libelle": "Date d'expiration",
+          "type": "text",
+          "placeholder": "MM/AA (exemple)"
+        },
+        {
+          "nom": "code",
+          "libelle": "Code de sécurité",
+          "type": "password",
+          "placeholder": "000 (exemple)"
+        }
+      ],
+      "bouton": "Mettre à jour ma carte"
+    }
+  },
+  "page_legitime": {
+    "titre": "Page d'un site légitime (simulée)",
+    "texte": "Dans cet exercice, cette page n'a pas de contenu : le lien menait bien vers le site annoncé."
+  },
+  "portail_http": {
+    "marque": "Horizons Jeunesse",
+    "sous_titre": "Portail client (ancien portail)",
+    "titre": "Connexion au portail client",
+    "texte": "Saisissez vos identifiants pour consulter vos factures.",
+    "message": "Cet ancien portail est simulé : rien n'a été enregistré."
+  }
+}

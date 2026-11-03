@@ -1,0 +1,137 @@
+/* ==========================================================================
+   MontriveMail (messagerie), grille de classement, historique, pages simulées
+   Identité propre : bleu-gris froid, accent bleu encre. Variables sur .mm-app / .page-outil
+   pour que l'écran de code d'entrée du QG garde son apparence sombre.
+   ========================================================================== */
+
+body.page-mail { background: #d8dfeb; background-image: none; }
+body.page-mail .pied { color: #3f485c; border-color: #b8c2d4; }
+body.page-mail .entete { background: rgba(14, 23, 38, 0.97); }
+
+.mm-scene { flex: 1; display: flex; justify-content: center; padding: 1rem; }
+
+.mm-app, .page-outil {
+  --mm-texte: #1b2438; --mm-doux: #546078; --mm-bord: #d9e0ee; --mm-fond: #f3f6fb; --mm-accent: #2d4a8a; --mm-accent-clair: #e4ebfa;
+  color: var(--mm-texte);
+}
+.mm-app { width: min(1180px, 100%); background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 10px 34px rgba(20, 30, 55, 0.25); display: flex; flex-direction: column; min-height: 72vh; align-self: flex-start; }
+.mm-app :focus-visible, .page-outil :focus-visible { outline: 3px solid #c4570f; outline-offset: 2px; }
+
+.mm-barre { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.7rem 1rem; background: var(--mm-accent); color: #fff; }
+.mm-logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 0.01em; }
+.mm-compte { font-size: 0.85rem; opacity: 0.9; }
+
+.mm-corps { display: grid; grid-template-columns: 200px minmax(260px, 340px) 1fr; flex: 1; min-height: 0; }
+.mm-dossiers { background: var(--mm-fond); border-right: 1px solid var(--mm-bord); padding: 0.8rem 0.6rem; display: grid; align-content: start; gap: 0.2rem; font-size: 0.95rem; }
+.mm-dossiers a, .mm-dossiers .desactive { display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; padding: 0.5rem 0.7rem; border-radius: 8px; text-decoration: none; color: var(--mm-texte); }
+.mm-dossiers a:hover { background: var(--mm-accent-clair); }
+.mm-dossiers a[aria-current="page"] { background: var(--mm-accent-clair); font-weight: 700; color: var(--mm-accent); }
+.mm-dossiers .desactive { color: #7d879c; cursor: not-allowed; }
+.mm-dossiers small { color: #7d879c; font-size: 0.75rem; }
+.mm-dossiers h2 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--mm-doux); margin: 1rem 0.7rem 0.3rem; }
+.compteur { background: var(--mm-accent); color: #fff; border-radius: 999px; padding: 0 0.5rem; font-size: 0.8rem; }
+
+.mm-liste-zone { border-right: 1px solid var(--mm-bord); overflow: auto; max-height: 78vh; }
+#liste-messages { list-style: none; margin: 0; padding: 0; }
+.mm-ligne { display: grid; gap: 0.15rem; width: 100%; text-align: left; border: 0; border-bottom: 1px solid var(--mm-bord); background: #fff; color: var(--mm-texte); font: inherit; padding: 0.65rem 0.85rem; cursor: pointer; }
+.mm-ligne:hover { background: var(--mm-fond); }
+.mm-ligne.actif { background: var(--mm-accent-clair); }
+.mm-ligne-haut { display: flex; justify-content: space-between; gap: 0.5rem; }
+.mm-expediteur { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mm-date { color: var(--mm-doux); font-size: 0.8rem; white-space: nowrap; }
+.mm-ligne-objet { font-size: 0.95rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mm-ligne-extrait { color: var(--mm-doux); font-size: 0.85rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mm-ligne.non-lu .mm-expediteur, .mm-ligne.non-lu .mm-ligne-objet { font-weight: 800; }
+.mm-ligne.non-lu .mm-expediteur::before { content: "● "; color: var(--mm-accent); }
+
+.mm-lecture { padding: 1rem 1.3rem 1.5rem; overflow: auto; max-height: 78vh; }
+.mm-vide { color: var(--mm-doux); }
+.mm-retour { display: none; margin: 0 0 0.8rem; }
+.mm-lecteur { position: relative; }
+.mm-objet { font-size: 1.3rem; margin: 0 0 0.7rem; color: var(--mm-texte); }
+.mm-entete-mail { display: grid; grid-template-columns: auto 1fr; gap: 0.2rem 0.8rem; margin: 0 0 1rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--mm-bord); font-size: 0.95rem; }
+.mm-entete-mail dt { color: var(--mm-doux); font-weight: 600; }
+.mm-entete-mail dd { margin: 0; overflow-wrap: anywhere; }
+.mm-adresse { font-family: var(--police-code); font-size: 0.88rem; color: var(--mm-texte); }
+.mm-corps-mail p { margin: 0 0 0.9rem; max-width: 62ch; }
+.mm-lien { color: #1a4fb0; text-decoration: underline; font-weight: 600; }
+.mm-lien:hover { color: #0f3a8a; }
+.mm-etat {
+  position: sticky; bottom: 0; margin-top: 1rem; max-width: 100%; background: #eef1f7; border: 1px solid #c7cfde; border-radius: 6px;
+  padding: 0.25rem 0.6rem; font-size: 0.82rem; font-family: var(--police-code); color: #26324a; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; visibility: hidden;
+}
+.mm-etat.visible { visibility: visible; }
+
+@media (max-width: 900px) {
+  .mm-corps { grid-template-columns: 1fr; }
+  .mm-dossiers { grid-auto-flow: column; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--mm-bord); padding: 0.5rem; }
+  .mm-dossiers h2 { display: none; }
+  .mm-liste-zone { border-right: 0; max-height: none; }
+  .mm-lecture { display: none; max-height: none; }
+  .mm-app.lecture .mm-liste-zone { display: none; }
+  .mm-app.lecture .mm-lecture { display: block; }
+  .mm-retour { display: block; }
+}
+
+/* ----- Pages d'outils (grille, historique) ----- */
+body.page-outil-fond { background: #d8dfeb; background-image: none; }
+body.page-outil-fond .pied { color: #3f485c; border-color: #b8c2d4; }
+.page-outil { width: min(1100px, 100%); margin: 1rem auto; padding: 1.2rem 1.4rem 1.8rem; background: #fff; border-radius: 14px; box-shadow: 0 10px 34px rgba(20, 30, 55, 0.2); }
+.page-outil h1 { font-size: 1.6rem; color: var(--mm-accent); margin: 0 0 0.4rem; }
+.page-outil .doux { color: var(--mm-doux); }
+.page-outil a { color: #1a4fb0; }
+.page-outil .bouton { background: var(--mm-accent); color: #fff; }
+.page-outil .bouton:hover { background: #1f3669; color: #fff; }
+.page-outil .bouton.secondaire { background: #fff; color: var(--mm-accent); border-color: #9fb0d6; }
+.page-outil .bouton.petit { padding: 0.25rem 0.7rem; font-size: 0.88rem; margin-top: 0.3rem; }
+.page-outil select, .page-outil input[type="search"] { background: #fff; color: var(--mm-texte); border: 1px solid #aab6d0; }
+.page-outil .definitions { margin: 0.5rem 0 1rem; padding-left: 1.1rem; }
+.cadre-table { overflow-x: auto; }
+.tableau { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+.tableau th { text-align: left; background: var(--mm-accent-clair); padding: 0.55rem 0.7rem; border-bottom: 2px solid #9fb0d6; position: sticky; top: 0; }
+.tableau td { padding: 0.55rem 0.7rem; border-bottom: 1px solid var(--mm-bord); vertical-align: top; }
+.tableau tr.ok td { background: #eaf7ef; }
+.tableau tr.ko td { background: #fdeeee; }
+.tableau tr.explication td { background: #f5f7fc; font-size: 0.92rem; }
+.tableau .col-message { min-width: 240px; }
+.tableau .col-resultat { white-space: nowrap; }
+.tableau .col-resultat span { display: block; font-weight: 700; }
+.bon { color: #1b6b3a; }
+.mauvais { color: #a52a2a; }
+.nowrap { white-space: nowrap; }
+.jour { color: var(--mm-doux); font-size: 0.85rem; }
+.url { font-family: var(--police-code); font-size: 0.88rem; overflow-wrap: anywhere; }
+.url strong { color: #0b1220; }
+.barre-actions { display: flex; gap: 0.7rem; flex-wrap: wrap; align-items: center; margin: 1rem 0; }
+#resultat { border: 1px solid #9fb0d6; background: var(--mm-fond); border-radius: 10px; padding: 0.8rem 1rem; margin: 1rem 0; }
+#resultat .score { font-size: 1.3rem; font-weight: 800; margin: 0 0 0.3rem; color: var(--mm-accent); }
+.fil-ariane { font-size: 0.92rem; margin-bottom: 0.6rem; }
+
+/* ----- Pages simulées (fausses pages et sites légitimes) ----- */
+.pf-fond { position: fixed; inset: 0; z-index: 450; background: rgba(10, 14, 26, 0.85); display: grid; place-items: start center; overflow: auto; padding: 1rem; }
+.pf-boite { width: min(780px, 100%); display: grid; gap: 0.6rem; margin-block: auto; }
+.pf-boite.mail-boite { background: #fff; color: #1b2438; border-radius: 14px; padding: 1.2rem 1.4rem; --mm-texte: #1b2438; --mm-doux: #546078; --mm-bord: #d9e0ee; }
+.pf-bandeau { margin: 0; background: #ffe7b0; color: #4a3200; border: 2px solid #c98a00; border-radius: 10px; padding: 0.55rem 0.9rem; font-weight: 700; font-size: 0.95rem; }
+.pf-pied { margin: 0; text-align: center; }
+.pf-site { --marque: #2d4a8a; min-height: 340px; background: #f7f8fb; color: #1b2230; font-family: var(--police); }
+.pf-entete { background: var(--marque); color: #fff; font-weight: 800; padding: 0.8rem 1.2rem; font-size: 1.1rem; }
+.pf-contenu { max-width: 440px; margin: 1.4rem auto; padding: 0 1.2rem; display: grid; gap: 0.7rem; }
+.pf-contenu h1 { font-size: 1.35rem; margin: 0; color: #1b2230; }
+.pf-contenu p { margin: 0; }
+.pf-montant { font-weight: 800; font-size: 1.1rem; }
+.pf-formulaire { display: grid; gap: 0.7rem; background: #fff; border: 1px solid #d5dae6; border-radius: 10px; padding: 1rem; }
+.pf-champ { display: grid; gap: 0.25rem; font-weight: 700; font-size: 0.93rem; }
+.pf-champ input { background: #fff; color: #1b2230; border: 1px solid #b7bfd0; }
+.pf-bouton { background: var(--marque); color: #fff; border: 0; border-radius: 8px; font: inherit; font-weight: 700; padding: 0.65rem 1rem; cursor: pointer; }
+.pf-bouton:hover { filter: brightness(0.9); }
+.pf-message { max-width: 520px; margin: 1.4rem auto; padding: 0 1.2rem; display: grid; gap: 0.7rem; color: #1b2230; }
+.pf-message h2 { margin: 0; color: #8a1c1c; font-size: 1.25rem; }
+.pf-message.neutre h2 { color: #1f3b73; }
+.pf-message .pf-gras { font-weight: 700; }
+.pf-message ul { margin: 0; padding-left: 1.1rem; }
+.pf-message li { margin-bottom: 0.3rem; }
+.pf-message .bouton { background: #2d4a8a; color: #fff; }
+
+.tableau select { width: 100%; max-width: 21rem; }
+.tableau .col-message { width: 30%; }
+.page-outil a:hover { color: #0f3a8a; }

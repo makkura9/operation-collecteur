@@ -1,0 +1,76 @@
+{
+  "titre": "Historique de navigation de Robin Dupont",
+  "periode": "Du 15 au 18 février 2027",
+  "entrees": [
+    {
+      "date": "2027-02-18T07:21",
+      "titre": "MontriveMail — Réception",
+      "url": "https://montrivemail.ch/boite"
+    },
+    {
+      "date": "2027-02-18T07:19",
+      "titre": "Gymnase de Montrive — Horaires",
+      "url": "https://gymnase-montrive.ch/horaires"
+    },
+    {
+      "date": "2027-02-17T22:14",
+      "titre": "Partello — Explorer",
+      "url": "https://partello.ch/explorer"
+    },
+    {
+      "date": "2027-02-17T21:40",
+      "titre": "Météo du lac — prévisions",
+      "url": "http://meteolac.ch/previsions"
+    },
+    {
+      "date": "2027-02-17T21:07",
+      "titre": "Partello — Explorer",
+      "url": "https://partello.ch/explorer"
+    },
+    {
+      "date": "2027-02-17T21:06",
+      "titre": "Horizons Jeunesse — Connexion à l'espace client",
+      "url": "https://horizons-jeunesse.co/espace-client"
+    },
+    {
+      "date": "2027-02-17T20:31",
+      "titre": "Banque de Montrive — E-banking",
+      "url": "https://banque-montrive.ch/ebanking"
+    },
+    {
+      "date": "2027-02-17T19:48",
+      "titre": "Horizons Jeunesse — Voyages scolaires",
+      "url": "https://horizons-jeunesse.ch/voyages-scolaires"
+    },
+    {
+      "date": "2027-02-17T19:15",
+      "titre": "Partello — Explorer",
+      "url": "https://partello.ch/explorer"
+    },
+    {
+      "date": "2027-02-17T18:42",
+      "titre": "Gymnase de Montrive — Horaires",
+      "url": "https://gymnase-montrive.ch/horaires"
+    },
+    {
+      "date": "2027-02-16T20:30",
+      "titre": "MontriveMail — Réception",
+      "url": "https://montrivemail.ch/boite"
+    },
+    {
+      "date": "2027-02-16T17:12",
+      "titre": "Cyclo Montrive — Éclairages",
+      "url": "https://cyclo-montrive.ch/eclairages"
+    },
+    {
+      "date": "2027-02-15T21:05",
+      "titre": "Volley-Club de Montrive — Calendrier",
+      "url": "https://vcmontrive.ch/calendrier"
+    },
+    {
+      "date": "2027-02-15T08:02",
+      "titre": "Météo du lac — prévisions",
+      "url": "http://meteolac.ch/previsions"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="fr" data-racine="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>MontriveMail</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="stylesheet" href="../assets/css/commun.css">
+  <link rel="stylesheet" href="../assets/css/agence.css">
+  <link rel="stylesheet" href="../assets/css/montrivemail.css">
+</head>
+<body class="page-mail">
+  <a class="lien-evitement" href="#cadre">Aller au contenu</a>
+  <header class="entete">
+    <a class="marque" href="../index.html">
+      <img src="../assets/img/logo-argos.svg" alt="">
+      <span>Cellule ARGOS<small>Pièce du dossier 2</small></span>
+    </a>
+    <nav aria-label="Navigation"><a href="../seance-2/index.html">← Retour au dossier 2</a></nav>
+  </header>
+
+  <main class="mm-scene" id="cadre" hidden>
+    <div class="mm-app" id="mm-app">
+      <div class="mm-barre">
+        <span class="mm-logo">MontriveMail</span>
+        <span class="mm-compte">robin.dupont@montrivemail.ch</span>
+      </div>
+      <div class="mm-corps">
+        <nav class="mm-dossiers" aria-label="Dossiers de la messagerie">
+          <a href="index.html" aria-current="page">Réception <span class="compteur" id="compteur-reception">25</span></a>
+          <span class="desactive" aria-disabled="true">Brouillons <small>séance 4</small></span>
+          <h2>Pièces du dossier</h2>
+          <a href="classement.html">Grille de classement</a>
+          <a href="historique.html">Historique de navigation</a>
+          <span class="desactive" aria-disabled="true">Journal de connexion <small>séance 3</small></span>
+        </nav>
+        <section class="mm-liste-zone" aria-label="Messages de la boîte de réception">
+          <ul id="liste-messages"></ul>
+        </section>
+        <section class="mm-lecture" id="lecture" aria-live="polite" aria-label="Lecture du message">
+          <p class="mm-vide">Sélectionnez un message pour le lire.</p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pied">Environnement pédagogique fictif — toute ressemblance avec des personnes ou des services réels serait fortuite.</footer>
+  <script type="module" src="../assets/js/montrivemail.js"></script>
+</body>
+</html>
