@@ -24,13 +24,13 @@
           "titre": "Partello",
           "texte": "Les profils de Robin, de Léa et de la classe 2M7.",
           "url": "partello/",
-          "dispo": false
+          "dispo": true
         },
         {
           "titre": "Site de l'agence",
           "texte": "Le site de l'agence de voyage, vu dans un navigateur simulé.",
           "url": "horizons/",
-          "dispo": false
+          "dispo": true
         }
       ],
       "sortie": {

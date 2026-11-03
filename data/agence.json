@@ -1,0 +1,223 @@
+{
+  "marque": "Horizons Jeunesse",
+  "slogan": "Voyages scolaires et séjours de groupe",
+  "domaine": "horizons-jeunesse.ch",
+  "menu": [
+    {
+      "id": "accueil",
+      "texte": "Accueil"
+    },
+    {
+      "id": "voyages",
+      "texte": "Voyages scolaires"
+    },
+    {
+      "id": "references",
+      "texte": "Références"
+    },
+    {
+      "id": "contact",
+      "texte": "Contact"
+    },
+    {
+      "id": "espace-client",
+      "texte": "Espace client"
+    }
+  ],
+  "pied": "© Horizons Jeunesse (société fictive) · Rue du Quai 14, Montrive",
+  "pages": {
+    "accueil": {
+      "titre": "Accueil",
+      "chemin": "/",
+      "blocs": [
+        {
+          "type": "hero",
+          "image": "horizons/hero-voyage.jpg",
+          "alt": "Des jeunes avec des sacs à dos, vus de dos, dans une ruelle ensoleillée d'une vieille ville méditerranéenne.",
+          "emoji": "🎒",
+          "titre": "Des voyages qui ouvrent l'horizon",
+          "texte": "Depuis plus de vingt ans, nous organisons des voyages scolaires et des séjours de groupe, de la classe de neige au city trip.",
+          "bouton": {
+            "texte": "Découvrir nos voyages",
+            "vers": "voyages"
+          }
+        },
+        {
+          "type": "cartes",
+          "titre": "Nos destinations du moment",
+          "elements": [
+            {
+              "titre": "Barcelone",
+              "texte": "Architecture, mer et tapas : cinq jours inoubliables.",
+              "image": "horizons/barcelone.jpg",
+              "emoji": "🏖️",
+              "alt": "Un front de mer méditerranéen avec une grande cathédrale aux tours ornées.",
+              "vers": "barcelone"
+            },
+            {
+              "titre": "Classe de neige",
+              "texte": "Cinq jours dans un chalet des Alpes, forfait de ski inclus.",
+              "image": "horizons/montagne.jpg",
+              "emoji": "⛷️",
+              "alt": "Un chalet de montagne et des skieurs sous un ciel clair.",
+              "vers": "voyages"
+            },
+            {
+              "titre": "City trip",
+              "texte": "Une capitale européenne en quatre jours, au rythme des élèves.",
+              "image": "horizons/ville.jpg",
+              "emoji": "🚋",
+              "alt": "Un tramway et une place de vieille ville européenne.",
+              "vers": "voyages"
+            }
+          ]
+        },
+        {
+          "type": "liste",
+          "titre": "Pourquoi voyager avec nous ?",
+          "elements": [
+            "Un interlocuteur unique, de l'inscription au retour.",
+            "Un paiement simple, sur facture.",
+            "Une assistance joignable pendant tout le voyage."
+          ]
+        }
+      ]
+    },
+    "voyages": {
+      "titre": "Voyages scolaires",
+      "chemin": "/voyages-scolaires",
+      "blocs": [
+        {
+          "type": "texte",
+          "titre": "Voyages scolaires 2026–2027",
+          "paragraphes": [
+            "Choisissez une destination, inscrivez votre groupe, et nous nous occupons du reste : transports, hébergement, visites et assurance annulation."
+          ]
+        },
+        {
+          "type": "cartes",
+          "titre": "",
+          "elements": [
+            {
+              "titre": "Barcelone — 5 jours",
+              "texte": "À partir de 650 CHF par personne. Hébergement, transports sur place et visites guidées inclus.",
+              "image": "horizons/barcelone.jpg",
+              "emoji": "🏖️",
+              "alt": "Un front de mer méditerranéen avec une grande cathédrale aux tours ornées.",
+              "vers": "barcelone"
+            },
+            {
+              "titre": "Classe de neige — 5 jours",
+              "texte": "À partir de 540 CHF par personne. Chalet, pension complète et forfait de ski.",
+              "image": "horizons/montagne.jpg",
+              "emoji": "⛷️",
+              "alt": "Un chalet de montagne et des skieurs sous un ciel clair."
+            },
+            {
+              "titre": "City trip — 4 jours",
+              "texte": "À partir de 480 CHF par personne. Hôtel central, transports urbains et visites.",
+              "image": "horizons/ville.jpg",
+              "emoji": "🚋",
+              "alt": "Un tramway et une place de vieille ville européenne."
+            }
+          ]
+        }
+      ]
+    },
+    "barcelone": {
+      "titre": "Barcelone",
+      "chemin": "/voyages-scolaires/barcelone",
+      "blocs": [
+        {
+          "type": "hero",
+          "image": "horizons/barcelone.jpg",
+          "alt": "Un front de mer méditerranéen avec une grande cathédrale aux tours ornées.",
+          "emoji": "🏖️",
+          "titre": "Barcelone en cinq jours",
+          "texte": "Architecture, mer et tapas : un voyage pensé pour les classes du secondaire II.",
+          "bouton": null
+        },
+        {
+          "type": "texte",
+          "titre": "Comment ça se passe ?",
+          "paragraphes": [
+            "Le responsable du groupe inscrit la classe. Une confirmation écrite lui est envoyée par e-mail, avec la date limite de paiement.",
+            "La facture est ensuite mise à disposition dans l'espace client. Le paiement se fait par virement bancaire, sur le compte indiqué sur la facture.",
+            "En cas de doute sur une facture ou sur des coordonnées bancaires, contactez-nous par téléphone : nous ne vous demanderons jamais votre mot de passe par e-mail."
+          ]
+        },
+        {
+          "type": "liste",
+          "titre": "Prix indicatif : 650 CHF par personne",
+          "elements": [
+            "Hébergement en auberge de jeunesse",
+            "Transports sur place et visites guidées",
+            "Assurance annulation et assistance"
+          ]
+        }
+      ]
+    },
+    "references": {
+      "titre": "Références",
+      "chemin": "/references",
+      "blocs": [
+        {
+          "type": "texte",
+          "titre": "Ils nous font confiance",
+          "paragraphes": [
+            "Quelques-uns des groupes qui voyagent avec nous cette année."
+          ]
+        },
+        {
+          "type": "liste",
+          "titre": "",
+          "elements": [
+            "Gymnase de Montrive, classe 2M7 : Barcelone, avril 2027",
+            "École de Valmont, classe de neige : janvier 2027",
+            "Collège des Terrasses, city trip : mai 2027"
+          ]
+        }
+      ]
+    },
+    "contact": {
+      "titre": "Contact",
+      "chemin": "/contact",
+      "blocs": [
+        {
+          "type": "contact",
+          "titre": "Nous contacter",
+          "lignes": [
+            [
+              "Adresse",
+              "Rue du Quai 14, Montrive (adresse fictive)"
+            ],
+            [
+              "Téléphone",
+              "021 000 00 00 (numéro fictif)"
+            ],
+            [
+              "E-mail",
+              "info@horizons-jeunesse.ch"
+            ],
+            [
+              "Horaires",
+              "Du lundi au vendredi, de 8 h à 17 h"
+            ]
+          ],
+          "note": "Pour toute question sur une facture, appelez-nous : nous ne vous demanderons jamais votre mot de passe par e-mail."
+        }
+      ]
+    },
+    "espace-client": {
+      "titre": "Espace client",
+      "chemin": "/espace-client",
+      "blocs": [
+        {
+          "type": "connexion",
+          "titre": "Espace client",
+          "texte": "Connectez-vous pour consulter vos inscriptions et vos factures."
+        }
+      ]
+    }
+  }
+}

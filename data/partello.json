@@ -1,0 +1,647 @@
+{
+  "application": {
+    "nom": "Partello",
+    "slogan": "Partagez vos moments"
+  },
+  "carte_fictive": {
+    "description": "Carte fictive de Montrive. Les coordonnées et la carte sont inventées : elles ne désignent aucun lieu réel.",
+    "image": "img/carte-montrive.svg",
+    "largeur": 600,
+    "hauteur": 400,
+    "bornes": {
+      "latitude_haut": 46.46,
+      "latitude_bas": 46.45,
+      "longitude_gauche": 6.6,
+      "longitude_droite": 6.62
+    },
+    "quartiers": [
+      "Quartier des Vignes",
+      "Vieille-Ville",
+      "Les Quais",
+      "Quartier de la Gare"
+    ]
+  },
+  "capture_mail": {
+    "expediteur": "Horizons Jeunesse",
+    "sous_titre": "Voyages scolaires et séjours de groupe",
+    "objet": "Confirmation d'inscription — voyage à Barcelone",
+    "lignes": [
+      "Bonjour Robin Dupont,",
+      "Nous avons bien enregistré l'inscription de la classe 2M7 du Gymnase de Montrive pour le voyage à Barcelone, du 5 au 9 avril 2027.",
+      "Participants : 22 · Prix par personne : 650 CHF"
+    ],
+    "mise_en_evidence": "Date limite de paiement : vendredi 12 mars 2027",
+    "suite_floutee": "La facture vous sera adressée par e-mail. Vous la retrouverez ensuite dans votre espace client, avec les coordonnées bancaires de l'agence pour votre virement."
+  },
+  "profils": [
+    {
+      "id": "robin.dpt",
+      "nom": "Robin Dupont",
+      "avatar": "partello/avatar-robin.jpg",
+      "emoji_avatar": "🙂",
+      "bio": [
+        "Robin Dupont",
+        "2M7 · Gymnase de Montrive",
+        "🎮 ancien gamer · 🐱 team chat"
+      ],
+      "abonnes": 214,
+      "abonnements": 187,
+      "publications": [
+        {
+          "id": "r1",
+          "date": "2027-02-12",
+          "image": "partello/robin-pixel-verre.jpg",
+          "emoji": "🐱",
+          "alt": "Pixel, assis l'air innocent, à côté d'un verre d'eau renversé sur une table de cuisine.",
+          "legende": "Pixel a encore fait tomber un verre. Il n'a aucun remords. 😾",
+          "lieu": null,
+          "likes": 31,
+          "commentaires": [
+            {
+              "auteur": "lea.mrl",
+              "texte": "Le coupable habituel 😂"
+            }
+          ],
+          "metadonnees": {
+            "appareil": "Kora K5",
+            "date_prise": "2027-02-12T19:41",
+            "position": null
+          }
+        },
+        {
+          "id": "r2",
+          "date": "2027-01-09",
+          "image": "partello/robin-balcon-aube.jpg",
+          "emoji": "🌅",
+          "alt": "Vue depuis un balcon au lever du soleil : le lac, des vignes en terrasses, une rambarde au premier plan.",
+          "legende": "Premier lever de soleil de l'année depuis mon balcon 🌅 La vue vaut bien l'escalier.",
+          "lieu": null,
+          "likes": 58,
+          "commentaires": [
+            {
+              "auteur": "lea.mrl",
+              "texte": "Magnifique !! 😍"
+            }
+          ],
+          "metadonnees": {
+            "appareil": "Kora K5",
+            "date_prise": "2027-01-09T08:12",
+            "position": {
+              "latitude": 46.455,
+              "longitude": 6.61
+            }
+          }
+        },
+        {
+          "id": "r3",
+          "date": "2026-12-12",
+          "image": "partello/robin-pizza-classe.jpg",
+          "emoji": "🍕",
+          "alt": "Des cartons de pizza ouverts sur des pupitres, des élèves rient autour, visages peu détaillés.",
+          "legende": "Soirée pizza de la 2M7 🍕 La cagnotte du voyage a bien grossi, elle aussi 😉",
+          "lieu": null,
+          "likes": 44,
+          "commentaires": [
+            {
+              "auteur": "lea.mrl",
+              "texte": "Merci pour l'orga !"
+            },
+            {
+              "auteur": "2m7_montrive",
+              "texte": "Merci à toute la classe 🙌"
+            }
+          ],
+          "metadonnees": {
+            "appareil": "Kora K5",
+            "date_prise": "2026-12-12T20:03",
+            "position": null
+          }
+        },
+        {
+          "id": "r4",
+          "date": "2026-10-14",
+          "image": "partello/robin-anniversaire.jpg",
+          "emoji": "🎂",
+          "alt": "Un gâteau d'anniversaire avec des bougies allumées, tenu par deux mains.",
+          "legende": "17 ans 🎂 Merci pour tous vos messages !! Soirée avec les meilleurs 💛",
+          "lieu": null,
+          "likes": 96,
+          "commentaires": [
+            {
+              "auteur": "lea.mrl",
+              "texte": "Joyeux anniversaire mon Robin !! 🥳"
+            },
+            {
+              "auteur": "loic.gamer",
+              "texte": "Bon anniv ! 🎉"
+            }
+          ],
+          "metadonnees": {
+            "appareil": "Kora K5",
+            "date_prise": "2026-10-14T21:17",
+            "position": null
+          }
+        },
+        {
+          "id": "r5",
+          "date": "2026-09-04",
+          "image": "partello/robin-rentree-gymnase.jpg",
+          "emoji": "🎒",
+          "alt": "Des élèves vus de dos devant un bâtiment de gymnase moderne, avec des montagnes derrière.",
+          "legende": "Rentrée au Gymnase de Montrive 🎒 2M7, on est (encore) là !",
+          "lieu": "Gymnase de Montrive",
+          "likes": 52,
+          "commentaires": [
+            {
+              "auteur": "lea.mrl",
+              "texte": "Vivement le voyage 😎"
+            }
+          ],
+          "metadonnees": {
+            "appareil": "Kora K5",
+            "date_prise": "2026-09-04T07:58",
+            "position": null
+          }
+        },
+        {
+          "id": "r6",
+          "date": "2026-06-03",
+          "image": "partello/robin-pixel-7-ans.jpg",
+          "emoji": "🐱",
+          "alt": "Gros plan sur Pixel, le chat, l'air grognon, coiffé d'un minuscule chapeau de fête.",
+          "legende": "7 ans avec ce monstre 🐱 Pixel a rejoint la famille en 2019 et n'est jamais reparti. Joyeux anniversaire d'adoption !",
+          "lieu": null,
+          "likes": 77,
+          "commentaires": [
+            {
+              "auteur": "lea.mrl",
+              "texte": "Il n'a pas changé 😂"
+            }
+          ],
+          "metadonnees": {
+            "appareil": "Kora K5",
+            "date_prise": "2026-06-03T18:30",
+            "position": null
+          }
+        },
+        {
+          "id": "r7",
+          "date": "2025-08-14",
+          "image": "partello/robin-lac-ete.jpg",
+          "emoji": "🌊",
+          "alt": "Un adolescent vu de dos sur un ponton au bord du Léman, en été.",
+          "legende": "Dernier plongeon avant la rentrée 🌊",
+          "lieu": null,
+          "likes": 63,
+          "commentaires": [],
+          "metadonnees": {
+            "appareil": "Kora K5",
+            "date_prise": "2025-08-14T16:22",
+            "position": null
+          }
+        },
+        {
+          "id": "r8",
+          "date": "2024-03-02",
+          "image": "partello/robin-pixel-soleil.jpg",
+          "emoji": "🐱",
+          "alt": "Pixel, un chat tigré gris aux pattes blanches, dort au soleil sur un rebord de fenêtre.",
+          "legende": "Pixel et sa sieste de 14 h. Ne pas déranger ☀️🐱",
+          "lieu": null,
+          "likes": 40,
+          "commentaires": [
+            {
+              "auteur": "lea.mrl",
+              "texte": "Trop mignon 🥹"
+            }
+          ],
+          "metadonnees": {
+            "appareil": "Kora K5",
+            "date_prise": "2024-03-02T14:05",
+            "position": null
+          }
+        },
+        {
+          "id": "r9",
+          "date": "2023-05-20",
+          "image": "partello/robin-gaming.jpg",
+          "emoji": "🎮",
+          "alt": "Un adolescent vu de dos devant un écran de jeu vidéo qui affiche un classement lumineux.",
+          "legende": "Soirée marathon sur ArenaZone 🎮 Niveau 42, merci pour les conseils ! (RobinPxl pour les intimes)",
+          "lieu": null,
+          "likes": 29,
+          "commentaires": [
+            {
+              "auteur": "loic.gamer",
+              "texte": "GG RobinPxl !!"
+            }
+          ],
+          "metadonnees": {
+            "appareil": "Kora K5",
+            "date_prise": "2023-05-20T23:10",
+            "position": null
+          }
+        }
+      ],
+      "stories": [
+        {
+          "id": "rs1",
+          "date": "2026-09-07",
+          "fond": "fond-soleil",
+          "texte": "Trésorier officiel du voyage 💸",
+          "soustitre": "Je gère la cagnotte : donnez-moi vos sous 😄",
+          "epinglee": true,
+          "titre_une": "Voyage",
+          "capture_mail": false,
+          "emoji": null
+        },
+        {
+          "id": "rs2",
+          "date": "2027-02-09",
+          "fond": "fond-aube",
+          "texte": "Encore à la gare à 7 h 12 😴",
+          "soustitre": "#tousLesMatins",
+          "epinglee": true,
+          "titre_une": "Matins",
+          "capture_mail": false,
+          "emoji": null
+        },
+        {
+          "id": "rs3",
+          "date": "2027-02-14",
+          "fond": "fond-rose",
+          "texte": "Saint-Valentin : Pixel est mon seul amour 😻",
+          "soustitre": null,
+          "epinglee": false,
+          "titre_une": null,
+          "capture_mail": false,
+          "emoji": null
+        },
+        {
+          "id": "rs4",
+          "date": "2027-01-30",
+          "fond": "fond-menthe",
+          "texte": "Merci à celles et ceux qui ont déjà versé leur part 🙏",
+          "soustitre": null,
+          "epinglee": false,
+          "titre_une": null,
+          "capture_mail": false,
+          "emoji": null
+        },
+        {
+          "id": "rs5",
+          "date": "2026-12-24",
+          "fond": "fond-nuit",
+          "texte": "Pixel contre le sapin 🎄🐱",
+          "soustitre": "Round 3",
+          "epinglee": false,
+          "titre_une": null,
+          "capture_mail": false,
+          "emoji": null
+        },
+        {
+          "id": "rs6",
+          "date": "2026-11-14",
+          "fond": "fond-soleil",
+          "texte": "On a perdu le match de volley, mais on a bien ri 🏐",
+          "soustitre": null,
+          "epinglee": false,
+          "titre_une": null,
+          "capture_mail": false,
+          "emoji": null
+        }
+      ]
+    },
+    {
+      "id": "lea.mrl",
+      "nom": "Léa Morel",
+      "avatar": "partello/avatar-lea.jpg",
+      "emoji_avatar": "😄",
+      "bio": [
+        "Léa Morel",
+        "2M7 · co-organisatrice du voyage 🇪🇸",
+        "Lac, livres et volley"
+      ],
+      "abonnes": 301,
+      "abonnements": 240,
+      "publications": [
+        {
+          "id": "l1",
+          "date": "2027-02-06",
+          "image": "partello/lea-lac-coucher.jpg",
+          "emoji": "🌅",
+          "alt": "Un coucher de soleil sur un grand lac, des montagnes à l'horizon.",
+          "legende": "Les couchers de soleil sur le lac : le meilleur de Montrive 🌅",
+          "lieu": "Quai de Montrive",
+          "likes": 83,
+          "commentaires": [
+            {
+              "auteur": "robin.dpt",
+              "texte": "Trop beau 😍"
+            }
+          ],
+          "metadonnees": {
+            "appareil": "Aero A3",
+            "date_prise": "2027-02-06T17:48",
+            "position": null
+          }
+        },
+        {
+          "id": "l2",
+          "date": "2027-01-16",
+          "image": "partello/lea-volley.jpg",
+          "emoji": "🏐",
+          "alt": "Un match de volley en salle vu de loin, un ballon en l'air.",
+          "legende": "Victoire 3 à 1 !! 🏐",
+          "lieu": null,
+          "likes": 55,
+          "commentaires": [
+            {
+              "auteur": "robin.dpt",
+              "texte": "Bravo les filles !"
+            }
+          ],
+          "metadonnees": {
+            "appareil": "Aero A3",
+            "date_prise": "2027-01-16T15:20",
+            "position": null
+          }
+        },
+        {
+          "id": "l3",
+          "date": "2026-12-05",
+          "image": "partello/lea-concert.jpg",
+          "emoji": "🎶",
+          "alt": "Une foule en silhouette devant une scène éclairée, des guirlandes lumineuses.",
+          "legende": "Concert d'hiver du gymnase 🎶",
+          "lieu": null,
+          "likes": 61,
+          "commentaires": [],
+          "metadonnees": {
+            "appareil": "Aero A3",
+            "date_prise": "2026-12-05T20:35",
+            "position": null
+          }
+        },
+        {
+          "id": "l4",
+          "date": "2026-11-08",
+          "image": "partello/lea-cafe.jpg",
+          "emoji": "☕",
+          "alt": "Un chocolat chaud avec un dessin dans la mousse, devant une fenêtre donnant sur le lac.",
+          "legende": "Dimanche pluvieux, chocolat chaud, révisions de maths (enfin… presque) ☕",
+          "lieu": null,
+          "likes": 47,
+          "commentaires": [
+            {
+              "auteur": "robin.dpt",
+              "texte": "Même programme chez moi"
+            }
+          ],
+          "metadonnees": {
+            "appareil": "Aero A3",
+            "date_prise": "2026-11-08T15:02",
+            "position": null
+          }
+        },
+        {
+          "id": "l5",
+          "date": "2026-10-02",
+          "image": "partello/lea-voyage-dossier.jpg",
+          "emoji": "✈️",
+          "alt": "Sur une table : un carnet, une carte, des lunettes de soleil et des brochures de voyage, vus du dessus.",
+          "legende": "Dossier voyage bouclé avec Horizons Jeunesse ✈️ Barcelone, du 5 au 9 avril 2027, on arrive !! 🇪🇸 Merci @robin.dpt pour la compta : le plus dur est fait 😅",
+          "lieu": null,
+          "likes": 88,
+          "commentaires": [
+            {
+              "auteur": "robin.dpt",
+              "texte": "Avec plaisir 😄"
+            },
+            {
+              "auteur": "2m7_montrive",
+              "texte": "Hâte d'y être !!"
+            }
+          ],
+          "metadonnees": {
+            "appareil": "Aero A3",
+            "date_prise": "2026-10-02T10:14",
+            "position": null
+          }
+        },
+        {
+          "id": "l6",
+          "date": "2026-09-20",
+          "image": "partello/lea-livre.jpg",
+          "emoji": "📖",
+          "alt": "Un livre ouvert et une tasse posés sur un banc au bord de l'eau.",
+          "legende": "Pause lecture au bord de l'eau 📖",
+          "lieu": null,
+          "likes": 39,
+          "commentaires": [],
+          "metadonnees": {
+            "appareil": "Aero A3",
+            "date_prise": "2026-09-20T16:40",
+            "position": null
+          }
+        }
+      ],
+      "stories": [
+        {
+          "id": "ls1",
+          "date": "2026-11-24",
+          "fond": "fond-menthe",
+          "texte": "Enfin le mail de confirmation 😍 #Barcelone",
+          "soustitre": null,
+          "epinglee": false,
+          "titre_une": null,
+          "capture_mail": true,
+          "emoji": null
+        },
+        {
+          "id": "ls2",
+          "date": "2027-02-10",
+          "fond": "fond-soleil",
+          "texte": "Barcelone, on arrive bientôt 🇪🇸☀️",
+          "soustitre": null,
+          "epinglee": false,
+          "titre_une": null,
+          "capture_mail": false,
+          "emoji": null
+        },
+        {
+          "id": "ls3",
+          "date": "2027-02-14",
+          "fond": "fond-nuit",
+          "texte": "Soirée films avec les copines 🍿",
+          "soustitre": null,
+          "epinglee": false,
+          "titre_une": null,
+          "capture_mail": false,
+          "emoji": null
+        },
+        {
+          "id": "ls4",
+          "date": "2026-12-20",
+          "fond": "fond-aube",
+          "texte": "Vacances ! ⛄",
+          "soustitre": null,
+          "epinglee": false,
+          "titre_une": null,
+          "capture_mail": false,
+          "emoji": null
+        }
+      ]
+    },
+    {
+      "id": "2m7_montrive",
+      "nom": "Classe 2M7",
+      "avatar": "partello/avatar-classe.jpg",
+      "emoji_avatar": "🏫",
+      "bio": [
+        "Classe 2M7 · Gymnase de Montrive",
+        "Maître de classe : M. Favre",
+        "Contact trésorier du voyage : robin.dupont@montrivemail.ch"
+      ],
+      "abonnes": 64,
+      "abonnements": 22,
+      "publications": [
+        {
+          "id": "c1",
+          "date": "2027-01-22",
+          "image": "partello/classe-cafeteria.jpg",
+          "emoji": "🍝",
+          "alt": "Une table de cafétéria avec des plateaux, des rires, visages peu détaillés.",
+          "legende": "Midi à la cafétéria : rires garantis 🍝",
+          "lieu": null,
+          "likes": 36,
+          "commentaires": [
+            {
+              "auteur": "lea.mrl",
+              "texte": "Les lasagnes étaient bonnes 😋"
+            }
+          ],
+          "metadonnees": {
+            "appareil": "Kora K5",
+            "date_prise": "2027-01-22T12:20",
+            "position": null
+          }
+        },
+        {
+          "id": "c2",
+          "date": "2026-12-18",
+          "image": "partello/classe-tirelire.jpg",
+          "emoji": "💰",
+          "alt": "Un grand bocal en verre rempli de pièces et de billets sur un bureau.",
+          "legende": "La cagnotte du voyage : on y est presque ! Le contact du trésorier est dans la bio.",
+          "lieu": null,
+          "likes": 58,
+          "commentaires": [
+            {
+              "auteur": "robin.dpt",
+              "texte": "Merci à toutes et à tous 🙏"
+            }
+          ],
+          "metadonnees": {
+            "appareil": "Kora K5",
+            "date_prise": "2026-12-18T10:05",
+            "position": null
+          }
+        },
+        {
+          "id": "c3",
+          "date": "2026-11-03",
+          "image": "partello/classe-bienvenue.jpg",
+          "emoji": "🧳",
+          "alt": "Un tableau noir avec des dessins à la craie : une valise, un avion, un soleil.",
+          "legende": "Le tableau de la classe se prépare pour le grand voyage 🧳✈️",
+          "lieu": null,
+          "likes": 49,
+          "commentaires": [],
+          "metadonnees": {
+            "appareil": "Kora K5",
+            "date_prise": "2026-11-03T16:45",
+            "position": null
+          }
+        },
+        {
+          "id": "c4",
+          "date": "2026-10-21",
+          "image": "partello/classe-sortie-musee.jpg",
+          "emoji": "🏛️",
+          "alt": "Des élèves vus de dos marchent vers l'entrée d'un musée.",
+          "legende": "Sortie au musée : merci M. Favre pour la visite guidée !",
+          "lieu": "Montrive",
+          "likes": 41,
+          "commentaires": [
+            {
+              "auteur": "lea.mrl",
+              "texte": "Super sortie !"
+            }
+          ],
+          "metadonnees": {
+            "appareil": "Kora K5",
+            "date_prise": "2026-10-21T09:12",
+            "position": null
+          }
+        },
+        {
+          "id": "c5",
+          "date": "2026-09-02",
+          "image": "partello/classe-photo-groupe.jpg",
+          "emoji": "📸",
+          "alt": "Vingt-deux élèves posent dans une cour de gymnase, vus de loin, visages peu détaillés.",
+          "legende": "La 2M7 au complet pour la rentrée 📸 22 élèves, un voyage en vue !",
+          "lieu": "Gymnase de Montrive",
+          "likes": 72,
+          "commentaires": [
+            {
+              "auteur": "robin.dpt",
+              "texte": "Meilleure classe 💪"
+            }
+          ],
+          "metadonnees": {
+            "appareil": "Kora K5",
+            "date_prise": "2026-09-02T08:35",
+            "position": null
+          }
+        }
+      ],
+      "stories": [
+        {
+          "id": "cs1",
+          "date": "2027-02-03",
+          "fond": "fond-soleil",
+          "texte": "Rappel : l'autorisation parentale est à rendre avant la sortie ✍️",
+          "soustitre": null,
+          "epinglee": false,
+          "titre_une": null,
+          "capture_mail": false,
+          "emoji": null
+        },
+        {
+          "id": "cs2",
+          "date": "2027-01-26",
+          "fond": "fond-menthe",
+          "texte": "Merci à toutes et à tous pour la cagnotte du voyage 🙏",
+          "soustitre": null,
+          "epinglee": false,
+          "titre_une": null,
+          "capture_mail": false,
+          "emoji": null
+        },
+        {
+          "id": "cs3",
+          "date": "2026-11-30",
+          "fond": "fond-aube",
+          "texte": "Semaine culturelle : inscriptions ouvertes 🎭",
+          "soustitre": null,
+          "epinglee": false,
+          "titre_une": null,
+          "capture_mail": false,
+          "emoji": null
+        }
+      ]
+    }
+  ]
+}

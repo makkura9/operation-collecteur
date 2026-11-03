@@ -1,0 +1,48 @@
+/* Site de l'agence Horizons Jeunesse (affiché dans le faux navigateur). Thème clair, soleil levant. */
+.site-agence {
+  --ag-bleu: #1f3b73; --ag-orange: #d9701a; --ag-fond: #fff8ef; --ag-texte: #1d2433; --ag-doux: #5a6275;
+  background: var(--ag-fond); color: var(--ag-texte); font-family: var(--police); line-height: 1.5; min-height: 100%;
+}
+.site-agence a { color: var(--ag-bleu); }
+.ag-entete { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.6rem; padding: 0.8rem 1.2rem; background: #fff; border-bottom: 4px solid var(--ag-orange); }
+.ag-marque { font-weight: 800; font-size: 1.25rem; color: var(--ag-bleu); text-decoration: none; }
+.ag-marque small { display: block; font-weight: 400; font-size: 0.72rem; color: var(--ag-doux); }
+.ag-menu { display: flex; flex-wrap: wrap; gap: 0.2rem 1rem; }
+.ag-menu a { text-decoration: none; font-weight: 600; padding: 0.3rem 0; border-bottom: 2px solid transparent; }
+.ag-menu a:hover, .ag-menu a[aria-current="page"] { border-bottom-color: var(--ag-orange); }
+.ag-corps { padding: 1.2rem; display: grid; gap: 1.5rem; max-width: 880px; margin: 0 auto; }
+.ag-corps h1 { font-size: 1.7rem; color: var(--ag-bleu); margin: 0 0 0.4rem; }
+.ag-corps h2 { font-size: 1.2rem; color: var(--ag-bleu); margin: 0 0 0.5rem; }
+.ag-hero { position: relative; border-radius: 14px; overflow: hidden; background: linear-gradient(135deg, #f6c36a, #e07a3d); min-height: 220px; color: #fff; }
+.ag-hero .photo { position: absolute; inset: 0; }
+.ag-hero .photo img { width: 100%; height: 100%; object-fit: cover; }
+.ag-hero .photo.manquante { background: linear-gradient(135deg, #f6c36a, #e07a3d); color: #fff; }
+.ag-hero .photo-legende { display: none; }
+.ag-hero-texte { position: relative; padding: 1.6rem 1.4rem; max-width: 34rem; background: linear-gradient(90deg, rgba(20, 30, 60, 0.78), rgba(20, 30, 60, 0)); min-height: 220px; display: flex; flex-direction: column; justify-content: center; gap: 0.5rem; }
+.ag-hero-texte h1 { color: #fff; margin: 0; }
+.ag-hero-texte p { margin: 0; }
+.ag-bouton { display: inline-block; align-self: flex-start; background: var(--ag-orange); color: #fff !important; text-decoration: none; font-weight: 700; padding: 0.55rem 1.1rem; border-radius: 8px; border: 0; cursor: pointer; font: inherit; font-weight: 700; }
+.ag-bouton:hover { background: #b85a0e; }
+.ag-cartes { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.ag-carte { background: #fff; border: 1px solid #ecdcc6; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+.ag-carte .photo { aspect-ratio: 3 / 2; }
+.ag-carte .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ag-carte .photo.manquante { background: linear-gradient(135deg, #f9dfb4, #f2b27c); color: #4a2a0a; display: flex; align-items: center; justify-content: center; }
+.ag-carte .photo-legende { display: none; }
+.ag-carte .photo-emoji { font-size: 2.4rem; }
+.ag-carte-texte { padding: 0.8rem 1rem 1rem; display: grid; gap: 0.3rem; }
+.ag-carte-texte h3 { margin: 0; color: var(--ag-bleu); font-size: 1.05rem; }
+.ag-carte-texte p { margin: 0; color: var(--ag-doux); font-size: 0.95rem; }
+.ag-liste { margin: 0; padding-left: 1.2rem; }
+.ag-liste li { margin-bottom: 0.3rem; }
+.ag-contact { display: grid; grid-template-columns: auto 1fr; gap: 0.3rem 1rem; margin: 0 0 0.8rem; }
+.ag-contact dt { font-weight: 700; }
+.ag-contact dd { margin: 0; }
+.ag-note { border-left: 4px solid var(--ag-orange); background: #fff; padding: 0.6rem 0.9rem; border-radius: 0 8px 8px 0; }
+.ag-formulaire { display: grid; gap: 0.7rem; max-width: 380px; background: #fff; border: 1px solid #ecdcc6; border-radius: 12px; padding: 1.1rem; }
+.ag-formulaire label { font-weight: 700; display: grid; gap: 0.25rem; }
+.ag-formulaire input { background: #fff; color: var(--ag-texte); border: 1px solid #cdbfa8; }
+.ag-message { margin: 0; padding: 0.6rem 0.8rem; border-radius: 8px; background: #fff2d9; border: 1px solid #efc98a; font-size: 0.95rem; }
+.ag-pied { padding: 1rem 1.2rem; text-align: center; color: var(--ag-doux); font-size: 0.85rem; border-top: 1px solid #ecdcc6; background: #fff; }
+
+.ag-hero .photo-emoji { display: none; }

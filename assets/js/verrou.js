@@ -51,30 +51,40 @@ function construireFormulaire({ identifiant, etiquette, bouton, aide, traiter })
 
 /**
  * Affiche l'écran « Code d'entrée de la séance n » tant que la séance n'est pas ouverte.
- * Renvoie une promesse résolue quand la séance est ouverte (tout de suite si elle l'était déjà).
+ * `numeros` : un numéro de séance, ou une liste pour une pièce partagée entre plusieurs séances
+ * (par exemple le site de l'agence, utilisé en séances 1, 2 et 5) : il suffit alors que l'une d'elles
+ * soit ouverte, et le code d'entrée de n'importe laquelle est accepté.
+ * Renvoie une promesse résolue quand la pièce est ouverte (tout de suite si elle l'était déjà).
  */
-export function verrouillerPage(numero, lienRetour = "../index.html") {
-  if (Progression.estOuverte(numero)) return Promise.resolve();
+export function verrouillerPage(numeros, lienRetour = "../index.html") {
+  const liste = [].concat(numeros);
+  if (liste.some((n) => Progression.estOuverte(n))) return Promise.resolve();
+  const intitule = liste.length === 1
+    ? `Code d'entrée de la séance ${liste[0]}`
+    : `Code d'entrée de la séance ${liste.slice(0, -1).join(", ")} ou ${liste[liste.length - 1]}`;
   return new Promise((resoudre) => {
     const { formulaire, champ } = construireFormulaire({
       identifiant: "code-entree",
-      etiquette: `Code d'entrée de la séance ${numero}`,
+      etiquette: intitule,
       aide: "Votre enseignant vous donne ce code au début du cours.",
       bouton: "Ouvrir le dossier",
       traiter: async (saisie) => {
-        const resultat = await verifierEntree(numero, saisie);
-        if (!resultat) return { succes: false };
-        if (resultat === "maitre") Progression.ouvrirTout();
-        else Progression.ouvrir(numero);
-        ecran.remove();
-        document.body.classList.remove("verrouille");
-        resoudre();
-        return { succes: true };
+        for (const numero of liste) {
+          const resultat = await verifierEntree(numero, saisie);
+          if (!resultat) continue;
+          if (resultat === "maitre") Progression.ouvrirTout();
+          else Progression.ouvrir(numero);
+          ecran.remove();
+          document.body.classList.remove("verrouille");
+          resoudre();
+          return { succes: true };
+        }
+        return { succes: false };
       },
     });
     const ecran = creer("div", { class: "verrou", role: "dialog", "aria-modal": "true", "aria-labelledby": "titre-verrou" }, [
       creer("div", { class: "verrou-boite" }, [
-        creer("p", { class: "etiquette", texte: `Dossier ${numero}` }),
+        creer("p", { class: "etiquette", texte: liste.length === 1 ? `Dossier ${liste[0]}` : "Pièce du dossier" }),
         creer("h1", { id: "titre-verrou", texte: "Accès protégé" }),
         formulaire,
         creer("p", { class: "verrou-retour" }, [creer("a", { href: lienRetour, texte: "← Retour au QG" })]),
