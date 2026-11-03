@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr" data-racine="./">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>QG de la Cellule ARGOS</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="stylesheet" href="assets/css/commun.css">
+  <link rel="stylesheet" href="assets/css/qg.css">
+</head>
+<body>
+  <a class="lien-evitement" href="#contenu">Aller au contenu</a>
+  <header class="entete">
+    <a class="marque" href="index.html">
+      <img src="assets/img/logo-argos.svg" alt="">
+      <span>Cellule ARGOS<small>Opération Collecteur</small></span>
+    </a>
+  </header>
+
+  <main id="contenu" class="conteneur">
+    <section class="intro">
+      <p class="etiquette">QG de la Cellule ARGOS</p>
+      <h1>Bienvenue au QG, analystes</h1>
+      <p>Six dossiers vous attendent. Votre enseignant vous remet un code d'entrée au début de chaque séance&nbsp;: sans lui, un dossier reste verrouillé. À la fin de chaque enquête, un code de sortie vous permet de clore le dossier et d'obtenir votre tampon.</p>
+      <p class="cadrage">Dossier d'entraînement&nbsp;: une affaire simulée, datée du printemps 2027. Les méthodes, elles, sont bien réelles.</p>
+    </section>
+
+    <div class="progression-globale">
+      <strong id="texte-progression">Dossiers clos&nbsp;: 0 sur 6</strong>
+      <div class="jauge" role="img" aria-label="Progression de l'enquête"><span id="jauge-progression"></span></div>
+    </div>
+
+    <section id="dossiers" class="grille-dossiers" aria-label="Les six dossiers"></section>
+
+    <noscript><p class="note">Ce site a besoin de JavaScript pour fonctionner. Activez-le dans votre navigateur, puis rechargez la page.</p></noscript>
+
+    <section class="zone-reinit" aria-labelledby="titre-reinit">
+      <h2 id="titre-reinit">Changement de binôme&nbsp;?</h2>
+      <p>La progression est mémorisée dans ce navigateur uniquement&nbsp;; elle n'est envoyée nulle part. Si un autre binôme reprend cet ordinateur, effacez-la.</p>
+      <div class="actions" id="actions-reinit">
+        <button type="button" class="bouton secondaire" id="bouton-reinit">Nouveau binôme</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pied">Environnement pédagogique fictif — toute ressemblance avec des personnes ou des services réels serait fortuite.</footer>
+  <script type="module" src="assets/js/qg.js"></script>
+</body>
+</html>

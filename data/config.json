@@ -1,0 +1,4 @@
+{
+  "_commentaire": "Réglages du site. ouverture_par_onglet = true : le code d'entrée est redemandé dans chaque nouvel onglet (utile si plusieurs élèves partagent un ordinateur).",
+  "ouverture_par_onglet": false
+}

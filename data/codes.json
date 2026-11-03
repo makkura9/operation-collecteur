@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "prefixe": "argos-v1:",
+  "seances": {
+    "1": {
+      "entree": [
+        {
+          "mode": "souple",
+          "empreinte": "9fb41df26cfd98bb1c306e27f5aadbc3c6e81f5c38b85c9c843f417b365dc956"
+        }
+      ],
+      "sortie": [
+        {
+          "mode": "souple",
+          "empreinte": "7db64b2c5be054aec4babec4e738882a2ed8030d03ef31829cdd9aafbfb1d86a"
+        },
+        {
+          "mode": "souple",
+          "empreinte": "84037b598fb6e9df5f85f76f566fb4b52ddef90685ff4aeeafa8e8a515f00c54"
+        },
+        {
+          "mode": "souple",
+          "empreinte": "2acff711d8dbf5e098a57cb4bd7fc610e1a211947fc6569f9e446a0097cce0e3"
+        }
+      ]
+    },
+    "2": {
+      "entree": [
+        {
+          "mode": "souple",
+          "empreinte": "49c092968f18a2001d13c822016c97db69367aef606d48f025c99535f4ad8f03"
+        }
+      ],
+      "sortie": [
+        {
+          "mode": "souple",
+          "empreinte": "95ebebdbbb02f113b2d9dcc88b749fc040001a2cf89f4f0ef7adc39cabd31eae"
+        }
+      ]
+    },
+    "3": {
+      "entree": [
+        {
+          "mode": "souple",
+          "empreinte": "68b14605492669c1fdbff54f0d7927270494b0b3597f8698f0e5946caf302555"
+        }
+      ],
+      "sortie": [
+        {
+          "mode": "strict",
+          "empreinte": "55b0a92c0f5efa1205478657125b82e90e86d0a4f2a2bd3a5c0dbeed7b469999"
+        }
+      ]
+    },
+    "4": {
+      "entree": [
+        {
+          "mode": "souple",
+          "empreinte": "69b80223a9de5305ba4b9abfc9eb83dd5ee9846308f5ab57927383011b1ac0c7"
+        }
+      ],
+      "sortie": [
+        {
+          "mode": "souple",
+          "empreinte": "b1add221752d0dd92c25674ecc97a872d918359d6ea97dcacd8cc61d8fe1b202"
+        }
+      ]
+    },
+    "5": {
+      "entree": [
+        {
+          "mode": "souple",
+          "empreinte": "94a33f2c7822be0fe0cfea34dd6cf813d4bba53e276c9f1e35b11ae44af34785"
+        }
+      ],
+      "sortie": [
+        {
+          "mode": "souple",
+          "empreinte": "286027aba49f803a8f8098fe782dd13bbd9021b1079cbc07aaf3dbd77548c7e3"
+        }
+      ]
+    },
+    "6": {
+      "entree": [
+        {
+          "mode": "souple",
+          "empreinte": "cd87379d9e8aae3a41696a9b00bb3eb7337b19d6c43405560bb6589d5ba7e320"
+        }
+      ],
+      "sortie": []
+    }
+  },
+  "maitre": [
+    {
+      "mode": "souple",
+      "empreinte": "f31a2d1b7730725ecb2bb92858498e90249a66259a887e7f65fa38eccb63b66a"
+    }
+  ]
+}

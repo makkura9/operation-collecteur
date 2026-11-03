@@ -1,0 +1,71 @@
+/* ==========================================================================
+   QG de la Cellule ARGOS : page d'accueil et pages de séance
+   ========================================================================== */
+
+.intro { max-width: 46rem; }
+.intro .cadrage { color: var(--texte-doux); }
+
+.grille-dossiers {
+  display: grid; gap: 1rem; margin: 1.5rem 0;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+}
+
+.dossier {
+  position: relative; display: flex; flex-direction: column; gap: 0.5rem; min-height: 190px;
+  background: var(--carte); border: 1px solid var(--bord); border-radius: var(--rayon);
+  padding: 1.1rem 1.25rem; overflow: hidden;
+}
+.dossier h2 { margin: 0; font-size: 1.2rem; }
+.dossier .numero { font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--texte-doux); font-weight: 700; }
+.dossier .statut { font-size: 0.9rem; color: var(--texte-doux); }
+.dossier .actions { margin-top: auto; }
+.dossier.verrouille { background: var(--fond-2); border-style: dashed; }
+.dossier.verrouille h2 { color: var(--texte-doux); }
+.dossier.ouvert { border-color: var(--accent); }
+.dossier.clos { border-color: var(--ok); }
+
+.pastille-etat { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 700; }
+.pastille-etat::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--texte-doux); }
+.dossier.ouvert .pastille-etat::before { background: var(--accent); }
+.dossier.clos .pastille-etat::before { background: var(--ok); }
+
+.tampon {
+  position: absolute; right: 0.9rem; top: 0.9rem; transform: rotate(-9deg);
+  border: 3px solid var(--ok); color: var(--ok); border-radius: 8px;
+  padding: 0.15rem 0.6rem; font-weight: 800; letter-spacing: 0.12em; font-size: 0.9rem;
+  opacity: 0.92; text-transform: uppercase;
+}
+
+.progression-globale { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin: 1rem 0; }
+.jauge { flex: 1 1 220px; height: 10px; background: var(--fond-2); border: 1px solid var(--bord); border-radius: 999px; overflow: hidden; }
+.jauge > span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--ok)); width: 0; }
+
+.zone-reinit { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--bord); color: var(--texte-doux); font-size: 0.95rem; }
+.zone-reinit .actions { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+
+/* ----- Page de séance ----- */
+
+.titre-seance .etiquette { margin-bottom: 0.2rem; }
+.bandeau-cadrage { color: var(--texte-doux); font-size: 0.95rem; margin-top: -0.2rem; }
+
+.briefing { margin: 1.25rem 0; }
+.briefing audio { width: 100%; margin: 0.4rem 0 0.9rem; }
+.briefing .texte-briefing p { max-width: 62ch; }
+.audio-indisponible { color: var(--texte-doux); font-size: 0.9rem; margin: 0.2rem 0 0.8rem; }
+
+.mission ul { padding-left: 1.2rem; margin: 0; }
+.mission li { margin-bottom: 0.4rem; }
+
+.liste-pieces { display: grid; gap: 0.8rem; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); margin-top: 0.6rem; }
+.piece {
+  display: block; text-decoration: none; color: var(--texte);
+  background: var(--fond-2); border: 1px solid var(--bord); border-radius: 10px; padding: 0.85rem 1rem;
+}
+a.piece:hover { border-color: var(--accent); }
+.piece strong { display: block; color: var(--accent); margin-bottom: 0.2rem; }
+.piece span { color: var(--texte-doux); font-size: 0.95rem; }
+.piece.indisponible { opacity: 0.6; border-style: dashed; }
+.piece.indisponible strong { color: var(--texte-doux); }
+
+.bloc-seance { margin-bottom: 1.5rem; }
+.sortie { margin-top: 1.5rem; }

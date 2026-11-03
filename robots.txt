@@ -1,0 +1,3 @@
+# Site pédagogique fictif : aucune indexation souhaitée.
+User-agent: *
+Disallow: /

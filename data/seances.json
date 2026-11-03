@@ -1,0 +1,275 @@
+{
+  "cadrage": "Dossier d'entraînement : une affaire simulée, datée du printemps 2027.",
+  "seances": [
+    {
+      "numero": 1,
+      "titre": "Ce que Robin montre au monde",
+      "accroche": "Que peut apprendre un inconnu sur Robin, rien qu'en regardant ce qu'il publie ?",
+      "audio": "briefing-1.mp3",
+      "briefing": [
+        "Analystes de la Cellule ARGOS, merci d'être là. Nous avons un problème, et il est urgent.",
+        "La classe 2M7 du Gymnase de Montrive devait partir à Barcelone le 5 avril. Mais l'agence de voyage affirme n'avoir jamais reçu le paiement de quatorze mille trois cents francs. Le trésorier de la classe, Robin Dupont, jure l'avoir effectué. L'argent est parti… mais où ? Et comment ?",
+        "Précision importante : ceci est un dossier d'entraînement. L'affaire est simulée et datée du printemps 2027. Les méthodes, elles, sont bien réelles.",
+        "Votre première mission : penser comme l'escroc. Que peut apprendre un inconnu sur Robin, rien qu'en regardant ce qu'il publie ? Explorez les profils, puis remplissez votre fiche cible, champ par champ. Même le détail le plus anodin peut compter.",
+        "Remontez la piste, faille après faille, avant que l'argent ne disparaisse pour de bon. Bonne enquête, analystes."
+      ],
+      "mission": [
+        "Explorez les profils de Robin, de Léa et de la classe sur Partello.",
+        "Remplissez votre fiche cible (10 champs) : pour chaque information, notez où vous l'avez trouvée.",
+        "Consultez aussi le site de l'agence de voyage.",
+        "Bonus pour les plus rapides : retrouvez l'ancien pseudo de jeu de Robin."
+      ],
+      "pieces": [
+        {
+          "titre": "Partello",
+          "texte": "Les profils de Robin, de Léa et de la classe 2M7.",
+          "url": "partello/",
+          "dispo": false
+        },
+        {
+          "titre": "Site de l'agence",
+          "texte": "Le site de l'agence de voyage, vu dans un navigateur simulé.",
+          "url": "horizons/",
+          "dispo": false
+        }
+      ],
+      "sortie": {
+        "consigne": "Le code de sortie est le nom de l'agence de voyage."
+      }
+    },
+    {
+      "numero": 2,
+      "titre": "La boîte de Robin",
+      "accroche": "Vingt-cinq messages, des vrais et des pièges : lequel a coûté cher à Robin ?",
+      "audio": "briefing-2.mp3",
+      "briefing": [
+        "Analystes, merci à vous : votre fiche cible nous a montré tout ce que le Collecteur pouvait savoir sur Robin. Reste à comprendre comment il s'en est servi pour l'approcher.",
+        "Nous avons obtenu l'accès à la messagerie de Robin : vingt-cinq messages dans sa boîte de réception. Certains sont authentiques, d'autres sont des pièges. Attention : l'un d'eux a l'air suspect, et pourtant il est vrai.",
+        "Votre mission : classer chaque message, légitime, phishing ou arnaque, et justifier votre choix par un indice précis. Puis consultez l'historique de navigation de Robin : il a cliqué sur un lien, le 17 février à vingt et une heures six. Retrouvez le message coupable, et le nom de domaine du piège.",
+        "Robin prétend avoir tapé un faux mot de passe. À vous de voir si cela suffit… Bon courage, analystes."
+      ],
+      "mission": [
+        "Ouvrez la messagerie de Robin et lisez les vingt-cinq messages de sa boîte de réception.",
+        "Survolez les liens avant de cliquer : l'adresse réelle s'affiche en bas de la fenêtre.",
+        "Dans la grille de classement, rangez chaque message (légitime, phishing ou arnaque) et choisissez l'indice qui justifie votre choix.",
+        "Consultez l'historique de navigation de Robin et retrouvez le clic du 17 février à 21 h 06."
+      ],
+      "pieces": [
+        {
+          "titre": "MontriveMail",
+          "texte": "La boîte de réception de Robin (25 messages).",
+          "url": "montrivemail/",
+          "dispo": false
+        },
+        {
+          "titre": "Grille de classement",
+          "texte": "Classez chaque message et justifiez votre choix.",
+          "url": "montrivemail/classement.html",
+          "dispo": false
+        },
+        {
+          "titre": "Historique de navigation",
+          "texte": "Les pages visitées par Robin dans la soirée du 17 février.",
+          "url": "montrivemail/historique.html",
+          "dispo": false
+        }
+      ],
+      "sortie": {
+        "consigne": "Le code de sortie est le nom de domaine frauduleux sur lequel Robin a cliqué (l'adresse du site, sans « https:// »)."
+      }
+    },
+    {
+      "numero": 3,
+      "titre": "Le maillon le plus faible",
+      "accroche": "Robin a tapé un faux mot de passe. Alors comment le Collecteur est-il entré ?",
+      "audio": "briefing-3.mp3",
+      "briefing": [
+        "Analystes, un détail nous trouble. La police a saisi le journal du kit de phishing du Collecteur. Il montre que Robin a bien saisi un mot de passe sur la fausse page… mais un faux : azerty123. Robin disait vrai. Et pourtant, dans la nuit du 17 au 18 février, quelqu'un s'est connecté à sa messagerie. Comment le Collecteur est-il entré ?",
+        "Un indice : un ancien pseudo de jeu de Robin, RobinPxl. Et une fuite de données qui date de 2023.",
+        "Votre mission : comprendre comment un mot de passe est protégé, comment il se devine, et pourquoi la manière de le choisir compte plus que sa longueur apparente. Utilisez les outils du dossier, puis comparez par le calcul.",
+        "Le maillon le plus faible de la chaîne est peut-être plus ancien que vous ne le pensez."
+      ],
+      "mission": [
+        "Lisez le journal du kit de phishing : qu'a vraiment saisi Robin ?",
+        "Craquez la fuite de données avec le dictionnaire des mots de passe courants : combien de comptes tombent ?",
+        "Construisez un dictionnaire personnalisé à partir de votre fiche cible, puis recommencez.",
+        "Avec le calculateur, comparez le temps de recherche de plusieurs mots de passe.",
+        "Consultez le journal de connexion : que remarquez-vous ?"
+      ],
+      "pieces": [
+        {
+          "titre": "Journal du kit de phishing",
+          "texte": "Ce que Robin a réellement saisi sur la fausse page.",
+          "url": "outils/journal-kit.html",
+          "dispo": false
+        },
+        {
+          "titre": "Fuite de données ArenaZone",
+          "texte": "Une liste de comptes, avec l'empreinte de chaque mot de passe.",
+          "url": "outils/fuite.html",
+          "dispo": false
+        },
+        {
+          "titre": "Outil de craquage",
+          "texte": "Testez des mots de passe contre la fuite.",
+          "url": "outils/craquage.html",
+          "dispo": false
+        },
+        {
+          "titre": "Dictionnaire personnalisé",
+          "texte": "Fabriquez une liste de mots de passe probables.",
+          "url": "outils/dictionnaire.html",
+          "dispo": false
+        },
+        {
+          "titre": "Calculateur de temps de recherche",
+          "texte": "Comparez la solidité de plusieurs mots de passe.",
+          "url": "outils/calculateur.html",
+          "dispo": false
+        },
+        {
+          "titre": "Journal de connexion",
+          "texte": "Les connexions à la messagerie et au cloud de Robin.",
+          "url": "montrivemail/journal-connexion.html",
+          "dispo": false
+        }
+      ],
+      "sortie": {
+        "consigne": "Le code de sortie est le mot de passe de Robin."
+      }
+    },
+    {
+      "numero": 4,
+      "titre": "Les brouillons du Collecteur",
+      "accroche": "Des messages que Robin n'a jamais écrits dorment dans son dossier Brouillons.",
+      "audio": "briefing-4.mp3",
+      "briefing": [
+        "Analystes, grâce à vous, nous avons accès à la messagerie de Robin. Et nous avons trouvé quelque chose d'étrange : son dossier Brouillons contient des messages que Robin n'a jamais écrits.",
+        "Le Collecteur utilise cette boîte comme une boîte aux lettres morte : lui et son complice écrivent dans des brouillons, sans jamais rien envoyer. Aucun message ne circule, donc rien à intercepter. Mais les messages sont brouillés.",
+        "Il y en a trois. Le premier est un simple encodage. Le deuxième est un puzzle que toute la classe devra reconstituer ensemble, chaque binôme déchiffrant un fragment. Le troisième est plus solide, et il contient une information capitale : où et quand frappera le Collecteur.",
+        "Déchiffrez-les. Au travail, analystes."
+      ],
+      "mission": [
+        "Ouvrez le dossier Brouillons de la messagerie de Robin.",
+        "Décodez le premier message, puis reconstituez le deuxième avec toute la classe, fragment par fragment.",
+        "Déchiffrez le troisième message avec la clé que vous aurez trouvée.",
+        "Bonus : essayez l'analyseur de fréquences."
+      ],
+      "pieces": [
+        {
+          "titre": "Brouillons",
+          "texte": "Le dossier Brouillons de la messagerie de Robin.",
+          "url": "montrivemail/brouillons.html",
+          "dispo": false
+        },
+        {
+          "titre": "Décodeur Base64",
+          "texte": "Pour lire un texte encodé.",
+          "url": "outils/base64.html",
+          "dispo": false
+        },
+        {
+          "titre": "Roue de César",
+          "texte": "Pour essayer tous les décalages.",
+          "url": "outils/cesar.html",
+          "dispo": false
+        },
+        {
+          "titre": "Déchiffreur de Vigenère",
+          "texte": "Pour déchiffrer avec une clé.",
+          "url": "outils/vigenere.html",
+          "dispo": false
+        },
+        {
+          "titre": "Analyseur de fréquences",
+          "texte": "Bonus : compter les lettres d'un message.",
+          "url": "outils/frequences.html",
+          "dispo": false
+        }
+      ],
+      "sortie": {
+        "consigne": "Le code de sortie est le lieu où le Collecteur doit frapper."
+      }
+    },
+    {
+      "numero": 5,
+      "titre": "Reconstitution",
+      "accroche": "Rejouez la scène : qui a pu se glisser entre le téléphone de Robin et le site de l'agence ?",
+      "audio": "briefing-5.mp3",
+      "briefing": [
+        "Analystes, la police a retrouvé un ordinateur portable abandonné près de la gare de Montrive. Le Collecteur a disparu, mais son ordinateur contient l'enregistrement de tout ce qui a transité par le réseau de la gare, le lundi premier mars, à sept heures douze.",
+        "Nous allons rejouer la scène, minute par minute. Sur la carte du réseau, vous verrez circuler les messages de Robin comme des enveloppes. Certaines sont scellées. D'autres sont grandes ouvertes.",
+        "Votre mission : comprendre comment un inconnu a pu se glisser entre le téléphone de Robin et le site de l'agence, ce qu'il pouvait voir, ce qu'il pouvait modifier, et à quel moment l'attaque aurait pu être arrêtée.",
+        "Cinq niveaux vous attendent. Chaque faille que vous comprenez est une parade que vous pourrez appliquer vous-même. Concentrez-vous, analystes."
+      ],
+      "mission": [
+        "Rejouez la scène sur la carte du réseau, niveau par niveau.",
+        "Repérez le faux point d'accès, observez ce que voit un intermédiaire, puis choisissez les bonnes parades.",
+        "Bonus : le cadenas peut-il tromper ?"
+      ],
+      "pieces": [
+        {
+          "titre": "Carte du réseau",
+          "texte": "La reconstitution en cinq niveaux (conçue pour ordinateur).",
+          "url": "reseau/",
+          "dispo": false
+        }
+      ],
+      "sortie": {
+        "consigne": "Le code de sortie est formé des quatre derniers chiffres de l'IBAN du compte qui a reçu l'argent."
+      }
+    },
+    {
+      "numero": 6,
+      "titre": "Sauver le voyage",
+      "accroche": "Le compte à rebours est lancé : votre rapport doit convaincre les banques d'agir.",
+      "audio": "briefing-6.mp3",
+      "briefing": [
+        "Analystes, nous y sommes. Vendredi 19 mars, le complice du Collecteur doit lui renvoyer l'argent. Après cela, il sera trop tard. Il vous reste peu de temps.",
+        "Pour que les banques bloquent le compte, votre rapport doit être irréprochable : la chaîne complète de l'attaque, dans l'ordre, et pour chaque faille, la parade qui aurait pu l'arrêter.",
+        "Vous allez remettre les événements dans l'ordre, relier chaque faille à sa parade, découvrir comment l'affaire se termine, puis écrire vos propres réflexes de sécurité. Un quiz final validera votre dossier, et vous recevrez votre certificat d'analyste.",
+        "Souvenez-vous : la sécurité est une chaîne, et c'est le maillon le plus faible qui compte. Bonne chance, analystes."
+      ],
+      "mission": [
+        "Remettez la chronologie de l'attaque dans l'ordre.",
+        "Reliez chaque faille à sa parade.",
+        "Découvrez le dénouement de l'affaire.",
+        "Rédigez vos cinq réflexes de sécurité sur votre fiche.",
+        "Répondez au quiz final pour obtenir votre certificat."
+      ],
+      "pieces": [
+        {
+          "titre": "Frise chronologique",
+          "texte": "Remettez les dix événements dans l'ordre.",
+          "url": "synthese/frise.html",
+          "dispo": false
+        },
+        {
+          "titre": "Failles et parades",
+          "texte": "Reliez chaque faille à sa parade.",
+          "url": "synthese/parades.html",
+          "dispo": false
+        },
+        {
+          "titre": "Dénouement",
+          "texte": "Le sort de l'affaire (débloqué par la frise).",
+          "url": "synthese/denouement.html",
+          "dispo": false
+        },
+        {
+          "titre": "Quiz final",
+          "texte": "Dix questions pour valider votre dossier.",
+          "url": "synthese/quiz.html",
+          "dispo": false
+        },
+        {
+          "titre": "Certificat",
+          "texte": "Votre certificat d'analyste, à imprimer.",
+          "url": "synthese/certificat.html",
+          "dispo": false
+        }
+      ],
+      "sortie": null
+    }
+  ]
+}
