@@ -54,14 +54,19 @@ export function construireCarte(svg, donnees, { attaque = false } = {}) {
     label.append(document.createTextNode(n.label));
     g.append(label);
     if (n.sous) {
-      const sous = el("text", { class: "noeud-sous", y: (n.type === "serveur" || n.type === "pirate" ? 46 : 50) + 16, "text-anchor": "middle" });
+      const sous = el("text", { class: "noeud-sous", y: (n.type === "serveur" || n.type === "pirate" ? 46 : 50) + 19, "text-anchor": "middle" });
       sous.append(document.createTextNode(n.sous));
       g.append(sous);
     }
     if (n.protocole) {
-      const badge = el("text", { class: "noeud-proto", x: 40, y: -18, "text-anchor": "middle" });
-      badge.append(document.createTextNode(n.protocole === "http" ? "HTTP" : "HTTPS"));
-      g.append(badge);
+      // Pastille bien lisible : « 🔒 HTTPS » (vert) ou « HTTP » (orange).
+      const https = n.protocole !== "http";
+      const pastille = el("g", { class: "pastille-proto " + (https ? "https" : "http"), transform: "translate(84 0)" });  // à droite du serveur
+      pastille.append(el("rect", { x: https ? -40 : -27, y: -12, width: https ? 80 : 54, height: 22, rx: 11 }));
+      const texte = el("text", { y: 4, "text-anchor": "middle" });
+      texte.append(document.createTextNode(https ? "🔒 HTTPS" : "HTTP"));
+      pastille.append(texte);
+      g.append(pastille);
     }
     coucheNoeuds.append(g);
   }
@@ -80,40 +85,73 @@ export function construireCarte(svg, donnees, { attaque = false } = {}) {
       const g = coucheNoeuds.querySelector(`[data-noeud="${id}"]`);
       if (g) g.classList.add("actif");
     }
+    const arrivee = coucheNoeuds.querySelector(`[data-noeud="${chemin[chemin.length - 1]}"]`);
+    if (arrivee) arrivee.classList.add("arrivee");
   }
 
   function reinitialiser() {
+    arreterEnveloppe();
     coucheLiens.querySelectorAll(".actif").forEach((l) => l.classList.remove("actif"));
-    coucheNoeuds.querySelectorAll(".actif").forEach((g) => g.classList.remove("actif"));
+    coucheNoeuds.querySelectorAll(".actif, .arrivee").forEach((g) => g.classList.remove("actif", "arrivee"));
   }
 
-  /** Fait glisser une enveloppe le long d'un chemin. protocole : "https" (scellée) ou "http" (ouverte). */
-  function animerPaquet(chemin, protocole, { duree = 2.4, boucle = false } = {}) {
-    const pts = pointsDuChemin(chemin);
-    if (pts.length < 2) return () => {};
-    const d = "M" + pts.join(" L");
-    const scelle = protocole !== "http";
+  let enveloppeCourante = null;
+  let animation = null;
+
+  function arreterEnveloppe() {
+    if (animation) cancelAnimationFrame(animation);
+    animation = null;
+    if (enveloppeCourante) enveloppeCourante.remove();
+    enveloppeCourante = null;
+  }
+
+  function creerEnveloppe(scelle) {
     const env = el("g", { class: "enveloppe " + (scelle ? "scellee" : "ouverte") });
-    env.append(el("rect", { x: -15, y: -11, width: 30, height: 22, rx: 3, class: "env-corps" }));
-    env.append(el("path", { d: "M-15 -11 L0 2 L15 -11", class: "env-rabat" }));
-    env.append(el("text", { class: "env-icone", y: 6, "text-anchor": "middle" }, document.createTextNode(scelle ? "🔒" : "✉")));
-    if (reduire) {
-      // Sans animation : enveloppe posée au milieu du chemin.
-      const milieu = pts[Math.floor(pts.length / 2)].split(",");
-      env.setAttribute("transform", `translate(${milieu[0]} ${milieu[1]})`);
-      coucheEnvel.append(env);
-      return () => env.remove();
-    }
-    const motion = el("animateMotion", { dur: duree + "s", path: d, repeatCount: boucle ? "indefinite" : "1", rotate: "0", fill: "freeze" });
-    env.append(motion);
+    env.append(el("rect", { x: -16, y: -12, width: 32, height: 24, rx: 3, class: "env-corps" }));
+    env.append(el("path", { d: scelle ? "M-16 -12 L0 2 L16 -12" : "M-16 -12 L0 -26 L16 -12", class: "env-rabat" }));
+    const icone = el("text", { class: "env-icone", y: 6, "text-anchor": "middle" });
+    icone.append(document.createTextNode(scelle ? "🔒" : "✉"));
+    env.append(icone);
+    return env;
+  }
+
+  /**
+   * Fait glisser UNE enveloppe le long d'un chemin (la précédente est retirée).
+   * Le type d'enveloppe est déduit du serveur de destination : scellée (HTTPS) ou ouverte (HTTP).
+   * À l'arrivée, l'enveloppe reste posée à côté du serveur jusqu'au clic suivant.
+   */
+  function animerPaquet(chemin, { duree = 2.2 } = {}) {
+    arreterEnveloppe();
+    const pts = chemin.filter((id) => coord[id]).map((id) => [coord[id].x, coord[id].y]);
+    if (pts.length < 2) return;
+    const destination = coord[chemin[chemin.length - 1]];
+    const scelle = !(destination && destination.protocole === "http");
+    const env = creerEnveloppe(scelle);
     coucheEnvel.append(env);
-    if (!boucle) {
-      motion.addEventListener("endEvent", () => env.remove());
-      // Repli si endEvent n'est pas émis : on retire après la durée.
-      setTimeout(() => env.remove(), duree * 1000 + 400);
+    enveloppeCourante = env;
+    const placer = (x, y) => env.setAttribute("transform", `translate(${x} ${y})`);
+    const [xFin, yFin] = pts[pts.length - 1];
+    const poserArrivee = () => placer(xFin - 62, yFin);
+    if (reduire) { poserArrivee(); return; }   // sans animation : directement à l'arrivée
+    const longueurs = [];
+    let total = 0;
+    for (let i = 0; i < pts.length - 1; i++) {
+      const l = Math.hypot(pts[i + 1][0] - pts[i][0], pts[i + 1][1] - pts[i][1]);
+      longueurs.push(l);
+      total += l;
     }
-    if (motion.beginElement) motion.beginElement();
-    return () => env.remove();
+    const debut = performance.now();
+    const etape = (instant) => {
+      const fraction = Math.min(1, (instant - debut) / (duree * 1000));
+      let reste = fraction * total;
+      let i = 0;
+      while (i < longueurs.length - 1 && reste > longueurs[i]) { reste -= longueurs[i]; i++; }
+      const r = longueurs[i] ? Math.min(1, reste / longueurs[i]) : 1;
+      placer(pts[i][0] + (pts[i + 1][0] - pts[i][0]) * r, pts[i][1] + (pts[i + 1][1] - pts[i][1]) * r);
+      if (fraction < 1) animation = requestAnimationFrame(etape);
+      else { animation = null; poserArrivee(); }
+    };
+    animation = requestAnimationFrame(etape);
   }
 
   function definirDescription(texte) { svg.setAttribute("aria-label", texte); }

@@ -24,8 +24,8 @@
 .noeud.actif .forme { stroke: var(--accent); stroke-width: 3; filter: drop-shadow(0 0 6px rgba(61,214,198,0.5)); }
 .noeud-acces-faux .forme, .noeud-pirate .forme { stroke: var(--danger); }
 .noeud-emoji { font-size: 26px; }
-.noeud-label { fill: var(--texte); font-size: 15px; font-weight: 600; }
-.noeud-sous { fill: var(--texte-doux); font-size: 12px; }
+.noeud-label { fill: var(--texte); font-size: 17px; font-weight: 600; }
+.noeud-sous { fill: var(--texte-doux); font-size: 13px; }
 .noeud-proto { font-size: 11px; font-weight: 700; font-family: var(--police-code); }
 .proto-http .noeud-proto { fill: var(--alerte); }
 .proto-https .noeud-proto { fill: var(--ok); }
@@ -66,3 +66,10 @@
 .notion { margin-top: 0.9rem; padding: 0.8rem 1rem; border-radius: 10px; background: rgba(61,214,198,0.1); border: 1px solid var(--accent); display: grid; gap: 0.7rem; }
 .barre-boutons { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 0.8rem; }
 .bouton.petit { padding: 0.3rem 0.7rem; font-size: 0.88rem; }
+
+/* Pastilles de protocole (lisibles) */
+.pastille-proto text { font-size: 13px; font-weight: 800; fill: #fff; font-family: var(--police); }
+.pastille-proto.https rect { fill: #1b6b3a; }
+.pastille-proto.http rect { fill: #a8560f; }
+/* Serveur d'arrivée du paquet sélectionné */
+.noeud.arrivee .forme { stroke: var(--alerte); stroke-width: 4; filter: drop-shadow(0 0 8px rgba(255,180,84,0.7)); }

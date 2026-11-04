@@ -19,6 +19,23 @@ function serveurs() {
   return donnees.noeuds.filter((n) => n.type === "serveur");
 }
 
+const animationsReduites = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/** Si la carte n'est pas entièrement visible (fenêtre étroite), on la fait revenir à l'écran. */
+function ramenerCarte() {
+  const zone = document.querySelector(".carte-zone");
+  const r = zone.getBoundingClientRect();
+  if (r.top < 0 || r.bottom > window.innerHeight) {
+    zone.scrollIntoView({ behavior: animationsReduites ? "auto" : "smooth", block: "start" });
+  }
+}
+
+/** Équivalent textuel de la carte, lu par les lecteurs d'écran. */
+function annoncer(texte) {
+  const zone = document.getElementById("annonce-carte");
+  if (zone) zone.textContent = texte;
+}
+
 function majBarre() {
   document.getElementById("niveau-courant").textContent = String(indexCourant + 1);
   document.getElementById("niveau-total").textContent = String(niveauxDisponibles.length);
@@ -69,7 +86,9 @@ function niveau1(termine) {
     const voir = creer("button", { type: "button", class: "bouton secondaire petit", texte: "Voir sur la carte" });
     voir.addEventListener("click", () => {
       carte.mettreEnEvidence(paquet.chemin);
-      carte.animerPaquet(paquet.chemin, cible.protocole);
+      carte.animerPaquet(paquet.chemin);
+      ramenerCarte();
+      annoncer(`Paquet ${i + 1} : il part du téléphone de Robin, passe par le point d'accès de la gare puis par Internet, et arrive au serveur ${cible.label}.`);
     });
     reponses[paquet.id] = { selDest, nom, paquet };
     liste.append(creer("li", { class: "paquet" }, [
@@ -96,7 +115,11 @@ function niveau1(termine) {
       if (destOk) bons++;
       if (lisOk) bons++;
       const cell = liste.children[i].querySelector(".paquet-resultat");
-      cell.textContent = `${destOk ? "✓" : "✗"} destination · ${lisOk ? "✓" : "✗"} ${lisAttendu === "oui" ? "lisible" : "scellé"}`;
+      const proto = cible.protocole === "http" ? "HTTP" : "HTTPS";
+      const etat = lisAttendu === "oui" ? "lisible" : "scellé";
+      cell.textContent =
+        `${destOk ? "✓" : "✗"} Destination : ${destOk ? "" : "c'était "}${cible.label}` +
+        ` · ${lisOk ? "✓" : "✗"} Contenu ${etat}, car ce serveur utilise ${proto}`;
       cell.className = "paquet-resultat " + (destOk && lisOk ? "bon" : "mauvais");
     });
     zone.textContent = "";
@@ -104,7 +127,7 @@ function niveau1(termine) {
     if (bons === total) {
       zone.append(boiteNotion(n.notion, termine, false));
     } else {
-      zone.append(creer("p", { texte: "Corrigez les lignes en rouge : regardez le badge HTTP/HTTPS du serveur de destination, puis réessayez." }));
+      zone.append(creer("p", { texte: "Relisez les lignes en rouge : la destination se voit sur la carte (« Voir sur la carte »), et c'est le serveur de destination qui décide : HTTPS = scellé, HTTP = lisible. Corrigez, puis cliquez à nouveau sur « Corriger »." }));
     }
     zone.focus();
   });
@@ -156,7 +179,7 @@ function niveau2(termine) {
     carte = construireCarte(svg(), donnees, { attaque: true });
     carte.definirDescription("Le téléphone de Robin s'est connecté au faux point d'accès, qui fait passer tout le trafic par l'ordinateur du Collecteur.");
     carte.mettreEnEvidence(["phone", "ap_faux", "collecteur", "internet"]);
-    carte.animerPaquet(["phone", "ap_faux", "collecteur", "internet", "banque"], "http", { duree: 3 });
+    carte.animerPaquet(["phone", "ap_faux", "collecteur", "internet", "banque"], { duree: 3 });
     zone.append(creer("p", { class: "bascule", texte: typographie(n.bascule) }));
     zone.append(boiteNotion(n.notion, termine, true));
     zone.focus();

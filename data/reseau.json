@@ -50,7 +50,7 @@
       "type": "serveur",
       "protocole": "https",
       "x": 860,
-      "y": 90,
+      "y": 75,
       "emoji": "📷"
     },
     {
@@ -59,7 +59,7 @@
       "type": "serveur",
       "protocole": "https",
       "x": 860,
-      "y": 190,
+      "y": 185,
       "emoji": "✉️"
     },
     {
@@ -68,7 +68,7 @@
       "type": "serveur",
       "protocole": "https",
       "x": 860,
-      "y": 300,
+      "y": 295,
       "emoji": "🏦"
     },
     {
@@ -78,7 +78,7 @@
       "type": "serveur",
       "protocole": "http",
       "x": 860,
-      "y": 410,
+      "y": 405,
       "emoji": "🧾"
     },
     {
