@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="fr" data-racine="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Reconstitution à la gare</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="stylesheet" href="../assets/css/commun.css">
+  <link rel="stylesheet" href="../assets/css/outils.css">
+  <link rel="stylesheet" href="../assets/css/reseau.css">
+</head>
+<body>
+  <a class="lien-evitement" href="#panneau">Aller au contenu</a>
+  <header class="entete">
+    <a class="marque" href="../index.html"><img src="../assets/img/logo-argos.svg" alt=""><span>Cellule ARGOS<small>Pièce du dossier 5</small></span></a>
+    <nav aria-label="Navigation"><a href="../seance-5/index.html">← Retour au dossier 5</a></nav>
+  </header>
+  <main class="jeu" id="cadre" hidden>
+    <h1>Reconstitution à la gare</h1>
+    <p class="intro">La police a retrouvé l'ordinateur du Collecteur, abandonné près de la gare. Il contient l'enregistrement du trafic du lundi 1er mars, à 7 h 12. Rejouons la scène, niveau par niveau.</p>
+    <p class="avert-ordi">Ce jeu est conçu pour un ordinateur (grand écran, souris ou touches de direction).</p>
+    <div class="barre-niveaux">
+      <strong>Niveau <span id="niveau-courant">1</span> / <span id="niveau-total">2</span></strong>
+      <span class="jauge-jeu" role="img" aria-label="Avancement dans les niveaux"><span id="jauge-niveau"></span></span>
+    </div>
+    <div class="jeu-grille">
+      <div class="carte-zone"><svg id="carte-svg" aria-label="Carte du réseau"></svg></div>
+      <section class="panneau-zone" id="panneau" aria-live="polite"></section>
+    </div>
+    <noscript><p class="note">Ce jeu a besoin de JavaScript pour fonctionner.</p></noscript>
+  </main>
+  <footer class="pied">Environnement pédagogique fictif — toute ressemblance avec des personnes ou des services réels serait fortuite.</footer>
+  <script type="module" src="../assets/js/reseau.js"></script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+// Serious game « Reconstitution à la gare » (séance 5). Conçu pour ordinateur.
+// Niveaux construits par lots : 1 et 2 ici ; 3, 4, 5 et le bonus viendront ensuite.
+
+import { chargerJson, creer, typographie } from "./chargeur.js";
+import * as Progression from "./progression.js";
+import { verrouillerPage } from "./verrou.js";
+import { construireCarte } from "./reseau-carte.js";
+
+let donnees = null;
+let carte = null;
+let noeudsParId = {};
+const niveauxDisponibles = ["n1", "n2"];   // s'allongera avec les prochains lots
+let indexCourant = 0;
+
+const panneau = () => document.getElementById("panneau");
+const svg = () => document.getElementById("carte-svg");
+
+function serveurs() {
+  return donnees.noeuds.filter((n) => n.type === "serveur");
+}
+
+function majBarre() {
+  document.getElementById("niveau-courant").textContent = String(indexCourant + 1);
+  document.getElementById("niveau-total").textContent = String(niveauxDisponibles.length);
+  const fait = indexCourant / niveauxDisponibles.length * 100;
+  document.getElementById("jauge-niveau").style.width = `${fait}%`;
+}
+
+function enteteNiveau(numero, titre) {
+  return creer("header", { class: "niveau-entete" }, [
+    creer("p", { class: "etiquette", texte: `Niveau ${numero} sur ${niveauxDisponibles.length}` }),
+    creer("h2", { texte: titre }),
+  ]);
+}
+
+function boiteNotion(texte, termine, dernier) {
+  return creer("div", { class: "notion", role: "status" }, [
+    creer("p", {}, [creer("strong", { texte: "À retenir : " }), typographie(texte)]),
+    creer("button", {
+      type: "button", class: "bouton", texte: dernier ? "Terminer les niveaux disponibles" : "Niveau suivant →",
+      onclick: termine,
+    }),
+  ]);
+}
+
+/* ---------------- Niveau 1 : Qui parle à qui ? ---------------- */
+
+function niveau1(termine) {
+  const n = donnees.niveaux.n1;
+  carte = construireCarte(svg(), donnees, { attaque: false });
+  carte.definirDescription("Réseau de la gare : le téléphone de Robin passe par le point d'accès, puis par Internet, pour joindre les serveurs.");
+  const conteneur = panneau();
+  conteneur.textContent = "";
+  conteneur.append(enteteNiveau(1, n.titre), creer("p", { texte: typographie(n.consigne) }), creer("p", { class: "aide-jeu", texte: typographie(n.aide) }));
+
+  const reponses = {};
+  const liste = creer("ol", { class: "paquets" });
+  n.paquets.forEach((paquet, i) => {
+    const cible = noeudsParId[paquet.vers];
+    const selDest = creer("select", { "aria-label": `Destination du paquet ${i + 1}` }, [
+      creer("option", { value: "", texte: "— destination —" }),
+      ...serveurs().map((s) => creer("option", { value: s.id, texte: s.label })),
+    ]);
+    const nom = `lis-${paquet.id}`;
+    const radios = creer("span", { class: "oui-non" }, [
+      creer("label", {}, [creer("input", { type: "radio", name: nom, value: "oui" }), " lisible"]),
+      creer("label", {}, [creer("input", { type: "radio", name: nom, value: "non" }), " scellé"]),
+    ]);
+    const voir = creer("button", { type: "button", class: "bouton secondaire petit", texte: "Voir sur la carte" });
+    voir.addEventListener("click", () => {
+      carte.mettreEnEvidence(paquet.chemin);
+      carte.animerPaquet(paquet.chemin, cible.protocole);
+    });
+    reponses[paquet.id] = { selDest, nom, paquet };
+    liste.append(creer("li", { class: "paquet" }, [
+      creer("span", { class: "paquet-num", texte: `Paquet ${i + 1}` }),
+      voir,
+      creer("span", { class: "paquet-champs" }, [selDest, radios]),
+      creer("span", { class: "paquet-resultat", "aria-live": "polite" }),
+    ]));
+  });
+  conteneur.append(liste);
+
+  const zone = creer("div", { class: "zone-jeu", tabindex: "-1", "aria-live": "polite" });
+  const corriger = creer("button", { type: "button", class: "bouton", texte: "Corriger" });
+  corriger.addEventListener("click", () => {
+    let bons = 0;
+    const total = n.paquets.length * 2;
+    n.paquets.forEach((paquet, i) => {
+      const r = reponses[paquet.id];
+      const cible = noeudsParId[paquet.vers];
+      const destOk = r.selDest.value === paquet.vers;
+      const choixLis = document.querySelector(`input[name="${r.nom}"]:checked`);
+      const lisAttendu = cible.protocole === "http" ? "oui" : "non";
+      const lisOk = choixLis && choixLis.value === lisAttendu;
+      if (destOk) bons++;
+      if (lisOk) bons++;
+      const cell = liste.children[i].querySelector(".paquet-resultat");
+      cell.textContent = `${destOk ? "✓" : "✗"} destination · ${lisOk ? "✓" : "✗"} ${lisAttendu === "oui" ? "lisible" : "scellé"}`;
+      cell.className = "paquet-resultat " + (destOk && lisOk ? "bon" : "mauvais");
+    });
+    zone.textContent = "";
+    zone.append(creer("p", { class: "score-jeu", texte: `Score : ${bons} sur ${total}.` }));
+    if (bons === total) {
+      zone.append(boiteNotion(n.notion, termine, false));
+    } else {
+      zone.append(creer("p", { texte: "Corrigez les lignes en rouge : regardez le badge HTTP/HTTPS du serveur de destination, puis réessayez." }));
+    }
+    zone.focus();
+  });
+  conteneur.append(creer("div", { class: "barre-boutons" }, [corriger]), zone);
+}
+
+/* ---------------- Niveau 2 : Le jumeau maléfique ---------------- */
+
+function niveau2(termine) {
+  const n = donnees.niveaux.n2;
+  carte = construireCarte(svg(), donnees, { attaque: false });
+  carte.definirDescription("Deux réseaux portent le même nom : il faut repérer le faux point d'accès.");
+  const conteneur = panneau();
+  conteneur.textContent = "";
+  conteneur.append(enteteNiveau(2, n.titre), creer("p", { texte: typographie(n.consigne) }));
+
+  const cartes = creer("div", { class: "fiches-reseau" });
+  for (const reseau of n.reseaux) {
+    const champs = creer("dl", { class: "fiche-champs" });
+    for (const [cle, libelle] of n.champs) {
+      let valeur = reseau[cle];
+      if (cle === "signal") valeur = "▮".repeat(reseau.signal) + "▯".repeat(4 - reseau.signal);
+      champs.append(creer("dt", { texte: libelle }), creer("dd", { texte: typographie(String(valeur)) }));
+    }
+    cartes.append(creer("label", { class: "fiche-reseau" }, [
+      creer("span", { class: "fiche-tete" }, [
+        creer("input", { type: "radio", name: "faux", value: reseau.id }),
+        creer("strong", { texte: `Réseau ${reseau.id}` }),
+      ]),
+      champs,
+    ]));
+  }
+  conteneur.append(cartes);
+
+  const zone = creer("div", { class: "zone-jeu", tabindex: "-1", "aria-live": "polite" });
+  const valider = creer("button", { type: "button", class: "bouton", texte: "Désigner le faux réseau" });
+  valider.addEventListener("click", () => {
+    const choix = document.querySelector('input[name="faux"]:checked');
+    zone.textContent = "";
+    if (!choix) { zone.append(creer("p", { class: "mauvais", texte: "Choisissez d'abord un réseau." })); zone.focus(); return; }
+    const reseau = n.reseaux.find((r) => r.id === choix.value);
+    if (!reseau.faux) {
+      zone.append(creer("p", { class: "mauvais", texte: "Ce n'est pas le bon. Comparez l'appareil qui émet et sa position : une borne de gare n'est pas un ordinateur posé sur un banc." }));
+      zone.focus();
+      return;
+    }
+    zone.append(creer("p", { class: "bon", texte: "Exact : le réseau " + reseau.id + " est le piège." }), creer("p", { texte: typographie(n.explication) }));
+    // Montrer la bascule : le téléphone se relie au faux point d'accès.
+    carte = construireCarte(svg(), donnees, { attaque: true });
+    carte.definirDescription("Le téléphone de Robin s'est connecté au faux point d'accès, qui fait passer tout le trafic par l'ordinateur du Collecteur.");
+    carte.mettreEnEvidence(["phone", "ap_faux", "collecteur", "internet"]);
+    carte.animerPaquet(["phone", "ap_faux", "collecteur", "internet", "banque"], "http", { duree: 3 });
+    zone.append(creer("p", { class: "bascule", texte: typographie(n.bascule) }));
+    zone.append(boiteNotion(n.notion, termine, true));
+    zone.focus();
+  });
+  conteneur.append(creer("div", { class: "barre-boutons" }, [valider]), zone);
+}
+
+/* ---------------- Enchaînement ---------------- */
+
+const constructeurs = { n1: niveau1, n2: niveau2 };
+
+function lancerNiveau(index) {
+  indexCourant = index;
+  majBarre();
+  const id = niveauxDisponibles[index];
+  constructeurs[id]((function suivant() {
+    if (index + 1 < niveauxDisponibles.length) {
+      lancerNiveau(index + 1);
+    } else {
+      finDisponible();
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }));
+}
+
+function finDisponible() {
+  majBarre();
+  document.getElementById("jauge-niveau").style.width = "100%";
+  const c = panneau();
+  c.textContent = "";
+  c.append(
+    creer("h2", { texte: "Niveaux 1 et 2 terminés" }),
+    creer("p", { texte: "Bravo, analystes. Vous avez compris comment le trafic passe par le point d'accès et comment un faux réseau prend la place du vrai." }),
+    creer("p", { class: "aide-jeu", texte: "La suite de la reconstitution (au milieu du trafic, l'enveloppe modifiée, la contre-attaque) arrive prochainement." }),
+    creer("p", {}, [creer("a", { class: "bouton secondaire", href: "../seance-5/index.html", texte: "← Retour au dossier 5" })]),
+  );
+  carte = construireCarte(svg(), donnees, { attaque: true });
+  carte.definirDescription("Vue du réseau avec le faux point d'accès et l'ordinateur du Collecteur intercalés.");
+}
+
+async function demarrer() {
+  const cadre = document.getElementById("cadre");
+  try {
+    Progression.configurer(await chargerJson("data/config.json"));
+    await verrouillerPage(5);
+    donnees = await chargerJson("data/reseau.json");
+    for (const n of donnees.noeuds) noeudsParId[n.id] = n;
+    cadre.hidden = false;
+    lancerNiveau(0);
+  } catch (e) {
+    cadre.hidden = false;
+    document.getElementById("panneau").textContent = "Impossible de charger le jeu. Ouvrez le site par son adresse web, puis rechargez la page.";
+    console.error(e);
+  }
+}
+
+demarrer();

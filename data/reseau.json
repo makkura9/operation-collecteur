@@ -1,0 +1,297 @@
+{
+  "noeuds": [
+    {
+      "id": "phone",
+      "label": "Téléphone de Robin",
+      "type": "appareil",
+      "x": 95,
+      "y": 300,
+      "emoji": "📱"
+    },
+    {
+      "id": "ap_vrai",
+      "label": "Point d'accès de la gare",
+      "sous": "Gare_Free_WiFi",
+      "type": "acces",
+      "x": 330,
+      "y": 215,
+      "emoji": "📶"
+    },
+    {
+      "id": "ap_faux",
+      "label": "Faux point d'accès",
+      "sous": "Gare_Free_WiFi",
+      "type": "acces-faux",
+      "x": 330,
+      "y": 430,
+      "emoji": "📶",
+      "cache": true
+    },
+    {
+      "id": "collecteur",
+      "label": "Ordinateur du Collecteur",
+      "type": "pirate",
+      "x": 520,
+      "y": 470,
+      "emoji": "💻",
+      "cache": true
+    },
+    {
+      "id": "internet",
+      "label": "Internet",
+      "type": "nuage",
+      "x": 580,
+      "y": 230,
+      "emoji": "🌐"
+    },
+    {
+      "id": "partello",
+      "label": "Partello",
+      "type": "serveur",
+      "protocole": "https",
+      "x": 860,
+      "y": 90,
+      "emoji": "📷"
+    },
+    {
+      "id": "montrivemail",
+      "label": "MontriveMail",
+      "type": "serveur",
+      "protocole": "https",
+      "x": 860,
+      "y": 190,
+      "emoji": "✉️"
+    },
+    {
+      "id": "banque",
+      "label": "Banque de Montrive",
+      "type": "serveur",
+      "protocole": "https",
+      "x": 860,
+      "y": 300,
+      "emoji": "🏦"
+    },
+    {
+      "id": "portail",
+      "label": "portail.horizons-jeunesse.ch",
+      "sous": "ancien portail",
+      "type": "serveur",
+      "protocole": "http",
+      "x": 860,
+      "y": 410,
+      "emoji": "🧾"
+    },
+    {
+      "id": "meteo",
+      "label": "Météo du lac",
+      "type": "serveur",
+      "protocole": "http",
+      "x": 860,
+      "y": 515,
+      "emoji": "⛅"
+    }
+  ],
+  "liaisons_normal": [
+    [
+      "phone",
+      "ap_vrai"
+    ],
+    [
+      "ap_vrai",
+      "internet"
+    ],
+    [
+      "internet",
+      "partello"
+    ],
+    [
+      "internet",
+      "montrivemail"
+    ],
+    [
+      "internet",
+      "banque"
+    ],
+    [
+      "internet",
+      "portail"
+    ],
+    [
+      "internet",
+      "meteo"
+    ]
+  ],
+  "liaisons_attaque": [
+    [
+      "phone",
+      "ap_faux"
+    ],
+    [
+      "ap_faux",
+      "collecteur"
+    ],
+    [
+      "collecteur",
+      "internet"
+    ],
+    [
+      "internet",
+      "partello"
+    ],
+    [
+      "internet",
+      "montrivemail"
+    ],
+    [
+      "internet",
+      "banque"
+    ],
+    [
+      "internet",
+      "portail"
+    ],
+    [
+      "internet",
+      "meteo"
+    ]
+  ],
+  "niveaux": {
+    "n1": {
+      "titre": "Qui parle à qui ?",
+      "consigne": "Sur un réseau, tout ce que votre téléphone envoie passe par le point d'accès avant d'atteindre un serveur. Voici 8 paquets captés. Pour chacun : vers quel serveur va-t-il, et son contenu est-il lisible par un intermédiaire ?",
+      "aide": "Indice : une enveloppe scellée (cadenas) protège le contenu (HTTPS) ; une enveloppe ouverte laisse tout voir (HTTP).",
+      "paquets": [
+        {
+          "id": "p1",
+          "vers": "partello",
+          "chemin": [
+            "phone",
+            "ap_vrai",
+            "internet",
+            "partello"
+          ]
+        },
+        {
+          "id": "p2",
+          "vers": "meteo",
+          "chemin": [
+            "phone",
+            "ap_vrai",
+            "internet",
+            "meteo"
+          ]
+        },
+        {
+          "id": "p3",
+          "vers": "montrivemail",
+          "chemin": [
+            "phone",
+            "ap_vrai",
+            "internet",
+            "montrivemail"
+          ]
+        },
+        {
+          "id": "p4",
+          "vers": "portail",
+          "chemin": [
+            "phone",
+            "ap_vrai",
+            "internet",
+            "portail"
+          ]
+        },
+        {
+          "id": "p5",
+          "vers": "banque",
+          "chemin": [
+            "phone",
+            "ap_vrai",
+            "internet",
+            "banque"
+          ]
+        },
+        {
+          "id": "p6",
+          "vers": "partello",
+          "chemin": [
+            "phone",
+            "ap_vrai",
+            "internet",
+            "partello"
+          ]
+        },
+        {
+          "id": "p7",
+          "vers": "meteo",
+          "chemin": [
+            "phone",
+            "ap_vrai",
+            "internet",
+            "meteo"
+          ]
+        },
+        {
+          "id": "p8",
+          "vers": "montrivemail",
+          "chemin": [
+            "phone",
+            "ap_vrai",
+            "internet",
+            "montrivemail"
+          ]
+        }
+      ],
+      "notion": "Tout passe par le point d'accès. En HTTPS, le contenu est scellé ; en HTTP, il est à découvert."
+    },
+    "n2": {
+      "titre": "Le jumeau maléfique",
+      "consigne": "Un deuxième réseau « Gare_Free_WiFi » vient d'apparaître, avec exactement le même nom. L'un est le vrai point d'accès de la gare, l'autre est un piège. Comparez les deux fiches et désignez le faux.",
+      "reseaux": [
+        {
+          "id": "A",
+          "nom": "Gare_Free_WiFi",
+          "signal": 3,
+          "emetteur": "Borne officielle « Gare_Montrive_01 »",
+          "position": "Fixée au plafond du hall",
+          "chiffrement": "Protégé",
+          "faux": false
+        },
+        {
+          "id": "B",
+          "nom": "Gare_Free_WiFi",
+          "signal": 4,
+          "emetteur": "Ordinateur portable",
+          "position": "Sur un banc, près des quais",
+          "chiffrement": "Ouvert, sans mot de passe",
+          "faux": true
+        }
+      ],
+      "champs": [
+        [
+          "nom",
+          "Nom du réseau"
+        ],
+        [
+          "signal",
+          "Force du signal"
+        ],
+        [
+          "emetteur",
+          "Appareil qui émet"
+        ],
+        [
+          "position",
+          "Position"
+        ],
+        [
+          "chiffrement",
+          "Sécurité"
+        ]
+      ],
+      "explication": "Le nom ne prouve rien : n'importe qui peut le copier. Ce qui trahit le faux, c'est l'émetteur (un ordinateur portable, pas une borne), sa position (un banc, pas une installation fixe) et souvent un signal plus fort car plus proche de vous.",
+      "bascule": "Le téléphone de Robin était réglé pour se connecter tout seul au réseau le plus fort portant un nom connu. Il bascule donc vers le faux point d'accès, sans que Robin s'en aperçoive.",
+      "notion": "Un faux point d'accès copie le nom d'un réseau de confiance. Avec la connexion automatique, le téléphone s'y relie seul s'il est plus fort."
+    }
+  }
+}

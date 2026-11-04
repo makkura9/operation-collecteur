@@ -212,7 +212,7 @@
           "titre": "Carte du réseau",
           "texte": "La reconstitution en cinq niveaux (conçue pour ordinateur).",
           "url": "reseau/",
-          "dispo": false
+          "dispo": true
         }
       ],
       "sortie": {

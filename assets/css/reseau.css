@@ -1,0 +1,68 @@
+/* ==========================================================================
+   Serious game réseau (séance 5) — thème « labo ARGOS », conçu pour ordinateur
+   ========================================================================== */
+.jeu { width: min(1200px, 100% - 2rem); margin: 1.2rem auto 2.5rem; }
+.jeu > h1 { font-size: clamp(1.5rem, 3.5vw, 2rem); margin-bottom: 0.2rem; }
+.jeu .intro { color: var(--texte-doux); max-width: 70ch; }
+.avert-ordi { border-left: 4px solid var(--alerte); background: rgba(255,180,84,0.08); padding: 0.5rem 0.9rem; border-radius: 0 8px 8px 0; font-size: 0.92rem; margin: 0.6rem 0 1rem; }
+
+.barre-niveaux { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.barre-niveaux strong { white-space: nowrap; }
+.jauge-jeu { flex: 1 1 220px; height: 10px; background: var(--fond-2); border: 1px solid var(--bord); border-radius: 999px; overflow: hidden; }
+.jauge-jeu > span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), var(--ok)); transition: width 0.4s; }
+
+.jeu-grille { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(300px, 1fr); gap: 1.2rem; align-items: start; }
+.carte-zone { background: var(--carte); border: 1px solid var(--bord); border-radius: var(--rayon); padding: 0.6rem; position: sticky; top: 0.6rem; }
+#carte-svg { width: 100%; height: auto; display: block; }
+.panneau-zone { background: var(--carte); border: 1px solid var(--bord); border-radius: var(--rayon); padding: 1rem 1.2rem; }
+@media (max-width: 860px) { .jeu-grille { grid-template-columns: 1fr; } .carte-zone { position: static; } }
+
+/* Carte SVG */
+.lien { stroke: var(--bord); stroke-width: 3; }
+.lien.actif { stroke: var(--accent); stroke-width: 5; }
+.noeud .forme { fill: var(--fond-2); stroke: var(--bord); stroke-width: 2; }
+.noeud.actif .forme { stroke: var(--accent); stroke-width: 3; filter: drop-shadow(0 0 6px rgba(61,214,198,0.5)); }
+.noeud-acces-faux .forme, .noeud-pirate .forme { stroke: var(--danger); }
+.noeud-emoji { font-size: 26px; }
+.noeud-label { fill: var(--texte); font-size: 15px; font-weight: 600; }
+.noeud-sous { fill: var(--texte-doux); font-size: 12px; }
+.noeud-proto { font-size: 11px; font-weight: 700; font-family: var(--police-code); }
+.proto-http .noeud-proto { fill: var(--alerte); }
+.proto-https .noeud-proto { fill: var(--ok); }
+.enveloppe .env-corps { fill: #fff; stroke: #1b2230; stroke-width: 1.5; }
+.enveloppe .env-rabat { fill: none; stroke: #1b2230; stroke-width: 1.5; }
+.enveloppe.scellee .env-corps { fill: #d7f5ee; stroke: #0a7f73; }
+.enveloppe.ouverte .env-corps { fill: #ffe7cc; stroke: #a8560f; }
+.env-icone { font-size: 12px; }
+
+/* Panneau */
+.niveau-entete h2 { margin: 0.1rem 0 0.6rem; }
+.aide-jeu { color: var(--texte-doux); font-size: 0.93rem; }
+.paquets { list-style: none; margin: 0.8rem 0; padding: 0; display: grid; gap: 0.5rem; }
+.paquet { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.7rem; background: var(--fond-2); border: 1px solid var(--bord); border-radius: 10px; padding: 0.5rem 0.7rem; }
+.paquet-num { font-weight: 700; min-width: 5rem; }
+.paquet-champs { display: flex; flex-wrap: wrap; gap: 0.4rem 0.8rem; align-items: center; }
+.oui-non { display: inline-flex; gap: 0.7rem; }
+.oui-non label { display: inline-flex; align-items: center; gap: 0.25rem; }
+.paquet-resultat { font-size: 0.85rem; font-family: var(--police-code); flex-basis: 100%; }
+.paquet-resultat.bon { color: var(--ok); }
+.paquet-resultat.mauvais { color: var(--danger); }
+.paquet select { max-width: 100%; }
+
+.fiches-reseau { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin: 0.8rem 0; }
+@media (max-width: 520px) { .fiches-reseau { grid-template-columns: 1fr; } }
+.fiche-reseau { display: block; background: var(--fond-2); border: 1px solid var(--bord); border-radius: 10px; padding: 0.7rem 0.9rem; cursor: pointer; }
+.fiche-reseau:hover { border-color: var(--accent); }
+.fiche-tete { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.4rem; }
+.fiche-champs { display: grid; grid-template-columns: auto 1fr; gap: 0.2rem 0.6rem; margin: 0; font-size: 0.9rem; }
+.fiche-champs dt { color: var(--texte-doux); }
+.fiche-champs dd { margin: 0; }
+
+.zone-jeu { margin-top: 1rem; padding: 0.8rem 1rem; border-radius: 10px; background: var(--fond-2); border: 1px solid var(--bord); }
+.zone-jeu:focus { outline: 3px solid var(--alerte); }
+.score-jeu { font-size: 1.2rem; font-weight: 800; color: var(--accent); margin: 0 0 0.4rem; }
+.bon { color: var(--ok); } .mauvais { color: var(--danger); }
+.bascule { border-left: 4px solid var(--alerte); padding-left: 0.7rem; }
+.notion { margin-top: 0.9rem; padding: 0.8rem 1rem; border-radius: 10px; background: rgba(61,214,198,0.1); border: 1px solid var(--accent); display: grid; gap: 0.7rem; }
+.barre-boutons { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 0.8rem; }
+.bouton.petit { padding: 0.3rem 0.7rem; font-size: 0.88rem; }

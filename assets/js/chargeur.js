@@ -37,3 +37,13 @@ export function typographie(texte) {
     .replace(/ ([:;?!»])/g, " $1")
     .replace(/« /g, "« ");
 }
+
+/** Crée un élément SVG (namespace correct). */
+export function creerSVG(balise, proprietes = {}) {
+  const el = document.createElementNS("http://www.w3.org/2000/svg", balise);
+  for (const [cle, valeur] of Object.entries(proprietes)) {
+    if (valeur === undefined || valeur === null || valeur === false) continue;
+    el.setAttribute(cle, valeur === true ? "" : valeur);
+  }
+  return el;
+}
