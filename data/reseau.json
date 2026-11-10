@@ -51,7 +51,8 @@
       "protocole": "https",
       "x": 860,
       "y": 75,
-      "emoji": "📷"
+      "emoji": "📷",
+      "domaine": "partello.ch"
     },
     {
       "id": "montrivemail",
@@ -60,7 +61,8 @@
       "protocole": "https",
       "x": 860,
       "y": 185,
-      "emoji": "✉️"
+      "emoji": "✉️",
+      "domaine": "montrivemail.ch"
     },
     {
       "id": "banque",
@@ -69,7 +71,8 @@
       "protocole": "https",
       "x": 860,
       "y": 295,
-      "emoji": "🏦"
+      "emoji": "🏦",
+      "domaine": "banque-montrive.ch"
     },
     {
       "id": "portail",
@@ -79,7 +82,8 @@
       "protocole": "http",
       "x": 860,
       "y": 405,
-      "emoji": "🧾"
+      "emoji": "🧾",
+      "domaine": "portail.horizons-jeunesse.ch"
     },
     {
       "id": "meteo",
@@ -88,7 +92,8 @@
       "protocole": "http",
       "x": 860,
       "y": 515,
-      "emoji": "⛅"
+      "emoji": "⛅",
+      "domaine": "meteolac.ch"
     }
   ],
   "liaisons_normal": [
@@ -292,6 +297,159 @@
       "explication": "Le nom ne prouve rien : n'importe qui peut le copier. Ce qui trahit le faux, c'est l'émetteur (un ordinateur portable, pas une borne), sa position (un banc, pas une installation fixe) et souvent un signal plus fort car plus proche de vous.",
       "bascule": "Le téléphone de Robin était réglé pour se connecter tout seul au réseau le plus fort portant un nom connu. Il bascule donc vers le faux point d'accès, sans que Robin s'en aperçoive.",
       "notion": "Un faux point d'accès copie le nom d'un réseau de confiance. Avec la connexion automatique, le téléphone s'y relie seul s'il est plus fort."
+    },
+    "n3": {
+      "titre": "Au milieu",
+      "consigne": "Rejouons l'enregistrement retrouvé sur l'ordinateur du Collecteur : chaque enveloppe qui y est passée défile, de plus en plus vite. Pour chacune, dites si son contenu était exposé (« lisible ») ou protégé (« scellé »). Et quand la facture de l'agence apparaît, signalez-la !",
+      "aide": "Le nom du site est toujours inscrit sur l'enveloppe, même en HTTPS. Mais seul le contenu des enveloppes ouvertes (HTTP) était lisible.",
+      "vitesse": {
+        "depart": 7,
+        "minimum": 2.5,
+        "acceleration": 0.35
+      },
+      "paquets": [
+        {
+          "vers": "partello"
+        },
+        {
+          "vers": "meteo",
+          "contenu": "Prévisions pour Montrive : brouillard le matin, 4 °C."
+        },
+        {
+          "vers": "montrivemail"
+        },
+        {
+          "vers": "banque"
+        },
+        {
+          "vers": "portail",
+          "contenu": "Page d'accueil du portail client : « Connectez-vous pour voir vos factures »."
+        },
+        {
+          "vers": "partello"
+        },
+        {
+          "vers": "meteo",
+          "contenu": "Alerte : verglas possible sur les routes ce matin."
+        },
+        {
+          "vers": "montrivemail"
+        },
+        {
+          "vers": "portail",
+          "contenu": "Portail client : liste des factures disponibles."
+        },
+        {
+          "vers": "banque"
+        },
+        {
+          "vers": "portail",
+          "facture": true,
+          "contenu": "Facture n° HJ-2027-0312 — voyage à Barcelone — 14 300 CHF — IBAN CH58 0788 1000 0624 1135 9"
+        },
+        {
+          "vers": "partello"
+        },
+        {
+          "vers": "meteo",
+          "contenu": "Lever du soleil à Montrive : 7 h 03."
+        },
+        {
+          "vers": "montrivemail"
+        },
+        {
+          "vers": "banque"
+        },
+        {
+          "vers": "partello"
+        }
+      ],
+      "notion": "Un intermédiaire voit toujours le nom des sites visités. En HTTPS, il ne voit rien d'autre ; en HTTP, il voit tout le contenu, y compris une facture et son IBAN."
+    },
+    "n4": {
+      "titre": "L'enveloppe modifiée",
+      "consigne": "Voici la facture telle que l'agence l'a envoyée, et telle que Robin l'a reçue sur son téléphone. Elle est passée par l'ordinateur du Collecteur, en HTTP. Trouvez les 2 différences en cliquant sur les lignes de la facture reçue.",
+      "envoyee": [
+        {
+          "id": "entete",
+          "texte": "Horizons Jeunesse — Voyages scolaires et séjours de groupe"
+        },
+        {
+          "id": "numero",
+          "texte": "Facture n° HJ-2027-0312 — 26 février 2027"
+        },
+        {
+          "id": "client",
+          "texte": "Client : Gymnase de Montrive, classe 2M7 — à l'attention de Robin Dupont"
+        },
+        {
+          "id": "objet",
+          "texte": "Voyage d'études à Barcelone, du 5 au 9 avril 2027"
+        },
+        {
+          "id": "montant",
+          "texte": "22 participants × 650 CHF = 14 300 CHF"
+        },
+        {
+          "id": "echeance",
+          "texte": "À payer au plus tard le vendredi 12 mars 2027"
+        },
+        {
+          "id": "beneficiaire",
+          "texte": "Bénéficiaire : Horizons Jeunesse, Montrive"
+        },
+        {
+          "id": "iban",
+          "texte": "IBAN : CH58 0788 1000 0624 1135 9"
+        }
+      ],
+      "recue": [
+        {
+          "id": "entete",
+          "texte": "Horizons Jeunesse — Voyages scolaires et séjours de groupe"
+        },
+        {
+          "id": "numero",
+          "texte": "Facture n° HJ-2027-0312 — 26 février 2027"
+        },
+        {
+          "id": "client",
+          "texte": "Client : Gymnase de Montrive, classe 2M7 — à l'attention de Robin Dupont"
+        },
+        {
+          "id": "objet",
+          "texte": "Voyage d'études à Barcelone, du 5 au 9 avril 2027"
+        },
+        {
+          "id": "montant",
+          "texte": "22 participants × 650 CHF = 14 300 CHF"
+        },
+        {
+          "id": "echeance",
+          "texte": "À payer au plus tard le vendredi 12 mars 2027"
+        },
+        {
+          "id": "ajout",
+          "texte": "Veuillez noter nos nouvelles coordonnées bancaires.",
+          "difference": "Phrase ajoutée en route, pour que Robin ne s'étonne pas du changement d'IBAN."
+        },
+        {
+          "id": "beneficiaire",
+          "texte": "Bénéficiaire : Horizons Jeunesse, Montrive"
+        },
+        {
+          "id": "iban",
+          "texte": "IBAN : CH47 0643 1000 0731 8247 2",
+          "difference": "IBAN remplacé : c'est maintenant celui du compte de la mule. Le nom du bénéficiaire, lui, n'a pas changé."
+        }
+      ],
+      "explication": "La facture circulait en HTTP, sans protection : le Collecteur a pu la lire ET la modifier en route. Robin a reçu une facture qui avait l'air authentique… avec l'IBAN d'un autre compte.",
+      "https": {
+        "bouton": "Tenter d'ouvrir l'enveloppe HTTPS",
+        "message": "Contenu protégé. Cette enveloppe est chiffrée : le Collecteur ne peut pas la lire. Et s'il modifiait un seul caractère en route, le navigateur de Robin le détecterait et refuserait la page.",
+        "nuance": "À une condition : ne jamais ignorer un avertissement de sécurité du navigateur."
+      },
+      "notion": "En HTTP, un intermédiaire peut lire ET modifier ce qui passe. HTTPS protège la confidentialité et l'intégrité : toute modification en route est détectée."
     }
   }
 }

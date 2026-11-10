@@ -117,15 +117,16 @@ export function construireCarte(svg, donnees, { attaque = false } = {}) {
 
   /**
    * Fait glisser UNE enveloppe le long d'un chemin (la précédente est retirée).
-   * Le type d'enveloppe est déduit du serveur de destination : scellée (HTTPS) ou ouverte (HTTP).
+   * Le type d'enveloppe est déduit du serveur du chemin : scellée (HTTPS) ou ouverte (HTTP).
    * À l'arrivée, l'enveloppe reste posée à côté du serveur jusqu'au clic suivant.
    */
   function animerPaquet(chemin, { duree = 2.2 } = {}) {
     arreterEnveloppe();
     const pts = chemin.filter((id) => coord[id]).map((id) => [coord[id].x, coord[id].y]);
     if (pts.length < 2) return;
-    const destination = coord[chemin[chemin.length - 1]];
-    const scelle = !(destination && destination.protocole === "http");
+    // Le type d'enveloppe dépend du SERVEUR du chemin (aller ou retour) : HTTP = ouverte, HTTPS = scellée.
+    const serveur = chemin.map((id) => coord[id]).find((n) => n && n.type === "serveur");
+    const scelle = !(serveur && serveur.protocole === "http");
     const env = creerEnveloppe(scelle);
     coucheEnvel.append(env);
     enveloppeCourante = env;
@@ -156,5 +157,11 @@ export function construireCarte(svg, donnees, { attaque = false } = {}) {
 
   function definirDescription(texte) { svg.setAttribute("aria-label", texte); }
 
-  return { mettreEnEvidence, reinitialiser, animerPaquet, definirDescription };
+  /** Ajoute une classe à un nœud (ex. « alerte » sur l'ordinateur du Collecteur). */
+  function marquer(id, classe) {
+    const g = coucheNoeuds.querySelector(`[data-noeud="${id}"]`);
+    if (g) g.classList.add(classe);
+  }
+
+  return { mettreEnEvidence, reinitialiser, animerPaquet, definirDescription, marquer };
 }

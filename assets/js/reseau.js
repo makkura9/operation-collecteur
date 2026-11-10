@@ -1,16 +1,18 @@
 // Serious game « Reconstitution à la gare » (séance 5). Conçu pour ordinateur.
-// Niveaux construits par lots : 1 et 2 ici ; 3, 4, 5 et le bonus viendront ensuite.
+// Niveaux construits par lots : 1 à 4 ici ; le 5 et le bonus viendront ensuite.
 
 import { chargerJson, creer, typographie } from "./chargeur.js";
 import * as Progression from "./progression.js";
 import { verrouillerPage } from "./verrou.js";
 import { construireCarte } from "./reseau-carte.js";
+import { niveau3, niveau4 } from "./reseau-niveaux34.js";
 
 let donnees = null;
 let carte = null;
 let noeudsParId = {};
-const niveauxDisponibles = ["n1", "n2"];   // s'allongera avec les prochains lots
+const niveauxDisponibles = ["n1", "n2", "n3", "n4"];   // s'allongera avec le dernier lot
 let indexCourant = 0;
+let nettoyage = null;   // appelée en quittant un niveau (minuteur, raccourcis)
 
 const panneau = () => document.getElementById("panneau");
 const svg = () => document.getElementById("carte-svg");
@@ -50,7 +52,8 @@ function enteteNiveau(numero, titre) {
   ]);
 }
 
-function boiteNotion(texte, termine, dernier) {
+function boiteNotion(texte, termine) {
+  const dernier = indexCourant === niveauxDisponibles.length - 1;
   return creer("div", { class: "notion", role: "status" }, [
     creer("p", {}, [creer("strong", { texte: "À retenir : " }), typographie(texte)]),
     creer("button", {
@@ -125,7 +128,7 @@ function niveau1(termine) {
     zone.textContent = "";
     zone.append(creer("p", { class: "score-jeu", texte: `Score : ${bons} sur ${total}.` }));
     if (bons === total) {
-      zone.append(boiteNotion(n.notion, termine, false));
+      zone.append(boiteNotion(n.notion, termine));
     } else {
       zone.append(creer("p", { texte: "Relisez les lignes en rouge : la destination se voit sur la carte (« Voir sur la carte »), et c'est le serveur de destination qui décide : HTTPS = scellé, HTTP = lisible. Corrigez, puis cliquez à nouveau sur « Corriger »." }));
     }
@@ -181,7 +184,7 @@ function niveau2(termine) {
     carte.mettreEnEvidence(["phone", "ap_faux", "collecteur", "internet"]);
     carte.animerPaquet(["phone", "ap_faux", "collecteur", "internet", "banque"], { duree: 3 });
     zone.append(creer("p", { class: "bascule", texte: typographie(n.bascule) }));
-    zone.append(boiteNotion(n.notion, termine, true));
+    zone.append(boiteNotion(n.notion, termine));
     zone.focus();
   });
   conteneur.append(creer("div", { class: "barre-boutons" }, [valider]), zone);
@@ -189,9 +192,24 @@ function niveau2(termine) {
 
 /* ---------------- Enchaînement ---------------- */
 
-const constructeurs = { n1: niveau1, n2: niveau2 };
+// Contexte partagé transmis aux niveaux définis dans d'autres modules.
+const ctx = {
+  get donnees() { return donnees; },
+  get noeudsParId() { return noeudsParId; },
+  creer, typographie, construireCarte, enteteNiveau, boiteNotion,
+  svg, panneau, annoncer, ramenerCarte, animationsReduites,
+  setNettoyage: (fn) => { nettoyage = fn; },
+};
+
+const constructeurs = {
+  n1: niveau1,
+  n2: niveau2,
+  n3: (termine) => niveau3(ctx, termine),
+  n4: (termine) => niveau4(ctx, termine),
+};
 
 function lancerNiveau(index) {
+  if (nettoyage) { nettoyage(); nettoyage = null; }
   indexCourant = index;
   majBarre();
   const id = niveauxDisponibles[index];
@@ -201,7 +219,7 @@ function lancerNiveau(index) {
     } else {
       finDisponible();
     }
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: animationsReduites ? "auto" : "smooth" });
   }));
 }
 
@@ -211,9 +229,9 @@ function finDisponible() {
   const c = panneau();
   c.textContent = "";
   c.append(
-    creer("h2", { texte: "Niveaux 1 et 2 terminés" }),
-    creer("p", { texte: "Bravo, analystes. Vous avez compris comment le trafic passe par le point d'accès et comment un faux réseau prend la place du vrai." }),
-    creer("p", { class: "aide-jeu", texte: "La suite de la reconstitution (au milieu du trafic, l'enveloppe modifiée, la contre-attaque) arrive prochainement." }),
+    creer("h2", { texte: "Niveaux 1 à 4 terminés" }),
+    creer("p", { texte: "Bravo, analystes. Vous avez reconstitué toute l'attaque de la gare : le faux réseau, l'ordinateur au milieu, et la facture modifiée en route." }),
+    creer("p", { class: "aide-jeu", texte: "Le dernier niveau (choisir les bonnes parades) arrive prochainement." }),
     creer("p", {}, [creer("a", { class: "bouton secondaire", href: "../seance-5/index.html", texte: "← Retour au dossier 5" })]),
   );
   carte = construireCarte(svg(), donnees, { attaque: true });
