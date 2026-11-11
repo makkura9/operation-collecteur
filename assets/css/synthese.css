@@ -1,0 +1,250 @@
+/* ==========================================================================
+   Séance 6 — Synthèse : frise, failles et parades, dénouement, quiz, certificat
+   ========================================================================== */
+
+.synthese { width: min(980px, 100% - 2rem); margin: 1.2rem auto 2.5rem; }
+.synthese > h1 { font-size: clamp(1.5rem, 3.5vw, 2rem); margin-bottom: 0.3rem; }
+.synthese .intro { color: var(--texte-doux); max-width: 70ch; }
+.synthese [hidden] { display: none !important; }
+
+/* ----- Navigation entre les pièces du dossier 6 ----- */
+
+.navigation-pieces { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 1rem; padding: 0; list-style: none; }
+.navigation-pieces a {
+  display: inline-block; padding: 0.3rem 0.75rem; border-radius: 999px; border: 1px solid var(--bord);
+  color: var(--texte-doux); text-decoration: none; font-size: 0.9rem;
+}
+.navigation-pieces a:hover { border-color: var(--accent); color: var(--accent); }
+.navigation-pieces a[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: var(--accent-fonce); font-weight: 700; }
+
+/* ----- Bandeau du compte à rebours ----- */
+
+.compte-rebours {
+  display: flex; gap: 0.8rem; align-items: center; margin: 0 0 1.2rem; padding: 0.75rem 1rem;
+  border-radius: var(--rayon); border: 1px solid var(--alerte); background: rgba(255, 180, 84, 0.1);
+}
+.compte-rebours .icone { font-size: 1.6rem; line-height: 1; }
+.compte-rebours strong { display: block; color: var(--alerte); }
+.compte-rebours p { margin: 0; }
+.compte-rebours.resolu { border-color: var(--ok); background: rgba(98, 220, 145, 0.1); }
+.compte-rebours.resolu strong { color: var(--ok); }
+
+/* ----- Boîtes communes ----- */
+
+.consigne { background: var(--fond-2); border: 1px solid var(--bord); border-radius: 10px; padding: 0.7rem 1rem; }
+.bilan { margin: 1rem 0 0; padding: 0.8rem 1rem; border-radius: 10px; border: 1px solid var(--bord); background: var(--fond-2); }
+.bilan.reussi { border-color: var(--ok); background: rgba(98, 220, 145, 0.1); }
+.bilan.partiel { border-color: var(--alerte); background: rgba(255, 180, 84, 0.08); }
+.bilan p:last-child { margin-bottom: 0; }
+.notion { margin-top: 0.9rem; padding: 0.8rem 1rem; border-radius: 10px; background: rgba(61, 214, 198, 0.1); border: 1px solid var(--accent); }
+.notion p { margin: 0 0 0.6rem; }
+.actions-suite { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.8rem; }
+.actions-suite.centre { justify-content: center; }
+.pastille-dossier {
+  display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em;
+  padding: 0.1rem 0.5rem; border-radius: 999px; background: rgba(61, 214, 198, 0.15); color: var(--accent);
+}
+
+/* ----- Frise chronologique ----- */
+
+.frise { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: 0.5rem; counter-reset: rang; }
+.frise li {
+  counter-increment: rang;
+  display: grid; grid-template-columns: auto auto minmax(0, 1fr) auto; align-items: center; gap: 0.6rem;
+  background: var(--carte); border: 1px solid var(--bord); border-radius: 10px; padding: 0.55rem 0.7rem;
+  transition: box-shadow 0.15s, border-color 0.15s;
+}
+.frise li::before {
+  content: counter(rang); width: 1.8rem; height: 1.8rem; border-radius: 50%; display: grid; place-items: center;
+  background: var(--fond-2); border: 1px solid var(--bord); font-weight: 700; font-size: 0.9rem; color: var(--texte-doux);
+}
+.frise .poignee {
+  touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none;
+  font-size: 1.3rem; color: var(--texte-doux); padding: 0.2rem 0.35rem; border-radius: 6px; line-height: 1;
+}
+.frise .poignee:hover { color: var(--accent); background: var(--fond-2); }
+.frise .contenu { min-width: 0; }
+.frise .contenu p { margin: 0; }
+.frise .meta { display: flex; flex-wrap: wrap; gap: 0.1rem 0.9rem; font-size: 0.85rem; margin-top: 0.1rem; }
+.frise .date { display: none; color: var(--alerte); font-weight: 700; }
+.frise.dates-visibles .date { display: inline; }
+.frise .details { display: none; margin-top: 0.3rem; }
+.frise.resolue .details { display: block; }
+.frise .boutons { display: flex; gap: 0.3rem; }
+.frise .boutons button {
+  font: inherit; cursor: pointer; width: 2.3rem; height: 2.3rem; border-radius: 8px;
+  border: 1px solid var(--bord); background: var(--fond-2); color: var(--texte);
+}
+.frise .boutons button:hover { border-color: var(--accent); color: var(--accent); }
+.frise .marque { font-weight: 700; }
+.frise .marque:empty { display: none; }
+.frise li.juste { border-color: var(--ok); }
+.frise li.juste .marque { color: var(--ok); }
+.frise li.faux { border-color: var(--alerte); }
+.frise li.faux .marque { color: var(--alerte); }
+.frise li.en-deplacement { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(61, 214, 198, 0.35), var(--ombre); position: relative; z-index: 2; }
+.frise li.en-deplacement .poignee { cursor: grabbing; }
+.frise.resolue .poignee, .frise.resolue .boutons { display: none; }
+.frise.resolue li { grid-template-columns: auto minmax(0, 1fr); }
+body.glisser-en-cours { cursor: grabbing; user-select: none; -webkit-user-select: none; }
+
+@media (max-width: 560px) {
+  .frise li { grid-template-columns: auto minmax(0, 1fr) auto; gap: 0.45rem; padding: 0.5rem; }
+  .frise li::before { display: none; }
+  .frise .boutons { flex-direction: column; }
+  .frise.resolue li { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ----- Failles et parades ----- */
+
+.liste-failles { display: grid; gap: 0.7rem; margin: 1rem 0 0; padding: 0; list-style: none; }
+.faille { background: var(--carte); border: 1px solid var(--bord); border-radius: 10px; padding: 0.8rem 1rem; }
+.faille .titre-faille { margin: 0 0 0.5rem; font-weight: 600; }
+.faille label { display: block; font-size: 0.9rem; color: var(--texte-doux); margin-bottom: 0.25rem; }
+.faille select { width: 100%; max-width: 100%; }
+.faille .retour { margin: 0.5rem 0 0; font-size: 0.95rem; }
+.faille .retour:empty { display: none; }
+.faille.juste { border-color: var(--ok); }
+.faille.juste .retour strong { color: var(--ok); }
+.faille.faux { border-color: var(--alerte); }
+.faille.faux .retour strong { color: var(--alerte); }
+
+/* ----- Dénouement ----- */
+
+.photo { position: relative; overflow: hidden; border-radius: var(--rayon); background: var(--fond-2); }
+.photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.photo.manquante {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.4rem; padding: 1rem;
+  text-align: center; color: var(--texte-doux); border: 1px dashed var(--bord);
+  background: linear-gradient(135deg, hsl(var(--teinte, 210) 35% 22%), hsl(var(--teinte, 210) 30% 14%));
+}
+.photo-emoji { font-size: 2rem; }
+.photo-legende { font-size: 0.85rem; max-width: 40ch; }
+.photo.large { aspect-ratio: 2 / 1; max-height: 340px; width: 100%; margin: 0 0 1rem; }
+.photo.portrait { aspect-ratio: 1 / 1; }
+.photo.paysage { aspect-ratio: 3 / 2; }
+
+.recit audio { width: 100%; margin: 0 0 0.8rem; }
+.recit .audio-indisponible { color: var(--texte-doux); font-size: 0.9rem; }
+.recit .texte-recit p { font-size: 1.08rem; }
+.note-fiction { font-size: 0.88rem; color: var(--texte-doux); border-left: 3px solid var(--bord); padding-left: 0.8rem; }
+
+.bloc-denouement { margin-top: 1.2rem; }
+.bloc-denouement h2 { margin-bottom: 0.7rem; }
+
+.recrutement { display: grid; grid-template-columns: minmax(150px, 220px) minmax(0, 1fr); gap: 1.1rem; align-items: start; }
+.recrutement .contexte { font-size: 0.92rem; color: var(--texte-doux); }
+@media (max-width: 640px) { .recrutement { grid-template-columns: minmax(0, 1fr); } .recrutement .photo.portrait { max-width: 200px; } }
+
+/* Messagerie générique (aucune marque imitée) */
+.fil {
+  display: flex; flex-direction: column; gap: 0.45rem; background: #f3f5f8; color: #1d2433;
+  border-radius: 14px; padding: 0.9rem; border: 1px solid #d5dbe5;
+}
+.fil .story {
+  align-self: stretch; background: linear-gradient(135deg, #3b2d6b, #8a3d6e); color: #fff;
+  border-radius: 12px; padding: 0.8rem 0.9rem; margin-bottom: 0.3rem;
+}
+.fil .story small { display: block; opacity: 0.85; font-size: 0.8rem; margin-bottom: 0.2rem; }
+.bulle { max-width: 85%; padding: 0.5rem 0.75rem; border-radius: 14px; line-height: 1.4; }
+.bulle .auteur { display: block; font-size: 0.75rem; font-weight: 700; opacity: 0.75; margin-bottom: 0.1rem; }
+.bulle.recue { align-self: flex-start; background: #fff; border: 1px solid #d5dbe5; border-bottom-left-radius: 4px; }
+.bulle.envoyee { align-self: flex-end; background: #d9ecff; border: 1px solid #b7d4f3; border-bottom-right-radius: 4px; }
+.signal { display: none; margin-top: 0.35rem; font-size: 0.78rem; font-weight: 700; color: #8a2a00; background: #ffe2c2; border-radius: 6px; padding: 0.1rem 0.45rem; width: fit-content; }
+.fil.signaux-visibles .signal { display: block; }
+.fil.signaux-visibles .avec-signal { box-shadow: 0 0 0 2px #f08c2e; }
+.apres-recrutement { font-style: italic; color: var(--texte-doux); margin-top: 0.7rem; }
+
+.grille-infos { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+.liste-signaux { margin: 0; padding-left: 1.2rem; }
+.liste-signaux li { margin-bottom: 0.35rem; }
+.liste-signaux strong { color: var(--alerte); }
+.etapes-victime { margin: 0; padding-left: 1.4rem; }
+.etapes-victime li { margin-bottom: 0.45rem; }
+.loi p { margin-bottom: 0.7rem; }
+
+.brouillon-final { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 1rem; align-items: center; }
+.brouillon-final blockquote {
+  margin: 0; padding: 1rem 1.2rem; border-radius: 10px; background: #fffdf5; color: #2a2418;
+  border: 1px solid #e5dcc2; font-family: Georgia, "Times New Roman", serif; font-size: 1.15rem;
+}
+.brouillon-final blockquote footer { text-align: right; margin-top: 0.5rem; font-style: italic; }
+@media (max-width: 640px) { .brouillon-final { grid-template-columns: minmax(0, 1fr); } }
+.fin-affaire { text-align: center; font-size: 1.15rem; font-weight: 700; margin: 1.5rem 0 0.6rem; color: var(--accent); }
+
+/* ----- Quiz ----- */
+
+.progression-quiz { display: flex; align-items: center; gap: 0.8rem; margin: 0.8rem 0; }
+.progression-quiz .jauge { flex: 1; height: 8px; border-radius: 999px; background: var(--fond-2); border: 1px solid var(--bord); overflow: hidden; }
+.progression-quiz .jauge span { display: block; height: 100%; background: var(--accent); width: 0; transition: width 0.3s; }
+.question-quiz { border: 1px solid var(--bord); border-radius: var(--rayon); background: var(--carte); padding: 1rem 1.2rem; margin: 0; }
+.question-quiz legend { font-weight: 700; font-size: 1.1rem; padding: 0 0.3rem; }
+.choix { display: grid; gap: 0.5rem; margin: 0.8rem 0; }
+.choix label {
+  display: flex; gap: 0.6rem; align-items: flex-start; cursor: pointer;
+  padding: 0.55rem 0.75rem; border-radius: 8px; border: 1px solid var(--bord); background: var(--fond-2);
+}
+.choix label:hover { border-color: var(--accent); }
+.choix input { margin-top: 0.3rem; accent-color: var(--accent); }
+.choix label.bonne { border-color: var(--ok); background: rgba(98, 220, 145, 0.12); }
+.choix label.mauvaise { border-color: var(--danger); background: rgba(255, 123, 123, 0.1); }
+.choix.corrige label { cursor: default; }
+.retour-quiz { margin-top: 0.8rem; }
+.recap-quiz { margin: 0.8rem 0 0; padding-left: 1.4rem; }
+.recap-quiz li { margin-bottom: 0.3rem; }
+.recap-quiz .symbole-juste { color: var(--ok); }
+.recap-quiz .symbole-faux { color: var(--alerte); }
+.score-final { font-size: 2.2rem; font-weight: 800; color: var(--accent); margin: 0.2rem 0; }
+
+/* ----- Certificat ----- */
+
+.formulaire-certificat { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.8rem; align-items: end; margin: 0.8rem 0; }
+.formulaire-certificat label { display: grid; gap: 0.25rem; font-size: 0.95rem; color: var(--texte-doux); }
+.confidentialite { font-size: 0.9rem; color: var(--texte-doux); }
+
+.apercu-certificat { overflow-x: auto; padding: 0.5rem 0; }
+.certificat {
+  --encre: #13294b; --or: #b8892b; --sarcelle: #0f8b80;
+  position: relative; width: 100%; max-width: 900px; aspect-ratio: 297 / 210; margin: 0 auto;
+  background: #fffdf7; color: var(--encre); border-radius: 6px; box-shadow: var(--ombre);
+  padding: 4.2% 5.5%; display: flex; flex-direction: column; align-items: center; text-align: center;
+  font-family: Georgia, "Times New Roman", serif; container-type: inline-size;
+}
+.certificat::before {
+  content: ""; position: absolute; inset: 2.2%; border: 3px double var(--or); border-radius: 4px; pointer-events: none;
+}
+.certificat .logo { width: 7cqw; height: auto; }
+.certificat .surtitre { font-family: var(--police); letter-spacing: 0.35em; text-transform: uppercase; font-size: 1.6cqw; color: var(--sarcelle); margin: 0.6cqw 0 0; font-weight: 700; }
+.certificat .titre-certificat { font-size: 5.4cqw; margin: 0.4cqw 0 0; line-height: 1.05; }
+.certificat .organisme { font-family: var(--police); font-size: 1.9cqw; letter-spacing: 0.2em; text-transform: uppercase; margin: 0.4cqw 0 2cqw; color: var(--or); font-weight: 700; }
+.certificat .formule { font-size: 2cqw; margin: 0; font-style: italic; }
+.certificat .noms { font-size: 4.4cqw; font-style: italic; margin: 0.8cqw 0 1.2cqw; border-bottom: 1px solid var(--or); padding: 0 2cqw 0.3cqw; min-width: 45%; min-height: 5.8cqw; }
+.certificat .texte-certificat { font-size: 1.85cqw; margin: 0 0 1cqw; max-width: 88%; line-height: 1.35; }
+.certificat .competences { font-family: var(--police); font-size: 1.6cqw; text-align: left; columns: 2; column-gap: 3.5cqw; margin: 0; padding-left: 2.2cqw; max-width: 92%; line-height: 1.45; }
+.certificat .competences li { break-inside: avoid; margin-bottom: 0.3cqw; }
+.certificat .bas { margin-top: auto; width: 100%; display: flex; justify-content: space-between; align-items: flex-end; gap: 2cqw; }
+.certificat .date-certificat, .certificat .signature { font-size: 1.6cqw; text-align: left; margin: 0; }
+.certificat .signature { text-align: right; }
+.certificat .signature .nom-signature { font-style: italic; font-size: 2.4cqw; display: block; border-top: 1px solid var(--encre); padding-top: 0.5cqw; margin-bottom: 0.2cqw; }
+.certificat .tampon-certificat {
+  width: 11cqw; height: 11cqw; border-radius: 50%; border: 0.45cqw solid var(--sarcelle); color: var(--sarcelle);
+  display: grid; place-items: center; font-family: var(--police); font-weight: 800; font-size: 1.25cqw;
+  letter-spacing: 0.08em; text-transform: uppercase; transform: rotate(-12deg); line-height: 1.15; opacity: 0.9;
+}
+.certificat .date-certificat strong { font-size: 1.8cqw; }
+.certificat .mention-fictive { font-family: var(--police); font-size: 1.1cqw; color: #5b6578; margin: 1.4cqw 0 0; }
+
+/* Impression : seule la page du certificat imprime le certificat, en A4 paysage. */
+@media print {
+  body.page-certificat { background: #fff !important; min-height: 0; display: block; }
+  body.page-certificat .entete, body.page-certificat .pied, body.page-certificat .lien-evitement,
+  body.page-certificat .ne-pas-imprimer, body.page-certificat .navigation-pieces,
+  body.page-certificat .synthese > h1 { display: none !important; }
+  body.page-certificat .synthese { width: auto; margin: 0; }
+  body.page-certificat .apercu-certificat { padding: 0; overflow: visible; }
+  body.page-certificat .certificat {
+    width: 281mm; height: 193mm; max-width: none; aspect-ratio: auto; margin: 0;
+    box-shadow: none; border-radius: 0; break-inside: avoid;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+}

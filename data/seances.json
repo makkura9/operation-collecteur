@@ -242,31 +242,31 @@
           "titre": "Frise chronologique",
           "texte": "Remettez les dix événements dans l'ordre.",
           "url": "synthese/frise.html",
-          "dispo": false
+          "dispo": true
         },
         {
           "titre": "Failles et parades",
           "texte": "Reliez chaque faille à sa parade.",
           "url": "synthese/parades.html",
-          "dispo": false
+          "dispo": true
         },
         {
           "titre": "Dénouement",
           "texte": "Le sort de l'affaire (débloqué par la frise).",
           "url": "synthese/denouement.html",
-          "dispo": false
+          "dispo": true
         },
         {
           "titre": "Quiz final",
           "texte": "Dix questions pour valider votre dossier.",
           "url": "synthese/quiz.html",
-          "dispo": false
+          "dispo": true
         },
         {
           "titre": "Certificat",
           "texte": "Votre certificat d'analyste, à imprimer.",
           "url": "synthese/certificat.html",
-          "dispo": false
+          "dispo": true
         }
       ],
       "sortie": null

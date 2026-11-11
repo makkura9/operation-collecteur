@@ -1,0 +1,64 @@
+{
+  "_commentaire": "Conversation de recrutement de Kenzo (séance 6, dénouement). Les personnages se tutoient entre eux. « signal » renvoie à un identifiant de denouement.signaux.liste dans synthese.json.",
+  "titre": "Comment Kenzo a été recruté",
+  "contexte": "Messages privés sur Partello, janvier 2027. Kenzo nous a remis ces captures lors de sa convocation.",
+  "image": "personnages/kenzo.jpg",
+  "image_alt": "Kenzo, 18 ans, hésitant, son téléphone à la main.",
+  "story": {
+    "auteur": "@cash_facile_ch",
+    "texte": "Gagne 500 CHF sans bouger de chez toi 💸 Écris-moi en privé !",
+    "signal": "gain"
+  },
+  "messages": [
+    {
+      "auteur": "kenzo",
+      "texte": "Salut ! C'est quoi, le job ?"
+    },
+    {
+      "auteur": "recruteur",
+      "texte": "Agent de transfert. Tu reçois un virement sur ton compte, tu gardes 500 CHF et tu renvoies le reste. Dix minutes de travail.",
+      "signal": "transit"
+    },
+    {
+      "auteur": "kenzo",
+      "texte": "Il faut un CV ? Un entretien ?"
+    },
+    {
+      "auteur": "recruteur",
+      "texte": "Pas besoin, on fait tout en ligne 😉",
+      "signal": "contact"
+    },
+    {
+      "auteur": "kenzo",
+      "texte": "Et c'est légal, au moins ?"
+    },
+    {
+      "auteur": "recruteur",
+      "texte": "100 % légal. Ce sont des clients étrangers qui ne peuvent pas payer directement en Suisse."
+    },
+    {
+      "auteur": "recruteur",
+      "texte": "Envoie-moi juste ton IBAN.",
+      "signal": "compte"
+    },
+    {
+      "auteur": "recruteur",
+      "texte": "Et tu n'en parles à personne, c'est confidentiel.",
+      "signal": "secret"
+    },
+    {
+      "auteur": "recruteur",
+      "texte": "Réponds vite, j'ai d'autres candidats.",
+      "signal": "urgence"
+    },
+    {
+      "auteur": "kenzo",
+      "texte": "Ok, je t'envoie ça."
+    }
+  ],
+  "auteurs": {
+    "kenzo": "Kenzo",
+    "recruteur": "@cash_facile_ch"
+  },
+  "apres": "« Je pensais vraiment que c'était un job… » — Kenzo, lors de sa convocation."
+}

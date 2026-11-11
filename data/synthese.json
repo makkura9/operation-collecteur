@@ -1,0 +1,370 @@
+{
+  "_commentaire": "Contenus de la séance 6 (synthèse). Les élèves sont vouvoyés. La conversation de recrutement de Kenzo est dans kenzo.json (les personnages s'y tutoient).",
+  "compte_a_rebours": {
+    "titre": "Compte à rebours",
+    "texte": "Kenzo doit transférer l'argent le vendredi 19 mars 2027.",
+    "detail": "Votre rapport doit convaincre les banques d'agir avant cette date.",
+    "resolu": "Transfert bloqué : le compte de Kenzo a été gelé avant le 19 mars."
+  },
+  "frise": {
+    "titre": "Frise chronologique",
+    "intro": "Pour que les banques agissent, votre rapport doit retracer toute l'attaque, dans l'ordre.",
+    "consigne": "Remettez les dix événements dans l'ordre, du plus ancien (en haut) au plus récent (en bas). Faites glisser les étiquettes par leur poignée, ou utilisez les boutons ↑ et ↓. Puis vérifiez.",
+    "essais_avant_dates": 2,
+    "evenements": [
+      {
+        "id": "e1",
+        "texte": "Le forum de jeu ArenaZone est piraté : l'empreinte du mot de passe de Robin fait partie de la fuite.",
+        "date": "Été 2023",
+        "dossier": 3
+      },
+      {
+        "id": "e2",
+        "texte": "Robin épingle une story publique : « Trésorier officiel du voyage ».",
+        "date": "7 septembre 2026",
+        "dossier": 1
+      },
+      {
+        "id": "e3",
+        "texte": "Les 22 élèves de la classe versent leur part sur le compte de la cagnotte, géré par Robin.",
+        "date": "Novembre 2026 – janvier 2027",
+        "dossier": null
+      },
+      {
+        "id": "e4",
+        "texte": "Le Collecteur dresse la fiche cible de Robin à partir de ses publications.",
+        "date": "15 février 2027",
+        "dossier": 1
+      },
+      {
+        "id": "e5",
+        "texte": "Robin reçoit un faux mail de l'agence et clique sur le lien.",
+        "date": "17 février 2027, 21 h 04",
+        "dossier": 2
+      },
+      {
+        "id": "e6",
+        "texte": "Le Collecteur ouvre la messagerie de Robin avec le mot de passe retrouvé.",
+        "date": "18 février 2027, 2 h 13",
+        "dossier": 3
+      },
+      {
+        "id": "e7",
+        "texte": "Le Collecteur et Kenzo s'échangent des messages, en partie chiffrés, dans les brouillons de Robin.",
+        "date": "19 – 27 février 2027",
+        "dossier": 4
+      },
+      {
+        "id": "e8",
+        "texte": "À la gare, un faux Wi-Fi : la facture de l'agence est modifiée pendant son trajet.",
+        "date": "1er mars 2027, 7 h 12",
+        "dossier": 5
+      },
+      {
+        "id": "e9",
+        "texte": "Robin paie 14 300 CHF… sur le compte de Kenzo.",
+        "date": "1er mars 2027, 19 h 30",
+        "dossier": 5
+      },
+      {
+        "id": "e10",
+        "texte": "L'agence relance : aucun paiement reçu. M. Favre alerte la Cellule ARGOS.",
+        "date": "15 mars 2027",
+        "dossier": 1
+      }
+    ],
+    "indice_dates": "Indice : les dates sont maintenant affichées sur les étiquettes.",
+    "reussite": "Chronologie reconstituée : votre rapport tient la route.",
+    "notion": "Une attaque est une chaîne : chaque maillon prépare le suivant. Il aurait suffi d'en casser un seul pour tout arrêter."
+  },
+  "parades": {
+    "titre": "Failles et parades",
+    "intro": "Robin n'a pas été « bête » : il a même eu un bon réflexe en tapant un faux mot de passe sur la page piégée. Mais quelques failles ont suffi.",
+    "consigne": "Pour chacune des six failles, choisissez la parade qui l'aurait évitée. Chaque parade sert une seule fois.",
+    "paires": [
+      {
+        "id": "f1",
+        "dossier": 1,
+        "faille": "Robin affiche publiquement son rôle de trésorier, sa date de naissance et ses habitudes.",
+        "parade": "Passer son compte en privé et ne pas publier d'informations sensibles",
+        "explication": "Tout ce qui est public peut être exploité : le Collecteur a construit la fiche cible de Robin uniquement avec ses publications."
+      },
+      {
+        "id": "f2",
+        "dossier": 2,
+        "faille": "Robin clique sur le lien d'un faux mail de l'agence.",
+        "parade": "Vérifier le vrai domaine et taper soi-même l'adresse du site",
+        "explication": "Le survol du lien montrait la vraie adresse : un domaine qui imitait celui de l'agence, sans être le sien."
+      },
+      {
+        "id": "f3",
+        "dossier": 3,
+        "faille": "Robin utilise le même mot de passe, facile à deviner, sur tous ses comptes.",
+        "parade": "Un mot de passe long et différent pour chaque site, dans un gestionnaire",
+        "explication": "Le mot de passe avait fui avec le forum ArenaZone en 2023. Comme Robin l'utilisait partout, une seule fuite a ouvert toutes ses portes."
+      },
+      {
+        "id": "f4",
+        "dossier": 3,
+        "faille": "Le mot de passe suffit à lui seul pour ouvrir sa messagerie.",
+        "parade": "Activer la double authentification",
+        "explication": "Même avec le bon mot de passe, le Collecteur aurait dû fournir une deuxième preuve, par exemple un code affiché sur le téléphone de Robin."
+      },
+      {
+        "id": "f5",
+        "dossier": 5,
+        "faille": "Son téléphone se connecte tout seul au Wi-Fi gratuit de la gare.",
+        "parade": "Utiliser ses données mobiles et couper la connexion automatique au Wi-Fi",
+        "explication": "Le faux point d'accès portait le même nom que le vrai : le téléphone de Robin s'y est connecté sans rien lui demander."
+      },
+      {
+        "id": "f6",
+        "dossier": 5,
+        "faille": "Robin paie la facture sans vérifier le nouvel IBAN.",
+        "parade": "Confirmer l'IBAN en appelant l'agence au numéro habituel",
+        "explication": "Un simple appel à l'agence, au numéro qu'il connaissait déjà, aurait révélé que cet IBAN n'était pas le sien."
+      }
+    ],
+    "reussite": "Six failles, six parades : votre rapport est complet.",
+    "notion": "Chaque faille avait sa parade. La sécurité est une chaîne : c'est le maillon le plus faible qui compte."
+  },
+  "denouement": {
+    "titre": "Dénouement",
+    "verrou": "Le dénouement s'ouvre quand la frise chronologique est reconstituée.",
+    "image": "synthese/denouement-gare-aube.jpg",
+    "image_alt": "Un quai de gare désert à l'aube, calme et lumineux : l'affaire est résolue.",
+    "audio": "denouement.mp3",
+    "texte": [
+      "Analystes, rapport reçu. Grâce à vous, la Banque de Montrive et Monavo ont été alertées à temps : le compte de Kenzo a été bloqué avant le transfert. L'argent a pu être récupéré, et le voyage à Barcelone est sauvé.",
+      "Kenzo, lui, a été convoqué. Il pensait avoir trouvé un job facile ; il a découvert qu'il était devenu une mule financière, ce qui est une infraction. Ce n'était pas un criminel endurci, mais un jeune qui n'a pas posé les bonnes questions.",
+      "Quant au Collecteur… il court toujours. Dans les brouillons de Robin, nous avons trouvé un dernier message. Il est signé d'une tirelire fêlée : « Une tirelire fêlée finit toujours par se remplir ailleurs. »",
+      "Alors gardez cette leçon en tête, analystes. La vigilance est l'affaire de chacun. Dossier clos."
+    ],
+    "note_fiction": "Dans la réalité, bloquer un compte et récupérer l'argent est rarement aussi simple ni aussi rapide : plus l'alerte est donnée tôt, plus les chances sont grandes.",
+    "signaux": {
+      "titre": "Signaux d'alerte d'une offre de « job facile »",
+      "consigne": "Relisez la conversation : combien de ces signaux repérez-vous ?",
+      "liste": [
+        {
+          "id": "gain",
+          "nom": "Gain facile",
+          "texte": "Un gain important pour presque rien."
+        },
+        {
+          "id": "contact",
+          "nom": "Ni entretien ni contrat",
+          "texte": "Un contact par réseau social, sans entretien, sans contrat, sans entreprise vérifiable."
+        },
+        {
+          "id": "compte",
+          "nom": "IBAN demandé",
+          "texte": "On vous demande votre IBAN, votre carte ou vos accès bancaires."
+        },
+        {
+          "id": "transit",
+          "nom": "Argent qui transite",
+          "texte": "L'argent doit « transiter » par votre compte, puis repartir ailleurs."
+        },
+        {
+          "id": "secret",
+          "nom": "Secret exigé",
+          "texte": "On vous demande de garder le secret."
+        },
+        {
+          "id": "urgence",
+          "nom": "Urgence",
+          "texte": "On vous presse de répondre vite."
+        }
+      ]
+    },
+    "loi": {
+      "titre": "Ce que dit la loi (Code pénal suisse)",
+      "points": [
+        "Prêter son compte pour faire circuler de l'argent d'origine criminelle peut constituer du blanchiment d'argent (art. 305bis du Code pénal). La loi vise aussi celui qui « devait présumer » que l'argent venait d'un crime : dire « je ne savais pas » ne suffit donc pas toujours.",
+        "S'introduire sans droit dans la messagerie d'une autre personne, protégée par un mot de passe, peut être puni comme un accès indu à un système informatique (art. 143bis du Code pénal)."
+      ]
+    },
+    "victime": {
+      "titre": "Si vous êtes victime",
+      "etapes": [
+        "Prévenez immédiatement votre banque : plus vous agissez tôt, plus il y a de chances de bloquer l'argent.",
+        "Changez vos mots de passe, en commençant par votre messagerie, et activez la double authentification.",
+        "Portez plainte à la police, en apportant les preuves : mails, captures d'écran, relevés.",
+        "Signalez l'incident à l'Office fédéral de la cybersécurité (OFCS).",
+        "Parlez-en à un adulte de confiance : parent, enseignant, proche."
+      ]
+    },
+    "dernier_message": {
+      "titre": "Dernier brouillon retrouvé",
+      "texte": "Une tirelire fêlée finit toujours par se remplir ailleurs.",
+      "signature": "— C",
+      "image": "synthese/tirelire-felee.jpg",
+      "image_alt": "Une tirelire fêlée posée sur un rebord de fenêtre, vue de l'extérieur, de nuit."
+    },
+    "fin": "Le Collecteur court toujours… La vigilance est l'affaire de chacun."
+  },
+  "quiz": {
+    "titre": "Quiz final",
+    "intro": "Dix questions pour valider votre dossier. Chaque réponse est expliquée. Le certificat est délivré à tous les binômes qui terminent le quiz.",
+    "questions": [
+      {
+        "question": "Pourquoi la story « Trésorier officiel du voyage » a-t-elle intéressé le Collecteur ?",
+        "choix": [
+          "Elle contenait le mot de passe de Robin.",
+          "Elle désignait la personne qui gère l'argent de la classe : la cible idéale.",
+          "Elle lui permettait de prendre le contrôle du téléphone de Robin.",
+          "Elle n'a joué aucun rôle dans l'attaque."
+        ],
+        "bonne": 1,
+        "dossier": 1,
+        "explication": "C'est le principe de l'OSINT : rassembler des informations publiques. Une seule story a suffi à désigner la bonne cible."
+      },
+      {
+        "question": "Lequel de ces liens mène vraiment au site de la Banque de Montrive (banque-montrive.ch) ?",
+        "choix": [
+          "https://banque-montrive-securite.co/connexion",
+          "https://banque-montrive.ch.verification-client.co/connexion",
+          "https://ebanking.banque-montrive.ch/connexion"
+        ],
+        "bonne": 2,
+        "dossier": 2,
+        "explication": "Le domaine se lit juste avant le premier « / » qui suit « https:// » : ce sont les derniers blocs du nom. Dans les deux premiers liens, il s'agit de banque-montrive-securite.co et de verification-client.co."
+      },
+      {
+        "question": "Le forum ArenaZone ne conservait que l'empreinte SHA-256 du mot de passe de Robin. Comment le Collecteur l'a-t-il retrouvé ?",
+        "choix": [
+          "Il a déchiffré l'empreinte avec une clé secrète.",
+          "SHA-256 est un algorithme cassé : il suffit de l'inverser.",
+          "Le forum avait aussi publié les mots de passe en clair.",
+          "Il a calculé les empreintes de mots de passe probables jusqu'à retrouver la même."
+        ],
+        "bonne": 3,
+        "dossier": 3,
+        "explication": "Une empreinte ne se déchiffre pas : le hachage est à sens unique. Mais un mot de passe prévisible se retrouve en comparant les empreintes de milliers de candidats. Les sites sérieux ajoutent un sel et utilisent un hachage lent."
+      },
+      {
+        "question": "Lequel de ces mots de passe est le plus solide ?",
+        "choix": [
+          "falaise-citron-tambour-orage-velours (cinq mots tirés au hasard)",
+          "M0ntr1v3! (un mot connu, avec des chiffres à la place de lettres)",
+          "Robin14102009 (un prénom et une date de naissance)",
+          "Azerty123 (facile à retenir)"
+        ],
+        "bonne": 0,
+        "dossier": 3,
+        "explication": "Cinq mots tirés au hasard forment une phrase de passe longue, facile à retenir et très difficile à deviner. Les remplacements comme 0 pour o sont bien connus des attaquants, et une date de naissance se trouve souvent en ligne. N'utilisez pas celle-ci : elle est désormais publique !"
+      },
+      {
+        "question": "Le Collecteur connaît le mot de passe de Robin. Qu'est-ce qui l'aurait encore empêché d'ouvrir sa messagerie ?",
+        "choix": [
+          "Un antivirus sur l'ordinateur de Robin.",
+          "Un historique de navigation effacé chaque soir.",
+          "La double authentification : il lui aurait manqué une deuxième preuve, comme un code sur le téléphone de Robin.",
+          "Un mot de passe encore plus long, mais utilisé partout."
+        ],
+        "bonne": 2,
+        "dossier": 3,
+        "explication": "Avec la double authentification, le mot de passe seul ne suffit plus : il faut aussi une deuxième preuve, que le Collecteur n'avait pas."
+      },
+      {
+        "question": "Le premier brouillon du Collecteur était écrit en Base64. Quelle affirmation est exacte ?",
+        "choix": [
+          "Base64 est un chiffrement très solide, illisible sans la clé.",
+          "Base64 est un encodage : n'importe qui peut le décoder, sans aucune clé.",
+          "Base64 est un hachage : impossible de retrouver le texte de départ.",
+          "Base64 ne peut encoder que des chiffres."
+        ],
+        "bonne": 1,
+        "dossier": 4,
+        "explication": "Encoder, c'est changer d'écriture, sans secret. Chiffrer demande une clé. Hacher est à sens unique. Le Collecteur l'a compris : ses messages suivants étaient chiffrés."
+      },
+      {
+        "question": "Sur un faux Wi-Fi, Robin ouvre un site en HTTPS. Que peut voir l'ordinateur placé au milieu ?",
+        "choix": [
+          "Le nom du site, mais ni la page ni son contenu.",
+          "Tout, y compris le mot de passe tapé.",
+          "Rien du tout, pas même le nom du site.",
+          "La page, mais pas les images."
+        ],
+        "bonne": 0,
+        "dossier": 5,
+        "explication": "HTTPS chiffre la page et son contenu, et toute modification en route est détectée. Le nom du site, lui, reste en général visible. En HTTP, en revanche, tout est lisible et modifiable."
+      },
+      {
+        "question": "Un site affiche un cadenas dans la barre d'adresse. Qu'est-ce que cela garantit ?",
+        "choix": [
+          "Que le site est honnête.",
+          "Que le site appartient à une banque ou à une entreprise connue.",
+          "Que le site a été contrôlé par la police.",
+          "Que la connexion avec ce site est chiffrée, mais pas qu'il s'agit du bon site."
+        ],
+        "bonne": 3,
+        "dossier": 2,
+        "explication": "Un faux site peut lui aussi afficher un cadenas. Le cadenas protège le trajet des données, pas l'honnêteté du destinataire : vérifiez toujours le domaine."
+      },
+      {
+        "question": "Sur un réseau social, on vous propose 500 CHF pour laisser de l'argent « transiter » par votre compte. Que faites-vous ?",
+        "choix": [
+          "J'accepte : c'est un petit job comme un autre.",
+          "J'accepte une seule fois, pour essayer.",
+          "Je refuse et j'en parle à un adulte de confiance : c'est un recrutement de mule.",
+          "Je donne plutôt l'IBAN d'un ami."
+        ],
+        "bonne": 2,
+        "dossier": 6,
+        "explication": "C'est exactement ainsi que Kenzo a été recruté. Prêter son compte pour faire circuler de l'argent d'origine criminelle peut constituer du blanchiment d'argent (art. 305bis du Code pénal)."
+      },
+      {
+        "question": "Vous découvrez qu'un paiement est parti sur le compte d'un escroc. Quelle est la première chose à faire ?",
+        "choix": [
+          "Attendre quelques jours pour voir si l'argent revient.",
+          "Prévenir immédiatement votre banque.",
+          "Supprimer tous vos comptes de réseaux sociaux.",
+          "Écrire à l'escroc pour lui demander de rembourser."
+        ],
+        "bonne": 1,
+        "dossier": 6,
+        "explication": "Plus la banque est prévenue tôt, plus il y a de chances de bloquer l'argent, comme pour le compte de Kenzo. Ensuite : changer ses mots de passe, porter plainte et signaler l'incident à l'OFCS."
+      }
+    ],
+    "messages_score": [
+      {
+        "minimum": 9,
+        "texte": "Remarquable, analystes : la Cellule ARGOS est fière de vous."
+      },
+      {
+        "minimum": 7,
+        "texte": "Très bon travail, analystes : vos réflexes sont solides."
+      },
+      {
+        "minimum": 5,
+        "texte": "Bon travail. Relisez les explications des questions manquées pour consolider vos réflexes."
+      },
+      {
+        "minimum": 0,
+        "texte": "Dossier validé. Relisez les explications : chaque question manquée est un réflexe à travailler."
+      }
+    ]
+  },
+  "certificat": {
+    "titre": "Analyste cyber",
+    "organisme": "Cellule ARGOS",
+    "verrou": "Le certificat est délivré quand le quiz final est terminé.",
+    "consigne": "Saisissez vos prénoms, vérifiez l'aperçu, puis imprimez votre certificat.",
+    "confidentialite": "Vos prénoms ne sont ni enregistrés ni envoyés : ils disparaissent dès que vous quittez cette page.",
+    "formule": "La Cellule ARGOS certifie que",
+    "texte_un": "a mené à bien l'enquête « Opération Collecteur » et contribué à sauver le voyage de la classe 2M7, en démontrant les compétences suivantes :",
+    "texte_deux": "ont mené à bien l'enquête « Opération Collecteur » et contribué à sauver le voyage de la classe 2M7, en démontrant les compétences suivantes :",
+    "competences": [
+      "repérer ce qu'un profil public révèle (OSINT) ;",
+      "démasquer un mail de phishing et un faux domaine ;",
+      "choisir un mot de passe solide et activer la double authentification ;",
+      "distinguer encodage, chiffrement et hachage ;",
+      "comprendre ce que HTTPS protège sur un réseau public ;",
+      "réagir face à une arnaque et à une offre de « job facile »."
+    ],
+    "signature_nom": "Commandante Keller",
+    "signature_titre": "Directrice de la Cellule ARGOS",
+    "mention": "Document fictif, établi dans le cadre d'un exercice pédagogique. La Cellule ARGOS et les personnes citées n'existent pas."
+  }
+}

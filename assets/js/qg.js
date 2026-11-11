@@ -35,6 +35,10 @@ function creerCarte(seance) {
     creer("a", { class: "bouton" + (etat === "clos" ? " secondaire" : ""), href: lien, texte: etat === "clos" ? "Revoir le dossier" : "Reprendre le dossier" }),
   ]));
   if (etat === "clos") carte.append(creer("span", { class: "tampon", texte: "Dossier clos" }));
+  // Dossier 6 clos (quiz final terminé) : accès direct au certificat.
+  if (etat === "clos" && numero === 6) {
+    carte.querySelector(".actions").append(" ", creer("a", { class: "bouton", href: "synthese/certificat.html", texte: "Imprimer le certificat" }));
+  }
   return carte;
 }
 
