@@ -69,3 +69,13 @@ a.piece:hover { border-color: var(--accent); }
 
 .bloc-seance { margin-bottom: 1.5rem; }
 .sortie { margin-top: 1.5rem; }
+
+/* ----- Images facultatives (bandeaux et portraits) : absentes tant que le fichier manque ----- */
+.banniere-qg, .bandeau-seance {
+  display: block; width: 100%; height: auto; max-height: 260px; object-fit: cover;
+  border-radius: var(--rayon); border: 1px solid var(--bord); margin: 0 0 1rem;
+}
+.portraits { display: flex; flex-wrap: wrap; gap: 0.8rem 1.4rem; margin: 0.2rem 0 1rem; }
+.portrait { margin: 0; display: flex; align-items: center; gap: 0.7rem; max-width: 24rem; }
+.portrait img { width: 76px; height: 76px; flex: none; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); }
+.portrait figcaption { font-size: 0.9rem; color: var(--texte-doux); }

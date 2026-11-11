@@ -42,6 +42,14 @@ function creerCarte(seance) {
   return carte;
 }
 
+/** Bandeau illustré du QG : affiché seulement quand l'image existe (sinon, rien ne change). */
+function afficherBanniere(fichier) {
+  if (!fichier) return;
+  const image = creer("img", { class: "banniere-qg", src: `assets/img/${fichier}`, alt: "", decoding: "async" });
+  image.addEventListener("error", () => image.remove());
+  document.querySelector(".intro").prepend(image);
+}
+
 function afficherDossiers(seances) {
   const conteneur = document.getElementById("dossiers");
   conteneur.textContent = "";
@@ -77,6 +85,7 @@ async function demarrer() {
   try {
     const [config, contenu] = await Promise.all([chargerJson("data/config.json"), chargerJson("data/seances.json")]);
     Progression.configurer(config);
+    afficherBanniere(contenu.banniere_qg);
     afficherDossiers(contenu.seances);
     preparerReinitialisation(contenu.seances);
   } catch (erreur) {

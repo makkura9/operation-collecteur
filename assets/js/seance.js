@@ -14,9 +14,40 @@ async function audioExiste(adresse) {
   }
 }
 
-async function blocBriefing(seance, cadrage) {
+/**
+ * Image facultative : tant que le fichier n'existe pas dans assets/img/, l'élément `aRetirer`
+ * (l'image elle-même ou son cadre) disparaît, sans laisser de trou dans la page.
+ */
+function imageFacultative(fichier, alt, classe, aRetirer = null) {
+  const image = creer("img", { src: `${racine()}assets/img/${fichier}`, alt, class: classe, decoding: "async" });
+  image.addEventListener("error", () => {
+    const cible = aRetirer || image;
+    const parent = cible.parentElement;
+    cible.remove();
+    // Un groupe de portraits devenu vide disparaît lui aussi.
+    if (parent && parent.classList.contains("portraits") && !parent.children.length) parent.remove();
+  });
+  return image;
+}
+
+/** Portraits des personnages du briefing (Keller, puis selon le dossier M. Favre ou le Collecteur). */
+function blocPortraits(seance, portraits) {
+  const ids = (seance.portraits || []).filter((id) => portraits && portraits[id]);
+  if (!ids.length) return null;
+  const groupe = creer("div", { class: "portraits" });
+  for (const id of ids) {
+    const p = portraits[id];
+    const figure = creer("figure", { class: "portrait" });
+    figure.append(imageFacultative(p.image, p.alt, "", figure), creer("figcaption", { texte: typographie(p.legende) }));
+    groupe.append(figure);
+  }
+  return groupe;
+}
+
+async function blocBriefing(seance, portraits) {
   const bloc = creer("section", { class: "carte bloc-seance briefing", "aria-labelledby": "titre-briefing" }, [
     creer("h2", { id: "titre-briefing", texte: "Briefing de la Commandante Keller" }),
+    blocPortraits(seance, portraits),
   ]);
   const adresseAudio = `${racine()}assets/audio/${seance.audio}`;
   if (await audioExiste(adresseAudio)) {
@@ -84,11 +115,12 @@ async function demarrer() {
     main.textContent = "";
     main.append(
       creer("header", { class: "titre-seance" }, [
+        seance.bandeau ? imageFacultative(seance.bandeau, "", "bandeau-seance") : null,
         creer("p", { class: "etiquette", texte: `Dossier ${numero}` }),
         creer("h1", { texte: seance.titre }),
         creer("p", { class: "bandeau-cadrage", texte: typographie(donnees.cadrage) }),
       ]),
-      await blocBriefing(seance),
+      await blocBriefing(seance, donnees.portraits),
       blocMission(seance),
       blocPieces(seance),
     );

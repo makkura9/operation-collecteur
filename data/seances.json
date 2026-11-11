@@ -1,11 +1,35 @@
 {
+  "_images": "Images facultatives : tant qu'un fichier manque dans assets/img/, il n'est simplement pas affiché. Le portrait du Collecteur n'apparaît qu'à partir du dossier 4 (il montre son symbole).",
   "cadrage": "Dossier d'entraînement : une affaire simulée, datée du printemps 2027.",
+  "banniere_qg": "qg/banniere-qg.jpg",
+  "portraits": {
+    "keller": {
+      "image": "personnages/keller.jpg",
+      "alt": "La Commandante Keller, la cinquantaine, posée et complice, dans la salle de contrôle de la Cellule ARGOS.",
+      "legende": "Commandante Keller, directrice de la Cellule ARGOS"
+    },
+    "favre": {
+      "image": "personnages/favre.jpg",
+      "alt": "M. Favre, maître de classe, quarante-cinq ans, lunettes et gilet, dans une salle de classe.",
+      "legende": "M. Favre, maître de classe de la 2M7 : c'est lui qui a alerté la Cellule ARGOS"
+    },
+    "collecteur": {
+      "image": "personnages/collecteur.jpg",
+      "alt": "Le Collecteur : une silhouette à capuche devant des écrans, une tirelire fêlée posée sur le bureau.",
+      "legende": "Le Collecteur : identité inconnue"
+    }
+  },
   "seances": [
     {
       "numero": 1,
       "titre": "Ce que Robin montre au monde",
       "accroche": "Que peut apprendre un inconnu sur Robin, rien qu'en regardant ce qu'il publie ?",
+      "bandeau": "seances/entete-1.jpg",
       "audio": "briefing-1.mp3",
+      "portraits": [
+        "keller",
+        "favre"
+      ],
       "briefing": [
         "Analystes de la Cellule ARGOS, merci d'être là. Nous avons un problème, et il est urgent.",
         "La classe 2M7 du Gymnase de Montrive devait partir à Barcelone le 5 avril. Mais l'agence de voyage affirme n'avoir jamais reçu le paiement de quatorze mille trois cents francs. Le trésorier de la classe, Robin Dupont, jure l'avoir effectué. L'argent est parti… mais où ? Et comment ?",
@@ -41,7 +65,11 @@
       "numero": 2,
       "titre": "La boîte de Robin",
       "accroche": "Vingt-cinq messages, des vrais et des pièges : lequel a coûté cher à Robin ?",
+      "bandeau": "seances/entete-2.jpg",
       "audio": "briefing-2.mp3",
+      "portraits": [
+        "keller"
+      ],
       "briefing": [
         "Analystes, merci à vous : votre fiche cible nous a montré tout ce que le Collecteur pouvait savoir sur Robin. Reste à comprendre comment il s'en est servi pour l'approcher.",
         "Nous avons obtenu l'accès à la messagerie de Robin : vingt-cinq messages dans sa boîte de réception. Certains sont authentiques, d'autres sont des pièges. Attention : l'un d'eux a l'air suspect, et pourtant il est vrai.",
@@ -82,7 +110,11 @@
       "numero": 3,
       "titre": "Le maillon le plus faible",
       "accroche": "Robin a tapé un faux mot de passe. Alors comment le Collecteur est-il entré ?",
+      "bandeau": "seances/entete-3.jpg",
       "audio": "briefing-3.mp3",
+      "portraits": [
+        "keller"
+      ],
       "briefing": [
         "Analystes, un détail nous trouble. La police a saisi le journal du kit de phishing du Collecteur. Il montre que Robin a bien saisi un mot de passe sur la fausse page… mais un faux : azerty123. Robin disait vrai. Et pourtant, dans la nuit du 17 au 18 février, quelqu'un s'est connecté à sa messagerie. Comment le Collecteur est-il entré ?",
         "Un indice : un ancien pseudo de jeu de Robin, RobinPxl. Et une fuite de données qui date de 2023.",
@@ -142,7 +174,12 @@
       "numero": 4,
       "titre": "Les brouillons du Collecteur",
       "accroche": "Des messages que Robin n'a jamais écrits dorment dans son dossier Brouillons.",
+      "bandeau": "seances/entete-4.jpg",
       "audio": "briefing-4.mp3",
+      "portraits": [
+        "keller",
+        "collecteur"
+      ],
       "briefing": [
         "Analystes, grâce à vous, nous avons accès à la messagerie de Robin. Et nous avons trouvé quelque chose d'étrange : son dossier Brouillons contient des messages que Robin n'a jamais écrits.",
         "Le Collecteur utilise cette boîte comme une boîte aux lettres morte : lui et son complice écrivent dans des brouillons, sans jamais rien envoyer. Aucun message ne circule, donc rien à intercepter. Mais les messages sont brouillés.",
@@ -195,7 +232,12 @@
       "numero": 5,
       "titre": "Reconstitution",
       "accroche": "Rejouez la scène : qui a pu se glisser entre le téléphone de Robin et le site de l'agence ?",
+      "bandeau": "seances/entete-5.jpg",
       "audio": "briefing-5.mp3",
+      "portraits": [
+        "keller",
+        "collecteur"
+      ],
       "briefing": [
         "Analystes, la police a retrouvé un ordinateur portable abandonné près de la gare de Montrive. Le Collecteur a disparu, mais son ordinateur contient l'enregistrement de tout ce qui a transité par le réseau de la gare, le lundi premier mars, à sept heures douze.",
         "Nous allons rejouer la scène, minute par minute. Sur la carte du réseau, vous verrez circuler les messages de Robin comme des enveloppes. Certaines sont scellées. D'autres sont grandes ouvertes.",
@@ -223,7 +265,12 @@
       "numero": 6,
       "titre": "Sauver le voyage",
       "accroche": "Le compte à rebours est lancé : votre rapport doit convaincre les banques d'agir.",
+      "bandeau": "seances/entete-6.jpg",
       "audio": "briefing-6.mp3",
+      "portraits": [
+        "keller",
+        "collecteur"
+      ],
       "briefing": [
         "Analystes, nous y sommes. Vendredi 19 mars, le complice du Collecteur doit lui renvoyer l'argent. Après cela, il sera trop tard. Il vous reste peu de temps.",
         "Pour que les banques bloquent le compte, votre rapport doit être irréprochable : la chaîne complète de l'attaque, dans l'ordre, et pour chaque faille, la parade qui aurait pu l'arrêter.",
