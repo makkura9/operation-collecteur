@@ -1,16 +1,18 @@
 // Serious game « Reconstitution à la gare » (séance 5). Conçu pour ordinateur.
-// Niveaux construits par lots : 1 à 4 ici ; le 5 et le bonus viendront ensuite.
+// Cinq niveaux, puis un bonus facultatif.
 
 import { chargerJson, creer, typographie } from "./chargeur.js";
 import * as Progression from "./progression.js";
 import { verrouillerPage } from "./verrou.js";
 import { construireCarte } from "./reseau-carte.js";
 import { niveau3, niveau4 } from "./reseau-niveaux34.js";
+import { niveau5, bonus } from "./reseau-niveau5.js";
 
 let donnees = null;
 let carte = null;
 let noeudsParId = {};
-const niveauxDisponibles = ["n1", "n2", "n3", "n4"];   // s'allongera avec le dernier lot
+const niveauxDisponibles = ["n1", "n2", "n3", "n4", "n5", "bonus"];
+const NB_NIVEAUX = 5;   // le bonus n'est pas compté comme un niveau
 let indexCourant = 0;
 let nettoyage = null;   // appelée en quittant un niveau (minuteur, raccourcis)
 
@@ -39,15 +41,22 @@ function annoncer(texte) {
 }
 
 function majBarre() {
-  document.getElementById("niveau-courant").textContent = String(indexCourant + 1);
-  document.getElementById("niveau-total").textContent = String(niveauxDisponibles.length);
-  const fait = indexCourant / niveauxDisponibles.length * 100;
+  const estBonus = niveauxDisponibles[indexCourant] === "bonus";
+  document.getElementById("libelle-niveau").textContent = estBonus ? "Bonus" : `Niveau ${indexCourant + 1} / ${NB_NIVEAUX}`;
+  const fait = Math.min(100, indexCourant / NB_NIVEAUX * 100);
   document.getElementById("jauge-niveau").style.width = `${fait}%`;
 }
 
 function enteteNiveau(numero, titre) {
   return creer("header", { class: "niveau-entete" }, [
-    creer("p", { class: "etiquette", texte: `Niveau ${numero} sur ${niveauxDisponibles.length}` }),
+    creer("p", { class: "etiquette", texte: `Niveau ${numero} sur ${NB_NIVEAUX}` }),
+    creer("h2", { texte: titre }),
+  ]);
+}
+
+function enteteBonus(titre) {
+  return creer("header", { class: "niveau-entete" }, [
+    creer("p", { class: "etiquette", texte: "Bonus (facultatif)" }),
     creer("h2", { texte: titre }),
   ]);
 }
@@ -57,7 +66,7 @@ function boiteNotion(texte, termine) {
   return creer("div", { class: "notion", role: "status" }, [
     creer("p", {}, [creer("strong", { texte: "À retenir : " }), typographie(texte)]),
     creer("button", {
-      type: "button", class: "bouton", texte: dernier ? "Terminer les niveaux disponibles" : "Niveau suivant →",
+      type: "button", class: "bouton", texte: dernier ? "Terminer la reconstitution" : "Niveau suivant →",
       onclick: termine,
     }),
   ]);
@@ -196,9 +205,10 @@ function niveau2(termine) {
 const ctx = {
   get donnees() { return donnees; },
   get noeudsParId() { return noeudsParId; },
-  creer, typographie, construireCarte, enteteNiveau, boiteNotion,
+  creer, typographie, construireCarte, enteteNiveau, enteteBonus, boiteNotion,
   svg, panneau, annoncer, ramenerCarte, animationsReduites,
   setNettoyage: (fn) => { nettoyage = fn; },
+  finJeu: () => { if (nettoyage) { nettoyage(); nettoyage = null; } finJeu(); },
 };
 
 const constructeurs = {
@@ -206,6 +216,8 @@ const constructeurs = {
   n2: niveau2,
   n3: (termine) => niveau3(ctx, termine),
   n4: (termine) => niveau4(ctx, termine),
+  n5: (termine) => niveau5(ctx, termine),
+  bonus: (termine) => bonus(ctx, termine),
 };
 
 function lancerNiveau(index) {
@@ -217,22 +229,22 @@ function lancerNiveau(index) {
     if (index + 1 < niveauxDisponibles.length) {
       lancerNiveau(index + 1);
     } else {
-      finDisponible();
+      finJeu();
     }
     window.scrollTo({ top: 0, behavior: animationsReduites ? "auto" : "smooth" });
   }));
 }
 
-function finDisponible() {
-  majBarre();
+function finJeu() {
+  document.getElementById("libelle-niveau").textContent = "Reconstitution terminée";
   document.getElementById("jauge-niveau").style.width = "100%";
   const c = panneau();
   c.textContent = "";
   c.append(
-    creer("h2", { texte: "Niveaux 1 à 4 terminés" }),
-    creer("p", { texte: "Bravo, analystes. Vous avez reconstitué toute l'attaque de la gare : le faux réseau, l'ordinateur au milieu, et la facture modifiée en route." }),
-    creer("p", { class: "aide-jeu", texte: "Le dernier niveau (choisir les bonnes parades) arrive prochainement." }),
-    creer("p", {}, [creer("a", { class: "bouton secondaire", href: "../seance-5/index.html", texte: "← Retour au dossier 5" })]),
+    creer("h2", { texte: "Reconstitution terminée" }),
+    creer("p", { texte: "Bravo, analystes. Vous avez rejoué toute l'attaque de la gare : le faux réseau, l'ordinateur au milieu, la facture modifiée en route… et les parades qui l'auraient arrêtée." }),
+    creer("p", { class: "aide-jeu", texte: typographie("Retournez au dossier 5 pour saisir le code de sortie : les 4 derniers chiffres de l'IBAN du compte qui a reçu l'argent (vu au niveau 4).") }),
+    creer("p", {}, [creer("a", { class: "bouton", href: "../seance-5/index.html", texte: "← Retour au dossier 5" })]),
   );
   carte = construireCarte(svg(), donnees, { attaque: true });
   carte.definirDescription("Vue du réseau avec le faux point d'accès et l'ordinateur du Collecteur intercalés.");

@@ -450,6 +450,149 @@
         "nuance": "À une condition : ne jamais ignorer un avertissement de sécurité du navigateur."
       },
       "notion": "En HTTP, un intermédiaire peut lire ET modifier ce qui passe. HTTPS protège la confidentialité et l'intégrité : toute modification en route est détectée."
+    },
+    "n5": {
+      "titre": "Contre-attaque",
+      "consigne": "Vous pouvez rejouer la scène… avec des protections. Choisissez exactement 3 cartes de défense parmi 9, puis rejouez : l'animation montre à quelle étape l'attaque est arrêtée. Attention : certaines cartes sont de fausses bonnes idées.",
+      "budget": 3,
+      "etapes": [
+        {
+          "id": "connexion",
+          "texte": "Le téléphone de Robin se connecte tout seul au faux Wi-Fi.",
+          "chemin": [
+            "phone",
+            "ap_faux"
+          ],
+          "noeud": "ap_faux"
+        },
+        {
+          "id": "lecture",
+          "texte": "Le Collecteur lit le trafic qui traverse son ordinateur.",
+          "chemin": [
+            "ap_faux",
+            "collecteur"
+          ],
+          "noeud": "collecteur"
+        },
+        {
+          "id": "modification",
+          "texte": "Il modifie la facture, qui circule en HTTP.",
+          "chemin": [
+            "portail",
+            "internet",
+            "collecteur"
+          ],
+          "noeud": "collecteur"
+        },
+        {
+          "id": "paiement",
+          "texte": "Robin paie sur l'IBAN de la mule, sans vérifier.",
+          "chemin": [
+            "banque"
+          ],
+          "noeud": "banque"
+        }
+      ],
+      "cartes": [
+        {
+          "id": "donnees",
+          "titre": "Données mobiles plutôt que le Wi-Fi public",
+          "bonne": true,
+          "bloque": "connexion",
+          "explication": "Le téléphone passe par le réseau mobile : il ne rejoint jamais le faux point d'accès de la gare."
+        },
+        {
+          "id": "auto",
+          "titre": "Oublier les réseaux publics et désactiver la connexion automatique",
+          "bonne": true,
+          "bloque": "connexion",
+          "explication": "Le téléphone ne se connecte plus tout seul à un réseau qui porte un nom connu : le faux Wi-Fi n'est pas rejoint."
+        },
+        {
+          "id": "vpn",
+          "titre": "Utiliser un VPN de confiance",
+          "bonne": true,
+          "bloque": "lecture",
+          "explication": "Tout le trafic quitte le téléphone scellé dans un tunnel chiffré : le Collecteur ne voit passer qu'une enveloppe fermée. « De confiance », car le fournisseur du VPN, lui, voit passer le trafic."
+        },
+        {
+          "id": "https",
+          "titre": "HTTPS sur le portail de l'agence",
+          "bonne": true,
+          "bloque": "modification",
+          "explication": "La facture voyage scellée : impossible de la lire, et toute modification en route serait détectée. Cette parade dépend de l'agence, pas de Robin… mais elle aurait tout changé."
+        },
+        {
+          "id": "appel",
+          "titre": "Appeler l'agence au numéro connu pour confirmer l'IBAN",
+          "bonne": true,
+          "bloque": "paiement",
+          "explication": "Même avec une facture modifiée, une vérification par un autre canal révèle le faux IBAN. Le numéro doit venir d'une source sûre (site officiel, ancien document), jamais de la facture suspecte."
+        },
+        {
+          "id": "antivirus",
+          "titre": "Installer un antivirus",
+          "bonne": false,
+          "explication": "Utile contre les logiciels malveillants, mais ici rien n'est installé sur le téléphone : l'attaque se joue sur le réseau."
+        },
+        {
+          "id": "motdepasse",
+          "titre": "Choisir un mot de passe plus long",
+          "bonne": false,
+          "explication": "Bonne habitude en général, mais ni le faux Wi-Fi ni la facture modifiée ne dépendent du mot de passe de Robin."
+        },
+        {
+          "id": "historique",
+          "titre": "Effacer l'historique du navigateur",
+          "bonne": false,
+          "explication": "Effacer ses traces après coup n'empêche pas le trafic d'être intercepté."
+        },
+        {
+          "id": "sombre",
+          "titre": "Activer le mode sombre",
+          "bonne": false,
+          "explication": "C'est un simple réglage d'affichage : il ne protège de rien."
+        }
+      ],
+      "notion": "Une bonne parade agit sur une étape précise de l'attaque. Plusieurs parades à des étapes différentes se complètent : si l'une échoue, une autre prend le relais (défense en profondeur)."
+    },
+    "bonus": {
+      "titre": "Le cadenas trompeur",
+      "consigne": "Le faux site de la séance 2, horizons-jeunesse.co, affiche lui aussi un cadenas. Que garantit vraiment ce cadenas ? Cochez toutes les affirmations vraies, puis vérifiez.",
+      "url": "https://horizons-jeunesse.co/espace-client",
+      "affirmations": [
+        {
+          "id": "a1",
+          "texte": "Les échanges avec ce site sont chiffrés : un intermédiaire sur le réseau ne peut ni les lire ni les modifier.",
+          "vrai": true,
+          "explication": "C'est exactement ce que garantit HTTPS : le trajet est protégé."
+        },
+        {
+          "id": "a2",
+          "texte": "Ce site est bien celui de l'agence Horizons Jeunesse.",
+          "vrai": false,
+          "explication": "Non : le cadenas ne dit rien de l'identité de l'agence. Le domaine est horizons-jeunesse.co, pas horizons-jeunesse.ch."
+        },
+        {
+          "id": "a3",
+          "texte": "Le serveur contrôle bien le nom affiché dans la barre d'adresse (horizons-jeunesse.co).",
+          "vrai": true,
+          "explication": "Oui : le certificat atteste ce nom de domaine… et seulement lui."
+        },
+        {
+          "id": "a4",
+          "texte": "Ce site est honnête.",
+          "vrai": false,
+          "explication": "Non : un escroc peut obtenir un cadenas pour son propre domaine, comme n'importe qui."
+        },
+        {
+          "id": "a5",
+          "texte": "Ce que je tape ici ne peut pas tomber entre de mauvaises mains.",
+          "vrai": false,
+          "explication": "Non : vos données arrivent chiffrées… directement chez l'escroc qui gère le site."
+        }
+      ],
+      "notion": "Le cadenas protège le trajet, pas la destination. Vérifiez toujours le nom de domaine : un site frauduleux peut afficher un cadenas."
     }
   }
 }
