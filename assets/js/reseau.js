@@ -220,9 +220,13 @@ const constructeurs = {
   bonus: (termine) => bonus(ctx, termine),
 };
 
+// Reprise : le dernier niveau lancé est mémorisé dans ce navigateur (effacé par « Nouveau binôme »).
+const CLE_REPRISE = "reseau-niveau";
+
 function lancerNiveau(index) {
   if (nettoyage) { nettoyage(); nettoyage = null; }
   indexCourant = index;
+  Progression.ecrireAnnexe(CLE_REPRISE, index);
   majBarre();
   const id = niveauxDisponibles[index];
   constructeurs[id]((function suivant() {
@@ -235,7 +239,30 @@ function lancerNiveau(index) {
   }));
 }
 
+/** Écran de reprise : proposé au chargement si un niveau avait déjà été atteint. */
+function ecranReprise(sauve) {
+  const fini = sauve === "fin";
+  const id = fini ? null : niveauxDisponibles[sauve];
+  const nom = fini ? "" : (id === "bonus" ? `le bonus, « ${donnees.niveaux.bonus.titre} »` : `le niveau ${sauve + 1}, « ${donnees.niveaux[id].titre} »`);
+  document.getElementById("libelle-niveau").textContent = "Reprise";
+  document.getElementById("jauge-niveau").style.width = `${Math.min(100, (fini ? NB_NIVEAUX : sauve) / NB_NIVEAUX * 100)}%`;
+  carte = construireCarte(svg(), donnees, { attaque: false });
+  carte.definirDescription("Carte du réseau de la gare.");
+  const c = panneau();
+  c.textContent = "";
+  c.append(
+    creer("h2", { texte: "Bon retour, analystes" }),
+    creer("p", { texte: typographie(fini ? "Vous aviez terminé la reconstitution sur cet ordinateur." : `Vous en étiez à ${nom}.`) }),
+    creer("div", { class: "barre-boutons" }, [
+      creer("button", { type: "button", class: "bouton", texte: "Reprendre où j'en étais", onclick: () => (fini ? finJeu() : lancerNiveau(sauve)) }),
+      creer("button", { type: "button", class: "bouton secondaire", texte: "Recommencer depuis le début", onclick: () => lancerNiveau(0) }),
+    ]),
+  );
+  c.querySelector("button").focus();
+}
+
 function finJeu() {
+  Progression.ecrireAnnexe(CLE_REPRISE, "fin");
   document.getElementById("libelle-niveau").textContent = "Reconstitution terminée";
   document.getElementById("jauge-niveau").style.width = "100%";
   const c = panneau();
@@ -258,7 +285,9 @@ async function demarrer() {
     donnees = await chargerJson("data/reseau.json");
     for (const n of donnees.noeuds) noeudsParId[n.id] = n;
     cadre.hidden = false;
-    lancerNiveau(0);
+    const sauve = Progression.lireAnnexe(CLE_REPRISE);
+    if (sauve === "fin" || (Number.isInteger(sauve) && sauve > 0 && sauve < niveauxDisponibles.length)) ecranReprise(sauve);
+    else lancerNiveau(0);
   } catch (e) {
     cadre.hidden = false;
     document.getElementById("panneau").textContent = "Impossible de charger le jeu. Ouvrez le site par son adresse web, puis rechargez la page.";
