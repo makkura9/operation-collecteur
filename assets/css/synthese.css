@@ -120,7 +120,7 @@ body.glisser-en-cours { cursor: grabbing; user-select: none; -webkit-user-select
 }
 .photo-emoji { font-size: 2rem; }
 .photo-legende { font-size: 0.85rem; max-width: 40ch; }
-.photo.large { aspect-ratio: 2 / 1; max-height: 340px; width: 100%; margin: 0 0 1rem; }
+.photo.large { aspect-ratio: 5 / 2; width: 100%; margin: 0 0 1rem; }
 .photo.portrait { aspect-ratio: 1 / 1; }
 .photo.paysage { aspect-ratio: 3 / 2; }
 

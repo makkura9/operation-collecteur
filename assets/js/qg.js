@@ -47,7 +47,7 @@ function afficherBanniere(fichier) {
   if (!fichier) return;
   const image = creer("img", { class: "banniere-qg", src: `assets/img/${fichier}`, alt: "", decoding: "async" });
   image.addEventListener("error", () => image.remove());
-  document.querySelector(".intro").prepend(image);
+  document.getElementById("contenu").prepend(image);   // toute la largeur, au-dessus de l'accueil
 }
 
 function afficherDossiers(seances) {
