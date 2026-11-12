@@ -18,7 +18,7 @@ async function blocRecit(d) {
     creer("h2", { id: "titre-recit", texte: "Message de la Commandante Keller" }),
   ]);
   const adresse = `${racine()}assets/audio/${d.audio}`;
-  if (await audioExiste(adresse)) bloc.append(creer("audio", { controls: true, preload: "none", src: adresse }));
+  if (await audioExiste(adresse)) bloc.append(creer("audio", { controls: true, preload: "metadata", src: adresse }));
   else bloc.append(creer("p", { class: "audio-indisponible", texte: "L'enregistrement audio n'est pas encore disponible. Lisez le texte ci-dessous." }));
   const texte = creer("div", { class: "texte-recit" });
   for (const paragraphe of d.texte) texte.append(creer("p", { texte: typographie(paragraphe) }));

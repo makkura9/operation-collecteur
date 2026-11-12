@@ -51,7 +51,7 @@ async function blocBriefing(seance, portraits) {
   ]);
   const adresseAudio = `${racine()}assets/audio/${seance.audio}`;
   if (await audioExiste(adresseAudio)) {
-    bloc.append(creer("audio", { controls: true, preload: "none", src: adresseAudio }));
+    bloc.append(creer("audio", { controls: true, preload: "metadata", src: adresseAudio }));
   } else {
     bloc.append(creer("p", { class: "audio-indisponible", texte: "L'enregistrement audio de ce briefing n'est pas encore disponible. Lisez le texte ci-dessous." }));
   }
