@@ -6,7 +6,7 @@ import { creerFauxNavigateur } from "./faux-navigateur.js";
 /* ---------------- Niveau 5 : Contre-attaque ---------------- */
 
 export function niveau5(ctx, termine) {
-  const { donnees, creer, typographie, construireCarte, svg, panneau, enteteNiveau, setNettoyage, animationsReduites, finJeu } = ctx;
+  const { donnees, creer, melanger, typographie, construireCarte, svg, panneau, enteteNiveau, setNettoyage, animationsReduites, finJeu } = ctx;
   const n = donnees.niveaux.n5;
 
   let carte = construireCarte(svg(), donnees, { attaque: true });
@@ -20,7 +20,8 @@ export function niveau5(ctx, termine) {
   const compteur = creer("p", { class: "compteur-cartes", role: "status", texte: `Cartes choisies : 0 sur ${n.budget}` });
   const grille = creer("div", { class: "grille-cartes" });
   const boutonsCartes = [];
-  for (const c of n.cartes) {
+  // Ordre tiré au sort à chaque affichage : les vraies parades ne sont jamais « les premières ».
+  for (const c of melanger(n.cartes)) {
     const b = creer("button", { type: "button", class: "carte-defense", "aria-pressed": "false", "data-carte": c.id }, [
       creer("span", { class: "carte-symbole", "aria-hidden": "true", texte: "🛡" }),
       creer("span", { class: "carte-titre", texte: typographie(c.titre) }),
@@ -87,10 +88,18 @@ export function niveau5(ctx, termine) {
 
   function bilan(cartes, indexBlocage) {
     zone.textContent = "";
-    const reussi = indexBlocage !== -1;
-    zone.append(creer("p", { class: reussi ? "bon" : "mauvais", texte: reussi
+    const arretee = indexBlocage !== -1;
+    const pieges = cartes.filter((c) => !c.bonne).length;
+    // Le niveau n'est validé que si les trois cartes sont de vraies parades : une seule bonne carte
+    // arrête bien l'attaque, mais elle ne prouve pas qu'on sait reconnaître les fausses bonnes idées.
+    const reussi = arretee && pieges === 0;
+    zone.append(creer("p", { class: arretee ? "bon" : "mauvais", texte: arretee
       ? `Attaque arrêtée à l'étape ${indexBlocage + 1} sur ${n.etapes.length}.`
       : "L'attaque a réussi jusqu'au bout : vos cartes n'ont rien empêché." }));
+    if (arretee && pieges) {
+      const constat = pieges > 1 ? `Mais ${pieges} de vos cartes ne servent à rien contre cette attaque.` : "Mais l'une de vos cartes ne sert à rien contre cette attaque.";
+      zone.append(creer("p", { class: "mauvais", texte: `${constat} Pour valider le niveau, vos trois cartes doivent être de vraies parades : remplacez ${pieges > 1 ? "les fausses bonnes idées" : "la fausse bonne idée"}.` }));
+    }
 
     const couches = new Set(cartes.filter((c) => c.bonne).map((c) => c.bloque)).size;
     if (couches >= 2) zone.append(creer("p", { texte: `Vos cartes protègent ${couches} étapes différentes : si une parade échouait, une autre prendrait le relais.` }));

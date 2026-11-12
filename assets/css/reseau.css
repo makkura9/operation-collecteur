@@ -79,18 +79,20 @@
 .bande-tri { margin: 0.8rem 0; min-height: 2rem; }
 .compteur-tri { font-family: var(--police-code); color: var(--texte-doux); margin: 0 0 0.5rem; }
 .env-tri { display: grid; gap: 0.3rem; background: #fff; color: #1b2230; border-radius: 10px; padding: 0.9rem 1.1rem; border: 2px solid #1b2230; box-shadow: var(--ombre); }
+/* Enveloppe fermée (avant la prévision) : aspect neutre, identique pour toutes. */
+.env-tri.fermee { background: #f1efe9; border-color: #1b2230; }
 .env-tri.ouverte { background: #ffe7cc; border-color: #a8560f; }
 .env-tri.scellee { background: #d7f5ee; border-color: #0a7f73; }
-.env-tri.facture { outline: 3px solid var(--alerte); outline-offset: 2px; }
 .env-tri-icone { font-size: 1.6rem; }
 .env-tri-site { font-family: var(--police-code); font-size: 1.05rem; }
 .env-tri-contenu { font-size: 0.95rem; }
 .env-tri-contenu.doux { color: #51607a; font-style: italic; }
+.env-tri .verdict { font-weight: 700; font-size: 0.95rem; }
+.env-tri .verdict.bon { color: #0a6b3a; }
+.env-tri .verdict.mauvais { color: #a3261f; }
 .barre-temps { display: block; height: 7px; background: var(--fond-2); border: 1px solid var(--bord); border-radius: 999px; overflow: hidden; margin-top: 0.6rem; }
 .barre-temps > span { display: block; height: 100%; width: 100%; background: linear-gradient(90deg, var(--ok), var(--alerte)); }
 .tri-boutons { margin-top: 0.7rem; }
-.bouton.surligne { background: var(--alerte); color: #3a2600; }
-.bouton.surligne:hover { background: #ffc877; color: #3a2600; }
 
 /* ----- Niveau 4 : comparaison des factures ----- */
 .comparaison-factures { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0.8rem 0; }

@@ -1,5 +1,5 @@
 {
-  "_images": "Images facultatives : tant qu'un fichier manque dans assets/img/, il n'est simplement pas affiché. Le portrait du Collecteur n'apparaît qu'à partir du dossier 4 (il montre son symbole).",
+  "_images": "Images facultatives : tant qu'un fichier manque dans assets/img/, il n'est simplement pas affiché. Le portrait du Collecteur n'apparaît qu'à partir du dossier 5 : il montre son symbole, que les élèves doivent découvrir eux-mêmes au dossier 4.",
   "cadrage": "Dossier d'entraînement : une affaire simulée, datée du printemps 2027.",
   "banniere_qg": "qg/banniere-qg.jpg",
   "portraits": {
@@ -40,20 +40,14 @@
       "mission": [
         "Explorez les profils de Robin, de Léa et de la classe sur Partello.",
         "Remplissez votre fiche cible (10 champs) : pour chaque information, notez où vous l'avez trouvée.",
-        "Consultez aussi le site de l'agence de voyage.",
-        "Bonus pour les plus rapides : retrouvez l'ancien pseudo de jeu de Robin."
+        "Bonus pour les plus rapides : retrouvez l'ancien pseudo de jeu de Robin.",
+        "Règle de la Cellule : vous enquêtez ici sur des profils fictifs. N'appliquez jamais ces méthodes à de vraies personnes."
       ],
       "pieces": [
         {
           "titre": "Partello",
           "texte": "Les profils de Robin, de Léa et de la classe 2M7.",
           "url": "partello/",
-          "dispo": true
-        },
-        {
-          "titre": "Site de l'agence",
-          "texte": "Le site de l'agence de voyage, vu dans un navigateur simulé.",
-          "url": "horizons/",
           "dispo": true
         }
       ],
@@ -100,6 +94,12 @@
           "texte": "Les pages visitées par Robin dans la soirée du 17 février.",
           "url": "montrivemail/historique.html",
           "dispo": true
+        },
+        {
+          "titre": "Site de l'agence",
+          "texte": "Le vrai site de l'agence de voyage, pour comparer avec ses copies.",
+          "url": "horizons/",
+          "dispo": true
         }
       ],
       "sortie": {
@@ -126,7 +126,8 @@
         "Craquez la fuite de données avec le dictionnaire des mots de passe courants : combien de comptes tombent ?",
         "Construisez un dictionnaire personnalisé à partir de votre fiche cible, puis recommencez.",
         "Avec le calculateur, comparez le temps de recherche de plusieurs mots de passe.",
-        "Consultez le journal de connexion : que remarquez-vous ?"
+        "Consultez le journal de connexion : que remarquez-vous ?",
+        "Rappel : ces outils ne servent qu'à cette enquête. Entrer sans droit dans le compte d'une autre personne est puni par la loi."
       ],
       "pieces": [
         {
@@ -177,8 +178,7 @@
       "bandeau": "seances/entete-4.jpg",
       "audio": "briefing-4.mp3",
       "portraits": [
-        "keller",
-        "collecteur"
+        "keller"
       ],
       "briefing": [
         "Analystes, grâce à vous, nous avons accès à la messagerie de Robin. Et nous avons trouvé quelque chose d'étrange : son dossier Brouillons contient des messages que Robin n'a jamais écrits.",

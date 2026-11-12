@@ -38,6 +38,16 @@ export function typographie(texte) {
     .replace(/« /g, "« ");
 }
 
+/** Mélange une liste (algorithme de Fisher-Yates) et renvoie une copie. */
+export function melanger(liste) {
+  const copie = [...liste];
+  for (let i = copie.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copie[i], copie[j]] = [copie[j], copie[i]];
+  }
+  return copie;
+}
+
 /** Crée un élément SVG (namespace correct). */
 export function creerSVG(balise, proprietes = {}) {
   const el = document.createElementNS("http://www.w3.org/2000/svg", balise);

@@ -1,5 +1,9 @@
 // Grille de classement (séance 2) : pour chacun des 25 messages, choisir une catégorie et un indice.
 // Correction automatique et score. Les choix sont mémorisés dans ce navigateur uniquement (annexe « classement »).
+//
+// Règle pédagogique : la grille ne donne jamais une réponse que le binôme n'a pas trouvée.
+//  - une ligne incomplète n'est pas corrigée ;
+//  - l'explication d'un message ne s'affiche que si sa catégorie ET son indice sont justes.
 
 import { chargerJson, creer, typographie } from "./chargeur.js";
 import * as Progression from "./progression.js";
@@ -43,9 +47,11 @@ function dessiner() {
   corps.textContent = "";
   for (const mail of donnees.mails) {
     const rep = reponses[mail.id] || {};
-    const resultat = corrige ? evaluer(mail, rep) : null;
+    const complete = Boolean(rep.categorie && rep.indice);
+    const resultat = corrige && complete ? evaluer(mail, rep) : null;
+    const juste = Boolean(resultat && resultat.categorie && resultat.indice);
 
-    const ligne = creer("tr", { class: resultat ? (resultat.categorie && resultat.indice ? "ok" : "ko") : "" });
+    const ligne = creer("tr", { class: resultat ? (juste ? "ok" : "ko") : "" });
     const boutonLire = creer("button", { type: "button", class: "bouton secondaire petit", texte: "Lire" });
     boutonLire.addEventListener("click", () => ouvrirLecture(mail, boutonLire));
 
@@ -60,11 +66,12 @@ function dessiner() {
       creer("td", { class: "col-resultat", "aria-live": "polite" }, resultat ? [
         creer("span", { class: resultat.categorie ? "bon" : "mauvais", texte: resultat.categorie ? "✓ Catégorie" : "✗ Catégorie" }),
         creer("span", { class: resultat.indice ? "bon" : "mauvais", texte: resultat.indice ? "✓ Indice" : "✗ Indice" }),
-      ] : []),
+      ] : (corrige ? [creer("span", { class: "doux", texte: "À compléter" })] : [])),
     );
     corps.append(ligne);
 
-    if (corrige && solutionsVisibles) {
+    // L'explication récompense une ligne entièrement juste : elle ne sert jamais de corrigé.
+    if (juste && solutionsVisibles) {
       corps.append(creer("tr", { class: "explication" }, [
         creer("td", { colspan: "4" }, [creer("strong", { texte: "Explication : " }), typographie(mail.explication)]),
       ]));
@@ -73,18 +80,20 @@ function dessiner() {
 }
 
 function evaluer(mail, rep) {
-  return { categorie: rep.categorie === mail.categorie, indice: Boolean(rep.indice) && mail.indices_valides.includes(rep.indice) };
+  const categories = [mail.categorie].concat(mail.categories_acceptees || []);   // frontière parfois discutable
+  return { categorie: categories.includes(rep.categorie), indice: Boolean(rep.indice) && mail.indices_valides.includes(rep.indice) };
 }
 
 function corriger() {
   corrige = true;
-  let cat = 0; let ind = 0; let vides = 0;
+  let cat = 0; let ind = 0; let vides = 0; let justes = 0;
   for (const mail of donnees.mails) {
     const rep = reponses[mail.id] || {};
-    if (!rep.categorie || !rep.indice) vides++;
+    if (!rep.categorie || !rep.indice) { vides++; continue; }   // ligne incomplète : pas corrigée
     const r = evaluer(mail, rep);
     if (r.categorie) cat++;
     if (r.indice) ind++;
+    if (r.categorie && r.indice) justes++;
   }
   const total = donnees.mails.length;
   const zone = document.getElementById("resultat");
@@ -94,11 +103,19 @@ function corriger() {
     creer("p", { class: "score", texte: `Score : ${cat + ind} sur ${total * 2}` }),
     creer("p", { texte: `Catégories correctes : ${cat} sur ${total} · indices corrects : ${ind} sur ${total}.` }),
   );
-  if (vides) zone.append(creer("p", { class: "doux", texte: `${vides} message${vides > 1 ? "s" : ""} pas encore complètement renseigné${vides > 1 ? "s" : ""}.` }));
-  zone.append(creer("p", { class: "doux", texte: "Les lignes en rouge sont à revoir : relisez le message et regardez l'adresse de l'expéditeur et celle du lien. Vous pouvez corriger vos choix et recommencer." }));
-  document.getElementById("bouton-solutions").hidden = false;
+  if (vides) zone.append(creer("p", { class: "doux", texte: `${vides} message${vides > 1 ? "s" : ""} pas encore complètement renseigné${vides > 1 ? "s" : ""} : une ligne incomplète n'est pas corrigée.` }));
+  zone.append(creer("p", { class: "doux", texte: "Les lignes en rouge sont à revoir : relisez le message, regardez l'adresse de l'expéditeur et celle du lien, puis corrigez vos choix et recommencez. L'explication d'un message s'affiche quand sa catégorie et son indice sont justes." }));
+  // Le bouton des explications n'apparaît que s'il y a au moins une ligne entièrement juste.
+  const bouton = document.getElementById("bouton-solutions");
+  bouton.hidden = justes === 0;
+  if (justes === 0) solutionsVisibles = false;
+  bouton.textContent = libelleExplications();
   dessiner();
   zone.focus();
+}
+
+function libelleExplications() {
+  return solutionsVisibles ? "Masquer les explications" : "Afficher les explications des lignes justes";
 }
 
 async function demarrer() {
@@ -115,7 +132,7 @@ async function demarrer() {
     document.getElementById("bouton-corriger").addEventListener("click", corriger);
     document.getElementById("bouton-solutions").addEventListener("click", (e) => {
       solutionsVisibles = !solutionsVisibles;
-      e.target.textContent = solutionsVisibles ? "Masquer les explications" : "Afficher les explications";
+      e.target.textContent = libelleExplications();
       dessiner();
     });
     dessiner();

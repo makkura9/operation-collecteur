@@ -3,7 +3,7 @@
 // (aucun stockage) ni envoyés (aucun formulaire transmis), et sont effacés quand on quitte la page.
 
 import { creer, racine, typographie } from "./chargeur.js";
-import { bandeauCompteARebours, blocVerrouille, demarrerPiece, quizTermine } from "./synthese-commun.js";
+import { bandeauCompteARebours, blocVerrouille, demarrerPiece, certificatOuvert } from "./synthese-commun.js";
 
 const LONGUEUR_MAX = 40;
 
@@ -44,7 +44,7 @@ function creerCertificat(c) {
 
 function construire(donnees, zone) {
   const c = donnees.certificat;
-  if (!quizTermine()) {
+  if (!certificatOuvert()) {
     zone.append(bandeauCompteARebours(donnees), blocVerrouille(c.verrou, { href: "quiz.html", texte: "Aller au quiz final →" }));
     return;
   }

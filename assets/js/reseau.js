@@ -1,7 +1,7 @@
 // Serious game « Reconstitution à la gare » (séance 5). Conçu pour ordinateur.
 // Cinq niveaux, puis un bonus facultatif.
 
-import { chargerJson, creer, typographie } from "./chargeur.js";
+import { chargerJson, creer, melanger, typographie } from "./chargeur.js";
 import * as Progression from "./progression.js";
 import { verrouillerPage } from "./verrou.js";
 import { construireCarte } from "./reseau-carte.js";
@@ -115,6 +115,17 @@ function niveau1(termine) {
   const zone = creer("div", { class: "zone-jeu", tabindex: "-1", "aria-live": "polite" });
   const corriger = creer("button", { type: "button", class: "bouton", texte: "Corriger" });
   corriger.addEventListener("click", () => {
+    // La correction affiche les réponses : elle n'est donnée que sur un formulaire entièrement rempli.
+    const incompletes = n.paquets.filter((paquet) => {
+      const r = reponses[paquet.id];
+      return !r.selDest.value || !document.querySelector(`input[name="${r.nom}"]:checked`);
+    }).length;
+    if (incompletes) {
+      zone.textContent = "";
+      zone.append(creer("p", { class: "mauvais", texte: `Il reste ${incompletes} paquet${incompletes > 1 ? "s" : ""} à compléter (destination et contenu) avant la correction.` }));
+      zone.focus();
+      return;
+    }
     let bons = 0;
     const total = n.paquets.length * 2;
     n.paquets.forEach((paquet, i) => {
@@ -157,7 +168,9 @@ function niveau2(termine) {
   conteneur.append(enteteNiveau(2, n.titre), creer("p", { texte: typographie(n.consigne) }));
 
   const cartes = creer("div", { class: "fiches-reseau" });
-  for (const reseau of n.reseaux) {
+  // Le faux réseau n'est pas toujours à la même place : ordre tiré au sort, lettres selon l'affichage.
+  const reseaux = melanger(n.reseaux).map((reseau, i) => ({ ...reseau, lettre: "AB"[i] }));
+  for (const reseau of reseaux) {
     const champs = creer("dl", { class: "fiche-champs" });
     for (const [cle, libelle] of n.champs) {
       let valeur = reseau[cle];
@@ -167,7 +180,7 @@ function niveau2(termine) {
     cartes.append(creer("label", { class: "fiche-reseau" }, [
       creer("span", { class: "fiche-tete" }, [
         creer("input", { type: "radio", name: "faux", value: reseau.id }),
-        creer("strong", { texte: `Réseau ${reseau.id}` }),
+        creer("strong", { texte: `Réseau ${reseau.lettre}` }),
       ]),
       champs,
     ]));
@@ -180,13 +193,14 @@ function niveau2(termine) {
     const choix = document.querySelector('input[name="faux"]:checked');
     zone.textContent = "";
     if (!choix) { zone.append(creer("p", { class: "mauvais", texte: "Choisissez d'abord un réseau." })); zone.focus(); return; }
-    const reseau = n.reseaux.find((r) => r.id === choix.value);
+    const reseau = reseaux.find((r) => r.id === choix.value);
     if (!reseau.faux) {
-      zone.append(creer("p", { class: "mauvais", texte: "Ce n'est pas le bon. Comparez l'appareil qui émet et sa position : une borne de gare n'est pas un ordinateur posé sur un banc." }));
+      zone.append(creer("p", { class: "mauvais", texte: "Ce n'est pas le bon. Comparez encore les deux fiches, ligne par ligne : laquelle ressemble à l'installation d'une gare ?" }));
       zone.focus();
       return;
     }
-    zone.append(creer("p", { class: "bon", texte: "Exact : le réseau " + reseau.id + " est le piège." }), creer("p", { texte: typographie(n.explication) }));
+    zone.append(creer("p", { class: "bon", texte: "Exact : le réseau " + reseau.lettre + " est le piège." }), creer("p", { texte: typographie(n.explication) }));
+    if (n.realite) zone.append(creer("p", { class: "bascule", texte: typographie(n.realite) }));
     // Montrer la bascule : le téléphone se relie au faux point d'accès.
     carte = construireCarte(svg(), donnees, { attaque: true });
     carte.definirDescription("Le téléphone de Robin s'est connecté au faux point d'accès, qui fait passer tout le trafic par l'ordinateur du Collecteur.");
@@ -205,7 +219,7 @@ function niveau2(termine) {
 const ctx = {
   get donnees() { return donnees; },
   get noeudsParId() { return noeudsParId; },
-  creer, typographie, construireCarte, enteteNiveau, enteteBonus, boiteNotion,
+  creer, melanger, typographie, construireCarte, enteteNiveau, enteteBonus, boiteNotion,
   svg, panneau, annoncer, ramenerCarte, animationsReduites,
   setNettoyage: (fn) => { nettoyage = fn; },
   finJeu: () => { if (nettoyage) { nettoyage(); nettoyage = null; } finJeu(); },

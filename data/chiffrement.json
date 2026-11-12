@@ -5,97 +5,81 @@
     "chiffre": "S2Vuem8sIHRvbiBjb21wdGUgZXN0IHByw6p0ID8gUsOpcG9uZHMgZGFucyBjZSBicm91aWxsb24uIFJpZW4gcGFyIFNNUy4g4oCUIEM="
   },
   "cesar": {
-    "consigne": "Chaque binôme saisit son numéro (1 à 12) et reçoit son fragment, chiffré par décalage (César). Trouvez le bon décalage par force brute, puis la classe remet les fragments dans l'ordre.",
+    "consigne": "Chaque binôme saisit son numéro (1 à 12) et reçoit son fragment, chiffré par décalage (César). Trouvez le bon décalage par force brute, puis la classe remet les fragments dans l'ordre : les numéros ne donnent pas l'ordre du message.",
     "nombre_fragments": 12,
     "fragments": [
       {
         "numero": 1,
-        "position": 1,
-        "chiffre": "NHQCR,"
+        "chiffre": "RQ SDVVH"
       },
       {
         "numero": 2,
-        "position": 2,
-        "chiffre": "H WHYAPY"
+        "chiffre": "ZFTIVSL : APYL"
       },
       {
         "numero": 3,
-        "position": 3,
-        "chiffre": "OP XLTYEPYLYE"
+        "chiffre": "ALCETC OP"
       },
       {
         "numero": 4,
-        "position": 4,
-        "chiffre": "FE GRJJV RL"
+        "chiffre": "RGIVJ"
       },
       {
         "numero": 5,
-        "position": 5,
-        "chiffre": "ANLJSJWJ. QF"
+        "chiffre": "QF HQJ"
       },
       {
         "numero": 6,
-        "position": 6,
-        "chiffre": "YHA AOP JKPNA"
+        "chiffre": "YA XNKQEHHKJ"
       },
       {
         "numero": 7,
-        "position": 7,
-        "chiffre": "GMAPCZS"
+        "chiffre": "YSBNC, O"
       },
       {
         "numero": 8,
-        "position": 8,
-        "chiffre": ": CRANURAN."
+        "chiffre": "UNLCDAN. — L"
       },
       {
         "numero": 9,
-        "position": 9,
-        "chiffre": "XYYTVX"
+        "chiffre": "XLM GHMKX"
       },
       {
         "numero": 10,
-        "position": 10,
-        "chiffre": "EG DTQWKNNQP"
+        "chiffre": "OCKPVGPCPV"
       },
       {
         "numero": 11,
-        "position": 11,
-        "chiffre": "ZOQDR KDBSTQD."
+        "chiffre": "KHQD. DEEZBD"
       },
       {
         "numero": 12,
-        "position": 12,
-        "chiffre": "— P"
+        "chiffre": "NH IVTRARER."
       },
       {
         "numero": 13,
-        "position": 1,
-        "chiffre": "NHQCR,",
+        "chiffre": "RQ SDVVH",
         "copie_de": 1
       },
       {
         "numero": 14,
-        "position": 2,
-        "chiffre": "H WHYAPY",
+        "chiffre": "ZFTIVSL : APYL",
         "copie_de": 2
       },
       {
         "numero": 15,
-        "position": 3,
-        "chiffre": "OP XLTYEPYLYE",
+        "chiffre": "ALCETC OP",
         "copie_de": 3
       },
       {
         "numero": 16,
-        "position": 4,
-        "chiffre": "FE GRJJV RL",
+        "chiffre": "RGIVJ",
         "copie_de": 4
       }
     ]
   },
   "vigenere": {
     "chiffre": "ECEHT XIIFQVV XIIW, LMGX SMLVXA USFHV, KTZV HP UFRMZZZP. ZFFBV KIWMTLTZXI EWLNHCIW DMJ JTKKYCMJ IG IKXPVUEGB CI EZRMG. RV Q'ZKTYIM UY HQWM. MWE GZUGXX ZVGPDIE E'IIKPVK PX AFMC UVQX. BL XCIEWYMIICIJ XHCK, WLCW XXA 500 WVLVTW, EM MIYLIIWQ UMI-VVYY URVD. — K",
-    "indice": "La clé est le symbole du Collecteur — vous l'avez obtenue en reconstituant le message précédent."
+    "indice": "La clé se trouve dans le message précédent, une fois ses fragments remis dans l'ordre."
   }
 }

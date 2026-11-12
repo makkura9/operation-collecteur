@@ -71,7 +71,7 @@
           "page": "portail-http"
         }
       },
-      "lu": false,
+      "lu": true,
       "categorie": "legitime",
       "indices_valides": [
         "coherent"
@@ -114,7 +114,7 @@
         "identifiants",
         "levier"
       ],
-      "explication": "Phishing. Le message copie la mise en page du vrai mail de confirmation, mais l'adresse se termine par horizons-jeunesse.co (et non .ch). Il demande de se connecter « avant vendredi » pour éviter une suspension. C'est le piège sur lequel Robin a cliqué le 17 février à 21 h 06.",
+      "explication": "Phishing. Le message copie la mise en page du vrai mail de confirmation, mais l'adresse se termine par horizons-jeunesse.co (et non .ch). Il demande de se connecter « avant vendredi » pour éviter une suspension.",
       "piege_inverse": false
     },
     {
@@ -123,7 +123,7 @@
       "date": "2027-02-16T20:22",
       "de": {
         "nom": "Banque de Montrive Sécurité",
-        "adresse": "alerte@banque-montrive-securite.co"
+        "adresse": "alerte@banque-montrive-securite.ch"
       },
       "a": "robin.dupont@montrivemail.ch",
       "objet": "Activité suspecte sur votre compte : confirmez votre identité",
@@ -136,7 +136,7 @@
       "liens": {
         "l1": {
           "texte": "Confirmer mon identité",
-          "reel": "https://banque-montrive-securite.co/identite",
+          "reel": "https://banque-montrive-securite.ch/identite",
           "page": "connexion-banque"
         }
       },
@@ -148,7 +148,7 @@
         "levier",
         "identifiants"
       ],
-      "explication": "Phishing. La vraie banque écrit depuis banque-montrive.ch et ne demande jamais votre code d'accès par un lien. L'alerte joue sur la peur et l'autorité pour que vous cliquiez sans réfléchir.",
+      "explication": "Phishing. La vraie banque écrit depuis banque-montrive.ch ; banque-montrive-securite.ch est un autre domaine, que n'importe qui peut enregistrer. Une banque ne demande jamais votre code d'accès par un lien. L'alerte joue sur la peur et l'autorité pour que vous cliquiez sans réfléchir.",
       "piege_inverse": false
     },
     {
@@ -176,12 +176,46 @@
       "piege_inverse": false
     },
     {
+      "id": "m-agence-sousdomaine",
+      "dossier": "reception",
+      "date": "2027-02-16T12:11",
+      "de": {
+        "nom": "Horizons Jeunesse",
+        "adresse": "service@horizons-jeunesse.ch.verification-client.co"
+      },
+      "a": "robin.dupont@montrivemail.ch",
+      "objet": "Votre dossier voyage doit être vérifié",
+      "corps": [
+        "Bonjour,",
+        "Pour finaliser votre inscription, vérifiez les informations de votre groupe avant le 18 février.",
+        "[[l1]]",
+        "Horizons Jeunesse — Service client"
+      ],
+      "liens": {
+        "l1": {
+          "texte": "Vérifier mon dossier",
+          "reel": "https://horizons-jeunesse.ch.verification-client.co/dossier",
+          "page": "connexion-agence"
+        }
+      },
+      "lu": true,
+      "categorie": "phishing",
+      "indices_valides": [
+        "domaine-lien",
+        "expediteur",
+        "levier",
+        "identifiants"
+      ],
+      "explication": "Phishing. L'adresse commence par horizons-jeunesse.ch, mais ce n'est qu'un sous-domaine : le vrai domaine est la partie juste avant l'extension, soit verification-client.co. Il ne faut jamais lire une adresse de gauche à droite en s'arrêtant au premier nom connu.",
+      "piege_inverse": false
+    },
+    {
       "id": "m-faux-favre-cartes",
       "dossier": "reception",
       "date": "2027-02-16T10:36",
       "de": {
         "nom": "C. Favre",
-        "adresse": "c.favre.gymnase@montrivemail-service.co"
+        "adresse": "c.favre.gymnase@montrivemail-service.ch"
       },
       "a": "robin.dupont@montrivemail.ch",
       "objet": "Petit service urgent",
@@ -199,7 +233,7 @@
         "levier",
         "argent"
       ],
-      "explication": "Arnaque. Le nom « C. Favre » s'affiche, mais l'adresse n'est pas celle du gymnase (montrivemail-service.co). On joue sur l'autorité du maître et l'urgence pour obtenir des cartes cadeau. Un vrai enseignant ne demande pas cela par e-mail : on vérifie par un autre canal, par exemple en lui parlant en classe.",
+      "explication": "Arnaque. Le nom « C. Favre » s'affiche, mais l'adresse n'est pas celle du gymnase : montrivemail-service.ch au lieu de gymnase-montrive.ch. On joue sur l'autorité du maître et l'urgence pour obtenir des cartes cadeau. Un vrai enseignant ne demande pas cela par e-mail : on vérifie par un autre canal, par exemple en lui parlant en classe.",
       "piege_inverse": false
     },
     {
@@ -301,7 +335,7 @@
       "date": "2027-02-12T06:15",
       "de": {
         "nom": "Support MontriveMail",
-        "adresse": "support@montrivemail-assistance.co"
+        "adresse": "support@montrivemail-assistance.ch"
       },
       "a": "robin.dupont@montrivemail.ch",
       "objet": "Votre boîte de réception est pleine à 98 %",
@@ -314,7 +348,7 @@
       "liens": {
         "l1": {
           "texte": "Libérer de l'espace",
-          "reel": "https://montrivemail-assistance.co/espace",
+          "reel": "https://montrivemail-assistance.ch/espace",
           "page": "connexion-montrivemail"
         }
       },
@@ -326,7 +360,7 @@
         "levier",
         "identifiants"
       ],
-      "explication": "Phishing. Le vrai MontriveMail écrit depuis montrivemail.ch ; ici le domaine est montrivemail-assistance.co. Aucun service sérieux ne demande de confirmer votre mot de passe par un lien, et la menace de refuser vos messages met la pression.",
+      "explication": "Phishing. Le vrai MontriveMail écrit depuis montrivemail.ch ; ici le domaine est montrivemail-assistance.ch : un mot de plus après un tiret, et c'est un tout autre domaine, même s'il se termine lui aussi par .ch. Un service sérieux ne vous demande pas de confirmer votre mot de passe en suivant un lien reçu par e-mail, et la menace de refuser vos messages met la pression.",
       "piege_inverse": false
     },
     {
@@ -438,10 +472,14 @@
       "indices_valides": [
         "offre",
         "levier",
-        "expediteur"
+        "expediteur",
+        "identifiants"
       ],
-      "explication": "Arnaque. Vous n'avez participé à aucun concours : un gain inattendu est un appât. On vous demande de payer des frais pour recevoir un « cadeau » qui n'existe pas, avec un délai de 48 heures pour vous presser.",
-      "piege_inverse": false
+      "explication": "Arnaque. Vous n'avez participé à aucun concours : un gain inattendu est un appât. On vous demande de payer des frais pour recevoir un « cadeau » qui n'existe pas, avec un délai de 48 heures pour vous presser. La catégorie « phishing » est acceptée aussi : la page de paiement réclame des données de carte.",
+      "piege_inverse": false,
+      "categories_acceptees": [
+        "phishing"
+      ]
     },
     {
       "id": "m-volley-entrainement",
@@ -449,7 +487,7 @@
       "date": "2027-02-08T20:14",
       "de": {
         "nom": "Volley-Club de Montrive",
-        "adresse": "comite@vcmontrive.ch"
+        "adresse": "comite@vcmontrive.org"
       },
       "a": "robin.dupont@montrivemail.ch",
       "objet": "Entraînement de jeudi déplacé",
@@ -464,7 +502,7 @@
       "indices_valides": [
         "coherent"
       ],
-      "explication": "Légitime. Le club dont Robin est membre, une information pratique, rien à cliquer.",
+      "explication": "Légitime. Le club dont Robin est membre, une information pratique, rien à cliquer. L'adresse en .org est bien celle du club : l'extension seule ne dit rien de l'honnêteté d'un expéditeur.",
       "piege_inverse": false
     },
     {
@@ -500,7 +538,7 @@
       "date": "2027-02-05T15:48",
       "de": {
         "nom": "Cyclo Montrive",
-        "adresse": "commandes@cyclo-montrive.ch"
+        "adresse": "commandes@cyclo-montrive.com"
       },
       "a": "robin.dupont@montrivemail.ch",
       "objet": "Votre commande est expédiée",
@@ -513,7 +551,7 @@
       "liens": {
         "l1": {
           "texte": "Suivre ma commande",
-          "reel": "https://cyclo-montrive.ch/suivi/20483",
+          "reel": "https://cyclo-montrive.com/suivi/20483",
           "page": "legitime"
         }
       },
@@ -522,41 +560,7 @@
       "indices_valides": [
         "coherent"
       ],
-      "explication": "Légitime. Vous avez passé cette commande, le lien reste sur le domaine du magasin (cyclo-montrive.ch) et rien n'est demandé en plus.",
-      "piege_inverse": false
-    },
-    {
-      "id": "m-agence-sousdomaine",
-      "dossier": "reception",
-      "date": "2027-02-04T12:11",
-      "de": {
-        "nom": "Horizons Jeunesse",
-        "adresse": "service@horizons-jeunesse.ch.verification-client.co"
-      },
-      "a": "robin.dupont@montrivemail.ch",
-      "objet": "Votre dossier voyage doit être vérifié",
-      "corps": [
-        "Bonjour,",
-        "Pour finaliser votre inscription, vérifiez les informations de votre groupe avant le 8 février.",
-        "[[l1]]",
-        "Horizons Jeunesse — Service client"
-      ],
-      "liens": {
-        "l1": {
-          "texte": "Vérifier mon dossier",
-          "reel": "https://horizons-jeunesse.ch.verification-client.co/dossier",
-          "page": "connexion-agence"
-        }
-      },
-      "lu": true,
-      "categorie": "phishing",
-      "indices_valides": [
-        "domaine-lien",
-        "expediteur",
-        "levier",
-        "identifiants"
-      ],
-      "explication": "Phishing. L'adresse commence par horizons-jeunesse.ch, mais ce n'est qu'un sous-domaine : le vrai domaine est la partie juste avant l'extension, soit verification-client.co. Il ne faut jamais lire une adresse de gauche à droite en s'arrêtant au premier nom connu.",
+      "explication": "Légitime. Vous avez passé cette commande, le lien reste sur le domaine du magasin (cyclo-montrive.com, celui que Robin a visité) et rien n'est demandé en plus. Une extension autre que .ch n'est pas un signe de fraude.",
       "piege_inverse": false
     },
     {
@@ -565,7 +569,7 @@
       "date": "2027-02-03T22:10",
       "de": {
         "nom": "Support Partello",
-        "adresse": "securite@partello-support.co"
+        "adresse": "securite@partello-support.ch"
       },
       "a": "robin.dupont@montrivemail.ch",
       "objet": "Votre compte Partello sera suspendu",
@@ -578,7 +582,7 @@
       "liens": {
         "l1": {
           "texte": "Vérifier mon compte",
-          "reel": "https://partello-support.co/verification",
+          "reel": "https://partello-support.ch/verification",
           "page": "connexion-partello"
         }
       },
@@ -590,7 +594,7 @@
         "levier",
         "identifiants"
       ],
-      "explication": "Phishing. Le vrai Partello écrit depuis partello.ch, pas depuis partello-support.co. La menace de suppression en 12 heures est un levier de peur, et la page demande votre mot de passe.",
+      "explication": "Phishing. Le vrai Partello écrit depuis partello.ch, pas depuis partello-support.ch : l'extension .ch ne prouve rien, c'est le domaine entier qui compte. La menace de suppression en 12 heures est un levier de peur, et la page demande votre mot de passe.",
       "piege_inverse": false
     },
     {
@@ -675,7 +679,7 @@
         "argent",
         "expediteur"
       ],
-      "explication": "Arnaque. Recevoir de l'argent sur son compte puis le renvoyer en gardant une commission, c'est devenir une « mule financière » : une infraction. Un « job » payé 500 CHF sans compétence est le signal d'alerte. Retenez cette annonce : on la retrouvera.",
+      "explication": "Arnaque. Recevoir de l'argent sur son compte puis le renvoyer en gardant une commission, c'est devenir une « mule financière », ce qui peut constituer du blanchiment d'argent. Un « job » payé 500 CHF sans compétence est le signal d'alerte. Retenez cette annonce : on la retrouvera.",
       "piege_inverse": false
     },
     {

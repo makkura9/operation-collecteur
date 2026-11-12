@@ -40,8 +40,6 @@ code, .mono { font-family: var(--police-code); }
 
 .liste-trouves { list-style: none; padding: 0; display: grid; gap: 0.35rem; margin: 0.5rem 0 0; }
 .liste-trouves li { padding: 0.4rem 0.6rem; border-radius: 8px; background: rgba(98, 220, 145, 0.1); }
-.liste-trouves li.robin { background: rgba(255, 180, 84, 0.15); border: 1px solid var(--alerte); }
-.etiquette-robin { color: var(--alerte); font-weight: 700; }
 .resultat-essais { font-family: var(--police-code); color: var(--texte-doux); margin-top: 0; }
 .resultat-trouves { font-weight: 700; }
 .calc-combos { font-size: 1.05rem; }

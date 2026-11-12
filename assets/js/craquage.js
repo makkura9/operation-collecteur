@@ -3,7 +3,7 @@
 import { chargerJson, creer, typographie } from "./chargeur.js";
 import * as Progression from "./progression.js";
 import { verrouillerPage } from "./verrou.js";
-import { genererVariantes, craquer } from "./mots-de-passe.js";
+import { craquer } from "./mots-de-passe.js";
 
 let fuite = null;
 let courants = null;
@@ -19,11 +19,10 @@ function afficherResultat(zone, titreDico, resultat, nbComptes) {
   }
   const liste = creer("ul", { class: "liste-trouves" });
   for (const t of resultat.trouves) {
-    const estRobin = t.email.endsWith("@montrivemail.ch");
-    liste.append(creer("li", { class: estRobin ? "robin" : "" }, [
+    // Aucun compte n'est désigné : reconnaître celui de Robin (pseudo, e-mail) fait partie de l'enquête.
+    liste.append(creer("li", {}, [
       creer("strong", { texte: t.pseudo }), " (", t.email, ") → ",
       creer("code", { texte: t.motDePasse }),
-      estRobin ? creer("span", { class: "etiquette-robin", texte: " ← le compte de Robin !" }) : null,
     ]));
   }
   zone.append(creer("p", { class: "resultat-trouves", texte: `${resultat.trouves.length} mot(s) de passe retrouvé(s) :` }), liste);
@@ -52,7 +51,7 @@ async function demarrer() {
     });
 
     const boutonPerso = document.getElementById("bouton-perso");
-    const dicoPerso = Progression.lireAnnexe("dico-perso");
+    const dicoPerso = Progression.lireAnnexe("dictionnaire-perso");   // écrit par l'outil « Dictionnaire personnalisé »
     if (dicoPerso && dicoPerso.length) {
       document.getElementById("info-perso").textContent = `Votre dictionnaire personnalisé contient ${dicoPerso.length} candidats (construit avec l'outil « Dictionnaire personnalisé »).`;
       boutonPerso.disabled = false;

@@ -85,6 +85,8 @@ async function demarrer() {
   try {
     const [config, contenu] = await Promise.all([chargerJson("data/config.json"), chargerJson("data/seances.json")]);
     Progression.configurer(config);
+    // Navigateur qui refuse de mémoriser la progression : on le dit clairement (rien n'est bloqué).
+    document.getElementById("alerte-stockage").hidden = Progression.stockageDisponible();
     afficherBanniere(contenu.banniere_qg);
     afficherDossiers(contenu.seances);
     preparerReinitialisation(contenu.seances);

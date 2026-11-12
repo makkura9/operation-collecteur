@@ -3,7 +3,6 @@
 import { chargerJson, creer, typographie } from "./chargeur.js";
 import * as Progression from "./progression.js";
 import { verrouillerPage } from "./verrou.js";
-import { decouperAdresse } from "./faux-navigateur.js";
 
 const formatJour = new Intl.DateTimeFormat("fr-CH", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
 const formatHeure = new Intl.DateTimeFormat("fr-CH", { hour: "2-digit", minute: "2-digit" });
@@ -20,15 +19,11 @@ function dessiner(entrees, filtre = "") {
     const texte = `${jour} ${heure} ${heure.replace(":", " h ")} ${e.titre} ${e.url}`.toLowerCase();
     if (terme && !texte.includes(terme)) continue;
     affiches++;
-    const adresse = decouperAdresse(e.url);
+    // L'adresse est affichée telle quelle, sans mise en évidence : repérer le domaine est le travail de l'élève.
     corps.append(creer("tr", {}, [
       creer("td", { class: "nowrap" }, [creer("span", { class: "jour", texte: jour }), creer("br"), creer("strong", { texte: formatHeure.format(d).replace(":", " h ") })]),
       creer("td", { texte: typographie(e.titre) }),
-      creer("td", { class: "url" }, [
-        creer("span", { class: "doux", texte: adresse.protocole + "://" + adresse.sousDomaine }),
-        creer("strong", { texte: adresse.domaine }),
-        creer("span", { class: "doux", texte: adresse.chemin }),
-      ]),
+      creer("td", { class: "url", texte: e.url }),
     ]));
   }
   document.getElementById("aucun").hidden = affiches > 0;

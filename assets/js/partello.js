@@ -241,7 +241,8 @@ function vueIntrouvable() {
 /* ---------- Stories ---------- */
 
 function creerCaptureMail(capture) {
-  return creer("div", { class: "capture-mail", role: "img", "aria-label": "Capture d'écran partielle d'un e-mail de l'agence de voyage" }, [
+  // « group » et non « img » : le texte de la capture (dont la date limite) reste lu par un lecteur d'écran.
+  return creer("div", { class: "capture-mail", role: "group", "aria-label": "Capture d'écran partielle d'un e-mail" }, [
     creer("div", { class: "cm-entete" }, [creer("strong", { texte: capture.expediteur }), creer("span", { texte: capture.sous_titre })]),
     creer("p", { class: "cm-objet", texte: capture.objet }),
     ...capture.lignes.map((ligne) => creer("p", { class: "cm-ligne", texte: typographie(ligne) })),
@@ -272,6 +273,16 @@ function ouvrirStories(profil, liste, indexDepart, declencheur) {
     if (evenement.key === "Escape") fermer();
     else if (evenement.key === "ArrowRight") aller(1);
     else if (evenement.key === "ArrowLeft") aller(-1);
+    else if (evenement.key === "Tab") {
+      // La touche Tab tourne à l'intérieur de la fenêtre des stories (elle ne passe pas derrière).
+      const cibles = [...fond.querySelectorAll("button:not([disabled])")];
+      if (!cibles.length) return;
+      const premier = cibles[0];
+      const dernier = cibles[cibles.length - 1];
+      if (!fond.contains(document.activeElement)) { evenement.preventDefault(); premier.focus(); }
+      else if (evenement.shiftKey && document.activeElement === premier) { evenement.preventDefault(); dernier.focus(); }
+      else if (!evenement.shiftKey && document.activeElement === dernier) { evenement.preventDefault(); premier.focus(); }
+    }
   }
 
   function dessiner() {
@@ -326,7 +337,7 @@ function creerCarteFictive(position) {
   return creer("figure", { class: "carte-fictive" }, [
     creer("div", { class: "carte-cadre" }, [
       creer("img", { src: `${racine()}assets/${carte.image}`, alt: "Carte fictive de Montrive : le lac au sud, la gare à l'est, la vieille ville à l'ouest, les vignes sur la colline au nord" }),
-      creer("span", { class: "epingle", style: `left:${x}%;top:${y}%`, role: "img", "aria-label": "Position de la photo" }),
+      creer("span", { class: "epingle", style: `left:${x}%;top:${y}%`, role: "img", "aria-label": position.zone ? `Position de la photo : l'épingle se trouve dans la zone « ${position.zone} »` : "Position de la photo" }),
     ]),
     creer("figcaption", { class: "doux", texte: typographie(carte.description) }),
   ]);

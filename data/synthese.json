@@ -75,7 +75,7 @@
     ],
     "indice_dates": "Indice : les dates sont maintenant affichées sur les étiquettes.",
     "reussite": "Chronologie reconstituée : votre rapport tient la route.",
-    "notion": "Une attaque est une chaîne : chaque maillon prépare le suivant. Il aurait suffi d'en casser un seul pour tout arrêter."
+    "notion": "Une attaque est une chaîne : chaque maillon prépare le suivant. Presque tous étaient décisifs : il aurait suffi d'en casser un seul (compte privé, mot de passe unique, double authentification, données mobiles, vérification de l'IBAN) pour tout arrêter. Seul le clic sur le faux mail n'a rien donné au Collecteur : Robin y avait tapé un faux mot de passe."
   },
   "parades": {
     "titre": "Failles et parades",
@@ -94,7 +94,7 @@
         "dossier": 2,
         "faille": "Robin clique sur le lien d'un faux mail de l'agence.",
         "parade": "Vérifier le vrai domaine et taper soi-même l'adresse du site",
-        "explication": "Le survol du lien montrait la vraie adresse : un domaine qui imitait celui de l'agence, sans être le sien."
+        "explication": "Le survol du lien montrait la vraie adresse : un domaine qui imitait celui de l'agence, sans être le sien. Cette fois, le faux mot de passe tapé par Robin a limité les dégâts : c'est rarement le cas."
       },
       {
         "id": "f3",
@@ -180,7 +180,7 @@
     "loi": {
       "titre": "Ce que dit la loi (Code pénal suisse)",
       "points": [
-        "Prêter son compte pour faire circuler de l'argent d'origine criminelle peut constituer du blanchiment d'argent (art. 305bis du Code pénal). La loi vise aussi celui qui « devait présumer » que l'argent venait d'un crime : dire « je ne savais pas » ne suffit donc pas toujours.",
+        "Prêter son compte pour faire circuler de l'argent d'origine criminelle peut constituer du blanchiment d'argent (art. 305bis du Code pénal). La loi vise aussi la personne qui devait présumer que l'argent venait d'un crime : dire « je ne savais pas » ne suffit donc pas toujours.",
         "S'introduire sans droit dans la messagerie d'une autre personne, protégée par un mot de passe, peut être puni comme un accès indu à un système informatique (art. 143bis du Code pénal)."
       ]
     },
@@ -210,10 +210,10 @@
       {
         "question": "Pourquoi la story « Trésorier officiel du voyage » a-t-elle intéressé le Collecteur ?",
         "choix": [
-          "Elle contenait le mot de passe de Robin.",
-          "Elle désignait la personne qui gère l'argent de la classe : la cible idéale.",
-          "Elle lui permettait de prendre le contrôle du téléphone de Robin.",
-          "Elle n'a joué aucun rôle dans l'attaque."
+          "Elle révélait le mot de passe de sa messagerie et de son stockage en ligne.",
+          "Elle montrait qui gère l'argent de la classe : la cible idéale.",
+          "Elle lui permettait de prendre le contrôle de son téléphone.",
+          "Elle n'a joué aucun rôle : seule la fuite de 2023 a compté dans l'attaque."
         ],
         "bonne": 1,
         "dossier": 1,
@@ -222,25 +222,25 @@
       {
         "question": "Lequel de ces liens mène vraiment au site de la Banque de Montrive (banque-montrive.ch) ?",
         "choix": [
-          "https://banque-montrive-securite.co/connexion",
+          "https://banque-montrive-securite.ch/connexion",
           "https://banque-montrive.ch.verification-client.co/connexion",
           "https://ebanking.banque-montrive.ch/connexion"
         ],
         "bonne": 2,
         "dossier": 2,
-        "explication": "Le domaine se lit juste avant le premier « / » qui suit « https:// » : ce sont les derniers blocs du nom. Dans les deux premiers liens, il s'agit de banque-montrive-securite.co et de verification-client.co."
+        "explication": "Le domaine se lit juste avant le premier « / » qui suit « https:// » : ce sont les derniers blocs du nom. Dans les deux premiers liens, il s'agit de banque-montrive-securite.ch et de verification-client.co : deux autres domaines, même si le premier se termine lui aussi par .ch."
       },
       {
         "question": "Le forum ArenaZone ne conservait que l'empreinte SHA-256 du mot de passe de Robin. Comment le Collecteur l'a-t-il retrouvé ?",
         "choix": [
-          "Il a déchiffré l'empreinte avec une clé secrète.",
-          "SHA-256 est un algorithme cassé : il suffit de l'inverser.",
-          "Le forum avait aussi publié les mots de passe en clair.",
-          "Il a calculé les empreintes de mots de passe probables jusqu'à retrouver la même."
+          "Il a déchiffré l'empreinte avec la clé secrète du forum, volée en même temps.",
+          "SHA-256 est un algorithme cassé : un calcul inverse redonne le mot de passe.",
+          "Le forum conservait aussi, dans un autre fichier, les mots de passe en clair.",
+          "Il a calculé l'empreinte de mots de passe probables jusqu'à retrouver la même."
         ],
         "bonne": 3,
         "dossier": 3,
-        "explication": "Une empreinte ne se déchiffre pas : le hachage est à sens unique. Mais un mot de passe prévisible se retrouve en comparant les empreintes de milliers de candidats. Les sites sérieux ajoutent un sel et utilisent un hachage lent."
+        "explication": "Une empreinte ne se déchiffre pas : le hachage est à sens unique. Mais un mot de passe prévisible se retrouve en comparant les empreintes de candidats bien choisis."
       },
       {
         "question": "Lequel de ces mots de passe est le plus solide ?",
@@ -248,7 +248,7 @@
           "falaise-citron-tambour-orage-velours (cinq mots tirés au hasard)",
           "M0ntr1v3! (un mot connu, avec des chiffres à la place de lettres)",
           "Robin14102009 (un prénom et une date de naissance)",
-          "Azerty123 (facile à retenir)"
+          "Azerty123 (des touches voisines, puis trois chiffres)"
         ],
         "bonne": 0,
         "dossier": 3,
@@ -257,22 +257,22 @@
       {
         "question": "Le Collecteur connaît le mot de passe de Robin. Qu'est-ce qui l'aurait encore empêché d'ouvrir sa messagerie ?",
         "choix": [
-          "Un antivirus sur l'ordinateur de Robin.",
-          "Un historique de navigation effacé chaque soir.",
-          "La double authentification : il lui aurait manqué une deuxième preuve, comme un code sur le téléphone de Robin.",
-          "Un mot de passe encore plus long, mais utilisé partout."
+          "Un antivirus à jour sur l'ordinateur et sur le téléphone de Robin.",
+          "Un historique de navigation effacé chaque soir, avant de se déconnecter.",
+          "La double authentification : il lui aurait manqué une deuxième preuve.",
+          "Un mot de passe deux fois plus long, mais toujours utilisé sur tous ses comptes."
         ],
         "bonne": 2,
         "dossier": 3,
-        "explication": "Avec la double authentification, le mot de passe seul ne suffit plus : il faut aussi une deuxième preuve, que le Collecteur n'avait pas."
+        "explication": "Avec la double authentification, le mot de passe seul ne suffit plus : il faut aussi une deuxième preuve, par exemple un code affiché sur le téléphone de Robin, que le Collecteur n'avait pas."
       },
       {
         "question": "Le premier brouillon du Collecteur était écrit en Base64. Quelle affirmation est exacte ?",
         "choix": [
-          "Base64 est un chiffrement très solide, illisible sans la clé.",
+          "Base64 est un chiffrement très solide : sans la clé, le texte reste illisible.",
           "Base64 est un encodage : n'importe qui peut le décoder, sans aucune clé.",
           "Base64 est un hachage : impossible de retrouver le texte de départ.",
-          "Base64 ne peut encoder que des chiffres."
+          "Base64 ne peut encoder que des chiffres, pas des lettres ni des accents."
         ],
         "bonne": 1,
         "dossier": 4,
@@ -282,9 +282,9 @@
         "question": "Sur un faux Wi-Fi, Robin ouvre un site en HTTPS. Que peut voir l'ordinateur placé au milieu ?",
         "choix": [
           "Le nom du site, mais ni la page ni son contenu.",
-          "Tout, y compris le mot de passe tapé.",
+          "Tout, y compris le mot de passe tapé et le contenu des pages.",
           "Rien du tout, pas même le nom du site.",
-          "La page, mais pas les images."
+          "Le texte des pages, mais pas les images."
         ],
         "bonne": 0,
         "dossier": 5,
@@ -293,10 +293,10 @@
       {
         "question": "Un site affiche un cadenas dans la barre d'adresse. Qu'est-ce que cela garantit ?",
         "choix": [
-          "Que le site est honnête.",
+          "Que le site est honnête et que l'on peut y payer sans crainte.",
           "Que le site appartient à une banque ou à une entreprise connue.",
-          "Que le site a été contrôlé par la police.",
-          "Que la connexion avec ce site est chiffrée, mais pas qu'il s'agit du bon site."
+          "Que le site a été contrôlé et approuvé par la police ou par l'État.",
+          "Que la connexion est chiffrée, mais pas qu'il s'agit du bon site."
         ],
         "bonne": 3,
         "dossier": 2,
@@ -305,20 +305,20 @@
       {
         "question": "Sur un réseau social, on vous propose 500 CHF pour laisser de l'argent « transiter » par votre compte. Que faites-vous ?",
         "choix": [
-          "J'accepte : c'est un petit job comme un autre.",
+          "J'accepte : c'est un petit job comme un autre, et l'offre dit que c'est légal.",
           "J'accepte une seule fois, pour essayer.",
-          "Je refuse et j'en parle à un adulte de confiance : c'est un recrutement de mule.",
+          "Je refuse et j'en parle à un adulte de confiance.",
           "Je donne plutôt l'IBAN d'un ami."
         ],
         "bonne": 2,
         "dossier": 6,
-        "explication": "C'est exactement ainsi que Kenzo a été recruté. Prêter son compte pour faire circuler de l'argent d'origine criminelle peut constituer du blanchiment d'argent (art. 305bis du Code pénal)."
+        "explication": "C'est exactement ainsi que Kenzo a été recruté : c'est un recrutement de mule. Prêter son compte pour faire circuler de l'argent d'origine criminelle peut constituer du blanchiment d'argent (art. 305bis du Code pénal)."
       },
       {
         "question": "Vous découvrez qu'un paiement est parti sur le compte d'un escroc. Quelle est la première chose à faire ?",
         "choix": [
           "Attendre quelques jours pour voir si l'argent revient.",
-          "Prévenir immédiatement votre banque.",
+          "Prévenir immédiatement votre banque, par téléphone.",
           "Supprimer tous vos comptes de réseaux sociaux.",
           "Écrire à l'escroc pour lui demander de rembourser."
         ],

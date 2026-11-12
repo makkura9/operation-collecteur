@@ -1,11 +1,19 @@
 // Niveaux 3 et 4 du serious game réseau (séance 5).
 // Pilotés par reseau.js, qui fournit un « contexte » (ctx) avec les fonctions et données partagées.
 
-/* ---------------- Niveau 3 : Au milieu (tri des paquets) ---------------- */
+/* ---------------- Niveau 3 : Au milieu (prévoir, puis voir) ---------------- */
 
+// Règle pédagogique : l'enveloppe ne montre JAMAIS la réponse avant l'essai.
+//  1. Prévision : on ne voit que l'adresse (http:// ou https:// + nom du site). Le binôme
+//     annonce « scellé » ou « lisible ».
+//  2. Révélation : l'enveloppe montre alors ce que le Collecteur a réellement vu (le contenu,
+//     ou rien). C'est à ce moment-là seulement que la facture peut être signalée, en la lisant :
+//     aucun bouton ne s'allume, aucune enveloppe n'est mise en évidence.
 export function niveau3(ctx, termine) {
   const { donnees, noeudsParId, creer, typographie, construireCarte, svg, panneau, enteteNiveau, boiteNotion, setNettoyage, animationsReduites } = ctx;
   const n = donnees.niveaux.n3;
+  const SEUIL_TRI = 0.75;            // part de prévisions justes exigée
+  const FAUSSES_ALERTES_MAX = 1;     // au-delà, la facture a été « trouvée » en cliquant partout
 
   const carte = construireCarte(svg(), donnees, { attaque: true });
   carte.definirDescription("Tout le trafic du téléphone de Robin passe par l'ordinateur du Collecteur, intercalé entre le faux point d'accès et Internet.");
@@ -16,7 +24,7 @@ export function niveau3(ctx, termine) {
   conteneur.textContent = "";
   conteneur.append(enteteNiveau(3, n.titre), creer("p", { texte: typographie(n.consigne) }), creer("p", { class: "aide-jeu", texte: typographie(n.aide) }));
 
-  // Options : un mode « sans chrono » plus accessible (pas de limite de temps par paquet).
+  // Options : un mode « sans chrono » plus accessible (pas de limite de temps par enveloppe).
   const sansChrono = creer("input", { type: "checkbox", id: "sans-chrono" });
   if (animationsReduites) sansChrono.checked = true;
   conteneur.append(creer("p", { class: "option-jeu" }, [
@@ -34,91 +42,122 @@ export function niveau3(ctx, termine) {
   setNettoyage(arreter);
 
   const total = n.paquets.length;
-  let index = 0, bonsTri = 0, factureAttrapee = false, factureManquee = false;
+  let index = 0, bonsTri = 0, factureAttrapee = false, faussesAlertes = 0;
+  const avecChrono = () => !animationsReduites && !sansChrono.checked;
 
   function serveurDe(paquet) { return noeudsParId[paquet.vers]; }
 
+  /** Barre de temps qui se vide en `duree` millisecondes, puis appelle `aLaFin`. */
+  function lancerChrono(duree, aLaFin) {
+    const barre = creer("span", { class: "barre-temps" }, [creer("span")]);
+    const debut = performance.now();
+    const vider = (t) => {
+      const reste = Math.max(0, 1 - (t - debut) / duree);
+      barre.firstChild.style.width = `${reste * 100}%`;
+      if (reste > 0) animFrame = requestAnimationFrame(vider);
+    };
+    animFrame = requestAnimationFrame(vider);
+    minuteur = setTimeout(aLaFin, duree);
+    return barre;
+  }
+
   function lancerPartie() {
-    index = 0; bonsTri = 0; factureAttrapee = false; factureManquee = false;
+    index = 0; bonsTri = 0; factureAttrapee = false; faussesAlertes = 0;
     commencer.disabled = true;
     sansChrono.disabled = true;
     zone.textContent = "";
-    paquetSuivant();
+    prevision();
   }
 
-  function paquetSuivant() {
+  /* Étape 1 : l'enveloppe fermée. Seule l'adresse est visible. */
+  function prevision() {
     arreter();
     bande.textContent = "";
     if (index >= total) { finPartie(); return; }
+    const serveur = serveurDe(n.paquets[index]);
+    const adresse = `${serveur.protocole}://${serveur.domaine || serveur.label}`;
+
+    const boutons = creer("div", { class: "barre-boutons tri-boutons" }, [
+      creer("button", { type: "button", class: "bouton", texte: "Scellé", onclick: () => reveler("scelle") }),
+      creer("button", { type: "button", class: "bouton", texte: "Lisible", onclick: () => reveler("lisible") }),
+    ]);
+    bande.append(
+      creer("p", { class: "compteur-tri", texte: `Enveloppe ${index + 1} sur ${total} — que pouvait lire le Collecteur ?` }),
+      creer("div", { class: "env-tri fermee" }, [
+        creer("span", { class: "env-tri-icone", "aria-hidden": "true", texte: "✉" }),
+        creer("span", { class: "env-tri-site" }, [creer("strong", { texte: adresse })]),
+        creer("span", { class: "env-tri-contenu doux", texte: "Enveloppe pas encore examinée." }),
+      ]),
+      boutons,
+    );
+    if (avecChrono()) {
+      const duree = Math.max(n.vitesse.minimum, n.vitesse.depart - index * n.vitesse.acceleration) * 1000;
+      bande.append(lancerChrono(duree, () => reveler(null)));
+    }
+    boutons.querySelector("button").focus({ preventScroll: true });
+  }
+
+  /* Étape 2 : ce que le Collecteur a vu. `choix` vaut "scelle", "lisible" ou null (temps écoulé). */
+  function reveler(choix) {
+    arreter();
     const paquet = n.paquets[index];
     const serveur = serveurDe(paquet);
     const lisible = serveur.protocole === "http";
     const estFacture = Boolean(paquet.facture);
+    const juste = choix === (lisible ? "lisible" : "scelle");
+    if (juste) bonsTri++;
 
-    const enveloppe = creer("div", { class: "env-tri " + (lisible ? "ouverte" : "scellee") + (estFacture ? " facture" : "") }, [
-      creer("span", { class: "env-tri-icone", "aria-hidden": "true", texte: lisible ? "✉" : "🔒" }),
-      creer("span", { class: "env-tri-site" }, [creer("strong", { texte: serveur.domaine || serveur.label })]),
-      lisible ? creer("span", { class: "env-tri-contenu", texte: typographie(paquet.contenu || "") }) : creer("span", { class: "env-tri-contenu doux", texte: "(contenu chiffré, illisible)" }),
-    ]);
-    const barreTemps = creer("span", { class: "barre-temps" }, [creer("span")]);
+    const regle = lisible ? "http (sans S) : contenu lisible" : "https : contenu scellé";
+    const verdict = choix === null ? `Trop tard. C'était ${regle}.` : (juste ? `Bien vu. ${regle[0].toUpperCase() + regle.slice(1)}.` : `Raté. C'était ${regle}.`);
+
+    const suivante = () => { index++; prevision(); };
+    const actions = creer("div", { class: "barre-boutons tri-boutons" });
+    if (lisible) {
+      // Le bouton existe pour TOUTE enveloppe lisible, toujours avec la même apparence.
+      actions.append(creer("button", {
+        type: "button", class: "bouton secondaire", texte: "C'est la facture !",
+        onclick: () => { if (estFacture) factureAttrapee = true; else faussesAlertes++; suivante(); },
+      }));
+    }
+    actions.append(creer("button", { type: "button", class: "bouton", texte: index === total - 1 ? "Voir le résultat →" : "Enveloppe suivante →", onclick: suivante }));
+
+    bande.textContent = "";
     bande.append(
-      creer("p", { class: "compteur-tri", texte: `Enveloppe ${index + 1} sur ${total}` }),
-      enveloppe,
-      animationsReduites || sansChrono.checked ? null : barreTemps,
+      creer("p", { class: "compteur-tri", texte: `Enveloppe ${index + 1} sur ${total} — ce que le Collecteur a vu` }),
+      creer("div", { class: "env-tri " + (lisible ? "ouverte" : "scellee") }, [
+        creer("span", { class: "env-tri-icone", "aria-hidden": "true", texte: lisible ? "✉" : "🔒" }),
+        creer("span", { class: "env-tri-site" }, [creer("strong", { texte: `${serveur.protocole}://${serveur.domaine || serveur.label}` })]),
+        lisible
+          ? creer("span", { class: "env-tri-contenu", texte: typographie(paquet.contenu || "") })
+          : creer("span", { class: "env-tri-contenu doux", texte: "(contenu chiffré, illisible)" }),
+        creer("span", { class: "verdict " + (juste ? "bon" : "mauvais"), texte: (juste ? "✓ " : "✗ ") + verdict }),
+      ]),
+      actions,
     );
-
-    const boutons = creer("div", { class: "barre-boutons tri-boutons" }, [
-      creer("button", { type: "button", class: "bouton", texte: "🔒 Scellé", onclick: () => repondre("scelle") }),
-      creer("button", { type: "button", class: "bouton", texte: "✉ Lisible", onclick: () => repondre("lisible") }),
-      creer("button", { type: "button", class: "bouton" + (estFacture ? " surligne" : " secondaire"), texte: "📄 C'est la facture !", onclick: () => repondre("facture") }),
-    ]);
-    bande.append(boutons);
-
-    function repondre(choix) {
-      const triOk = (choix === "lisible" && lisible) || (choix === "scelle" && !lisible) || (choix === "facture" && estFacture);
-      if (choix === "facture") {
-        if (estFacture) { factureAttrapee = true; bonsTri++; }
-        else { /* fausse alerte : ni bon ni mauvais pour la facture, mais tri raté */ }
-      } else if (triOk) {
-        bonsTri++;
-      }
-      if (estFacture && choix !== "facture") factureManquee = true;
-      index++;
-      paquetSuivant();
+    if (avecChrono()) {
+      const duree = (lisible ? n.revelation.lisible : n.revelation.scelle) * 1000;
+      bande.append(lancerChrono(duree, suivante));
     }
-
-    // Chronomètre : la barre se vide ; à zéro, l'enveloppe est manquée. Vitesse croissante.
-    if (!animationsReduites && !sansChrono.checked) {
-      const duree = Math.max(n.vitesse.minimum, n.vitesse.depart - index * n.vitesse.acceleration) * 1000;
-      const debut = performance.now();
-      const remplir = (t) => {
-        const reste = Math.max(0, 1 - (t - debut) / duree);
-        barreTemps.firstChild.style.width = `${reste * 100}%`;
-        if (reste > 0) { animFrame = requestAnimationFrame(remplir); }
-      };
-      animFrame = requestAnimationFrame(remplir);
-      minuteur = setTimeout(() => {
-        if (estFacture) factureManquee = true;
-        index++;
-        paquetSuivant();
-      }, duree);
-    }
+    actions.lastChild.focus({ preventScroll: true });
   }
 
   function finPartie() {
     arreter();
     bande.textContent = "";
     zone.textContent = "";
-    zone.append(creer("p", { class: "score-jeu", texte: `Enveloppes bien triées : ${bonsTri} sur ${total}.` }));
+    zone.append(creer("p", { class: "score-jeu", texte: `Prévisions justes : ${bonsTri} sur ${total}.` }));
     zone.append(creer("p", { texte: factureAttrapee
       ? "Vous avez repéré la facture de l'agence au passage : c'est elle qui sera modifiée au niveau suivant."
       : "Vous avez laissé passer la facture de l'agence. Elle circulait en HTTP (lisible) : c'est la pièce clé." }));
-    const reussi = factureAttrapee && bonsTri >= Math.ceil(total * 0.75);
+    if (faussesAlertes) zone.append(creer("p", { texte: `Enveloppes signalées à tort comme « la facture » : ${faussesAlertes}.` }));
+    const reussi = factureAttrapee && faussesAlertes <= FAUSSES_ALERTES_MAX && bonsTri >= Math.ceil(total * SEUIL_TRI);
     if (reussi) {
       zone.append(boiteNotion(n.notion, termine));
     } else {
       zone.append(creer("button", { type: "button", class: "bouton", texte: "Rejouer la reconstitution", onclick: () => { commencer.disabled = false; sansChrono.disabled = false; lancerPartie(); } }));
-      if (!factureAttrapee) zone.append(creer("p", { class: "aide-jeu", texte: "Pour continuer, repérez la facture : c'est l'enveloppe ouverte qui vient du portail de l'agence et affiche un montant et un IBAN." }));
+      if (!factureAttrapee) zone.append(creer("p", { class: "aide-jeu", texte: "Pour continuer, repérez la facture : lisez le contenu des enveloppes lisibles, l'une d'elles affiche un montant et un IBAN." }));
+      else if (faussesAlertes > FAUSSES_ALERTES_MAX) zone.append(creer("p", { class: "aide-jeu", texte: "Pour continuer, ne signalez que la vraie facture : lisez le contenu avant de cliquer." }));
+      else zone.append(creer("p", { class: "aide-jeu", texte: "Pour continuer, il faut prévoir juste pour au moins trois enveloppes sur quatre : regardez comment commence chaque adresse." }));
     }
     zone.focus();
   }

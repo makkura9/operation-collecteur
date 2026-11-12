@@ -8,6 +8,9 @@
 //
 // Tout est enveloppé dans try/catch : si le stockage est indisponible (navigation privée,
 // réglages du navigateur), le site fonctionne quand même grâce à une copie en mémoire.
+//
+// Le code maître de l'enseignant n'est mémorisé que pour l'onglet courant (sessionStorage) :
+// un poste d'élève dépanné avec ce code ne reste pas ouvert une fois l'onglet fermé.
 
 const CLE = "argos.progression";
 const VIDE = () => ({ version: 1, ouvertes: {}, maitre: false, closes: {} });
@@ -47,9 +50,32 @@ export function configurer(config) {
   parOnglet = Boolean(config && config.ouverture_par_onglet);
 }
 
+const CLE_MAITRE = "argos.maitre";
+let maitreEnMemoire = false;
+
+/** Le code maître a-t-il été saisi dans cet onglet ? (porte de sortie de l'enseignant) */
+export function estMaitre() {
+  try {
+    if (window.sessionStorage.getItem(CLE_MAITRE) === "1") return true;
+  } catch (erreur) { /* stockage indisponible : on se fie à la mémoire de la page */ }
+  return maitreEnMemoire;
+}
+
+/** Le navigateur accepte-t-il de mémoriser la progression ? (sinon, tout est perdu à chaque page) */
+export function stockageDisponible() {
+  try {
+    const cle = "argos.essai";
+    window.localStorage.setItem(cle, "1");
+    window.localStorage.removeItem(cle);
+    return true;
+  } catch (erreur) {
+    return false;
+  }
+}
+
 export function estOuverte(numero) {
   const o = lire("ouverture");
-  return o.maitre === true || o.ouvertes[numero] === true || lire("persistant").closes[numero] === true;
+  return estMaitre() || o.ouvertes[numero] === true || lire("persistant").closes[numero] === true;
 }
 
 export function estClose(numero) {
@@ -62,11 +88,10 @@ export function ouvrir(numero) {
   ecrire("ouverture", o);
 }
 
-/** Code maître : ouvre toutes les séances (sur cet ordinateur / cet onglet). */
+/** Code maître : ouvre toutes les séances, pour l'onglet courant seulement. */
 export function ouvrirTout() {
-  const o = lire("ouverture");
-  o.maitre = true;
-  ecrire("ouverture", o);
+  maitreEnMemoire = true;
+  try { window.sessionStorage.setItem(CLE_MAITRE, "1"); } catch (erreur) { /* ignoré */ }
 }
 
 export function clore(numero) {
@@ -100,6 +125,7 @@ export function ecrireAnnexe(nom, valeur) {
 
 /** Bouton « Nouveau binôme » : efface tout ce qui a été mémorisé sur cet ordinateur (progression et annexes). */
 export function reinitialiser() {
+  maitreEnMemoire = false;
   ecrire("persistant", VIDE());
   ecrire("ouverture", VIDE());
   for (const cle of Object.keys(memoireAnnexes)) delete memoireAnnexes[cle];

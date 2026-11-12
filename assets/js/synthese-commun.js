@@ -1,7 +1,7 @@
 // Outils communs aux pièces de la séance 6 (frise, failles et parades, dénouement, quiz, certificat).
 // Le contenu vient de data/synthese.json ; seul le navigateur garde la progression (annexes).
 
-import { chargerJson, creer, racine, typographie } from "./chargeur.js";
+import { chargerJson, creer, melanger, racine, typographie } from "./chargeur.js";
 import * as Progression from "./progression.js";
 import { verrouillerPage } from "./verrou.js";
 
@@ -37,6 +37,19 @@ export function friseReussie() {
 export function quizTermine() {
   const etat = Progression.lireAnnexe("quiz");
   return Boolean((etat && etat.termine) || Progression.estClose(SEANCE));
+}
+
+/**
+ * Le dénouement s'ouvre quand la frise est reconstituée ; le certificat, quand le quiz est terminé.
+ * Porte de sortie de l'enseignant : le code maître ouvre les deux (projection en classe, ou poste
+ * dont le navigateur refuse de mémoriser la progression).
+ */
+export function denouementOuvert() {
+  return friseReussie() || Progression.estMaitre();
+}
+
+export function certificatOuvert() {
+  return quizTermine() || Progression.estMaitre();
 }
 
 /** Bandeau narratif : compte à rebours tant que la frise n'est pas reconstituée, puis « transfert bloqué ». */
@@ -79,15 +92,8 @@ export function photo(fichier, alt, emoji, forme = "") {
   return cadre;
 }
 
-/** Mélange une liste (algorithme de Fisher-Yates) et renvoie une copie. */
-export function melanger(liste) {
-  const copie = [...liste];
-  for (let i = copie.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copie[i], copie[j]] = [copie[j], copie[i]];
-  }
-  return copie;
-}
+// Le mélange est défini une seule fois, dans chargeur.js (il sert aussi au jeu réseau).
+export { melanger };
 
 /** Boîte « notion clé » avec, en option, des liens vers la suite. */
 export function boiteNotion(texte, liens = []) {

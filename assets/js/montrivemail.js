@@ -56,6 +56,18 @@ function afficherMessage(id) {
   dessinerListe();
 }
 
+/**
+ * Dossiers « Brouillons » (séance 4) et « Journal de connexion » (séance 3) : grisés tant que la
+ * séance correspondante n'est pas ouverte sur cet ordinateur, cliquables ensuite.
+ */
+function activerDossiersOuverts() {
+  for (const entree of document.querySelectorAll(".mm-dossiers .desactive[data-seance]")) {
+    if (!Progression.estOuverte(Number(entree.dataset.seance))) continue;
+    const nom = entree.firstChild.textContent.trim();
+    entree.replaceWith(creer("a", { href: entree.dataset.page, texte: nom }));
+  }
+}
+
 function routeur() {
   const m = /^#mail=([a-z0-9-]+)$/.exec(window.location.hash);
   afficherMessage(m ? m[1] : null);
@@ -67,6 +79,7 @@ async function demarrer() {
     Progression.configurer(await chargerJson("data/config.json"));
     await verrouillerPage([2, 3, 4]);
     mails = (await chargerJson("data/mails.json")).mails;
+    activerDossiersOuverts();
     document.getElementById("compteur-reception").textContent = String(mails.length);
     window.addEventListener("hashchange", routeur);
     routeur();

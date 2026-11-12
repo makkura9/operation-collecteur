@@ -1,4 +1,5 @@
 // Dossier Brouillons de MontriveMail (séance 4) : les 3 messages du Collecteur + les réponses de Kenzo.
+// Les notes sous les messages donnent des consignes, jamais une réponse (ni la clé, ni une conclusion).
 
 import { chargerJson, creer, typographie } from "./chargeur.js";
 import * as Progression from "./progression.js";
@@ -23,13 +24,12 @@ async function demarrer() {
 
     liste.append(
       brouillon("Message chiffré 1", "19 février 2027", "Dossier Brouillons — non envoyé", d.base64.chiffre, "chiffre",
-        "Ce texte n'a pas l'air d'être du français… mais il se lit peut-être avec le bon outil. Essayez le décodeur Base64."),
+        "Ce texte n'a pas l'air d'être du français… mais il se lit peut-être avec l'un des outils du dossier."),
       brouillon("Réponse de Kenzo", "19 février 2027", "Dossier Brouillons — non envoyé",
-        "Oui compte ok. C'est quand le virement ? Les 500 c'est sûr ?", "clair",
-        "Kenzo, lui, répond en clair : une erreur. N'importe qui lisant ces brouillons comprend tout."),
+        "Oui compte ok. C'est quand le virement ? Les 500 c'est sûr ?", "clair", null),
       brouillon("Message chiffré 2 (en 12 fragments)", "20 février 2027", "Dossier Brouillons — non envoyé",
         d.cesar.fragments.filter((f) => !f.copie_de).map((f) => `[${f.numero}] ${f.chiffre}`).join("\n"), "chiffre",
-        "Ce message est découpé en 12 fragments, chacun chiffré différemment (César). Chaque binôme traite SON numéro avec la roue de César, puis la classe remet les fragments dans l'ordre."),
+        "Ce message est découpé en 12 fragments, chacun chiffré différemment (César). Chaque binôme traite SON numéro avec la roue de César, puis la classe remet les fragments dans l'ordre. Attention : les numéros ne donnent pas l'ordre du message."),
       brouillon("Message chiffré 3", "27 février 2027", "Dossier Brouillons — non envoyé", d.vigenere.chiffre, "chiffre",
         "Chiffré avec Vigenère. " + d.vigenere.indice + " Utilisez le déchiffreur de Vigenère."),
       brouillon("Réponse de Kenzo", "27 février 2027", "Dossier Brouillons — non envoyé",

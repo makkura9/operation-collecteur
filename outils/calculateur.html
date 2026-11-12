@@ -29,16 +29,16 @@
           <p class="aide-champ">Quels caractères sont possibles, et combien en tout ?</p>
           <div class="options-ligne">
             <span class="option"><input type="checkbox" id="minuscules" checked><label for="minuscules">minuscules (26)</label></span>
-            <span class="option"><input type="checkbox" id="majuscules" checked><label for="majuscules">MAJUSCULES (26)</label></span>
-            <span class="option"><input type="checkbox" id="chiffres" checked><label for="chiffres">chiffres (10)</label></span>
+            <span class="option"><input type="checkbox" id="majuscules"><label for="majuscules">MAJUSCULES (26)</label></span>
+            <span class="option"><input type="checkbox" id="chiffres"><label for="chiffres">chiffres (10)</label></span>
             <span class="option"><input type="checkbox" id="symboles"><label for="symboles">symboles (~30)</label></span>
           </div>
-          <div class="champ-bloc" style="max-width:16rem"><label for="longueur">Longueur (nombre de caractères)</label><input type="number" id="longueur" min="1" max="64" value="9"></div>
+          <div class="champ-bloc" style="max-width:16rem"><label for="longueur">Longueur (nombre de caractères)</label><input type="number" id="longueur" min="1" max="64" value="6"></div>
         </div>
         <div id="bloc-mots" hidden>
           <div class="options-ligne">
             <span class="champ-bloc" style="max-width:18rem"><label for="taille-liste">Taille de la liste de mots</label><input type="number" id="taille-liste" min="1" value="7776"><span class="aide-champ">7776 = une liste de référence courante.</span></span>
-            <span class="champ-bloc" style="max-width:14rem"><label for="nombre-mots">Nombre de mots</label><input type="number" id="nombre-mots" min="1" max="20" value="5"></span>
+            <span class="champ-bloc" style="max-width:14rem"><label for="nombre-mots">Nombre de mots</label><input type="number" id="nombre-mots" min="1" max="20" value="2"></span>
           </div>
         </div>
         <fieldset style="border:1px solid var(--bord);border-radius:10px;padding:0.6rem 1rem;margin-top:0.6rem">
@@ -51,6 +51,7 @@
         </fieldset>
         <div class="zone-resultat" id="resultat-calc" aria-live="polite"></div>
         <p class="aide-champ">Les vitesses sont des ordres de grandeur, pour comparer. Le temps affiché est le temps <em>moyen</em> (la moitié des possibilités).</p>
+        <p class="aide-champ">Ces vitesses supposent que l'attaquant possède déjà l'empreinte du mot de passe (après une fuite) et fait ses essais chez lui, sans limite. Sur la page de connexion d'un site, le nombre d'essais est limité : le calcul ne s'y applique pas.</p>
       </div>
     </div>
   </main>

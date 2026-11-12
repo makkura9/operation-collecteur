@@ -19,7 +19,8 @@ async function demarrer() {
     const pre = document.getElementById("pre-remplir");
     if (pre) pre.addEventListener("click", async () => {
       const d = await chargerJson("data/chiffrement.json");
-      entree.value = d.base64.chiffre; decoder();
+      entree.value = d.base64.chiffre;   // on charge seulement : c'est l'élève qui décode
+      sortie.textContent = "";
     });
     cadre.hidden = false;
   } catch (e) { cadre.hidden = false; cadre.textContent = "Impossible de charger l'outil."; console.error(e); }

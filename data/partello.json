@@ -19,7 +19,8 @@
       "Vieille-Ville",
       "Les Quais",
       "Quartier de la Gare"
-    ]
+    ],
+    "_zone": "Le champ « zone » d'une position n'est pas affiché : il sert d'équivalent textuel de l'épingle pour les lecteurs d'écran."
   },
   "capture_mail": {
     "expediteur": "Horizons Jeunesse",
@@ -88,7 +89,8 @@
             "date_prise": "2027-01-09T08:12",
             "position": {
               "latitude": 46.455,
-              "longitude": 6.61
+              "longitude": 6.61,
+              "zone": "Quartier des Vignes"
             }
           }
         },

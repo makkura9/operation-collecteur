@@ -2,7 +2,7 @@
 // Récit (texte + audio), recrutement de Kenzo (messages), signaux d'alerte, loi, que faire si victime.
 
 import { chargerJson, creer, racine, typographie } from "./chargeur.js";
-import { bandeauCompteARebours, blocVerrouille, demarrerPiece, friseReussie, photo } from "./synthese-commun.js";
+import { bandeauCompteARebours, blocVerrouille, demarrerPiece, denouementOuvert, photo } from "./synthese-commun.js";
 
 async function audioExiste(adresse) {
   try {
@@ -95,7 +95,7 @@ function blocDernierMessage(m) {
 
 async function construire(donnees, zone) {
   const d = donnees.denouement;
-  if (!friseReussie()) {
+  if (!denouementOuvert()) {
     zone.append(bandeauCompteARebours(donnees), blocVerrouille(d.verrou, { href: "frise.html", texte: "Aller à la frise →" }));
     return;
   }

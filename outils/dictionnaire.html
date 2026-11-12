@@ -19,15 +19,15 @@
     <div class="outil" id="cadre" hidden>
 <p class="fil-ariane"><a href="../seance-3/index.html">← Retour au dossier 3</a></p>
       <h1>Générateur de dictionnaire personnalisé</h1>
-      <p class="intro">À partir de quelques mots liés à la cible (voir votre fiche cible), l'outil fabrique les variantes qu'un humain choisit souvent : minuscules, Majuscule initiale, MAJUSCULES, et chacune suivie d'une année (<span id="plage-annees">1990–2026</span>) ou d'une date.</p>
+      <p class="intro">À partir de quelques mots liés à la cible et de dates qui comptent pour elle (voir votre fiche cible), l'outil fabrique les variantes qu'un humain choisit souvent : minuscules, Majuscule initiale, MAJUSCULES, puis chaque mot suivi d'une année ou d'une date. <strong>Rien n'est proposé d'avance : c'est vous qui choisissez les mots et les dates.</strong></p>
       <div class="bloc-outil">
-        <div class="champ-bloc"><label for="mots">Mots liés à la cible</label><textarea id="mots" placeholder="Robin, Pixel, Montrive…"></textarea><p class="aide-champ">Séparez par des virgules. Pensez au prénom, au nom, à l'animal, à la ville, à la classe…</p></div>
-        <div class="champ-bloc"><label for="dates">Dates importantes (jj.mm) — facultatif</label><input type="text" id="dates" placeholder="14.10"><p class="aide-champ">Par exemple une date de naissance.</p></div>
-        <div class="options-ligne"><span class="option"><input type="checkbox" id="avec-annees" checked><label for="avec-annees">Ajouter les années (<span id="plage-annees2">1990–2026</span>)</label></span></div>
+        <div class="champ-bloc"><label for="mots">Mots liés à la cible</label><textarea id="mots" placeholder="par exemple&nbsp;: Médor, Lausanne" spellcheck="false"></textarea><p class="aide-champ">Séparez les mots par des virgules. Pensez à ce qu'une personne choisit souvent : un prénom, un nom, un animal, un lieu…</p></div>
+        <div class="champ-bloc"><label for="dates">Dates et années qui comptent pour la cible</label><input type="text" id="dates" placeholder="jj.mm.aaaa ou aaaa" autocomplete="off" spellcheck="false"><p class="aide-champ">Séparez par des virgules. Écrivez en chiffres : une date complète (31.12.1999), un jour et un mois (31.12) ou une année seule (1999).</p><p class="aide-champ" id="dates-ignorees" role="status" hidden></p></div>
         <div class="barre-boutons"><button type="button" class="bouton" id="bouton-generer">Générer le dictionnaire</button><span class="doux">Candidats générés : <strong id="compte-candidats">0</strong></span></div>
         <div class="apercu-candidats" id="apercu"></div>
         <p id="lien-craquage" hidden style="margin-top:1rem"><a class="bouton secondaire" href="craquage.html">Utiliser ce dictionnaire pour craquer →</a></p>
       </div>
+      <p class="note-enquete">Outil d'entraînement : il ne sert que pour la fuite fictive de ce dossier. Dans la réalité, entrer sans droit dans le compte d'une autre personne est puni par la loi.</p>
     </div>
   </main>
   <footer class="pied">Environnement pédagogique fictif — toute ressemblance avec des personnes ou des services réels serait fortuite.</footer>

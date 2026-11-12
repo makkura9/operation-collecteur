@@ -259,7 +259,7 @@
           "signal": 3,
           "emetteur": "Borne officielle « Gare_Montrive_01 »",
           "position": "Fixée au plafond du hall",
-          "chiffrement": "Protégé",
+          "chiffrement": "Ouvert, sans mot de passe",
           "faux": false
         },
         {
@@ -294,14 +294,15 @@
           "Sécurité"
         ]
       ],
-      "explication": "Le nom ne prouve rien : n'importe qui peut le copier. Ce qui trahit le faux, c'est l'émetteur (un ordinateur portable, pas une borne), sa position (un banc, pas une installation fixe) et souvent un signal plus fort car plus proche de vous.",
+      "explication": "Le nom ne prouve rien : n'importe qui peut le copier, et un Wi-Fi public est ouvert à tous. Ce qui trahit le faux, ici, c'est l'émetteur (un ordinateur portable, pas une borne), sa position (un banc, pas une installation fixe) et un signal plus fort, car plus proche.",
       "bascule": "Le téléphone de Robin était réglé pour se connecter tout seul au réseau le plus fort portant un nom connu. Il bascule donc vers le faux point d'accès, sans que Robin s'en aperçoive.",
-      "notion": "Un faux point d'accès copie le nom d'un réseau de confiance. Avec la connexion automatique, le téléphone s'y relie seul s'il est plus fort."
+      "notion": "Un faux point d'accès copie le nom d'un réseau de confiance. Avec la connexion automatique, le téléphone s'y relie seul s'il est plus fort.",
+      "realite": "Attention : dans la réalité, votre téléphone n'affiche ni l'appareil qui émet ni sa position. Deux réseaux de même nom s'y confondent : vous ne pouvez pas les distinguer. La protection vient d'ailleurs : vous la choisirez au niveau 5."
     },
     "n3": {
       "titre": "Au milieu",
-      "consigne": "Rejouons l'enregistrement retrouvé sur l'ordinateur du Collecteur : chaque enveloppe qui y est passée défile, de plus en plus vite. Pour chacune, dites si son contenu était exposé (« lisible ») ou protégé (« scellé »). Et quand la facture de l'agence apparaît, signalez-la !",
-      "aide": "Le nom du site est toujours inscrit sur l'enveloppe, même en HTTPS. Mais seul le contenu des enveloppes ouvertes (HTTP) était lisible.",
+      "consigne": "Rejouons l'enregistrement retrouvé sur l'ordinateur du Collecteur : chaque enveloppe qui y est passée défile, de plus en plus vite. Vous ne voyez d'abord que son adresse. À vous de prévoir : son contenu était-il exposé (« lisible ») ou protégé (« scellé ») ? L'enveloppe montre ensuite ce que le Collecteur a vu. Et quand la facture de l'agence apparaît, signalez-la !",
+      "aide": "Indice : regardez comment commence chaque adresse. Le nom du site, lui, reste en général visible dans les deux cas.",
       "vitesse": {
         "depart": 7,
         "minimum": 2.5,
@@ -364,7 +365,12 @@
           "vers": "partello"
         }
       ],
-      "notion": "Un intermédiaire voit toujours le nom des sites visités. En HTTPS, il ne voit rien d'autre ; en HTTP, il voit tout le contenu, y compris une facture et son IBAN."
+      "notion": "Un intermédiaire voit en général le nom des sites visités. En HTTPS, il ne voit ni la page précise ni le contenu ; en HTTP, il voit tout, y compris une facture et son IBAN.",
+      "revelation": {
+        "lisible": 4,
+        "scelle": 1.5
+      },
+      "_revelation": "Durée d'affichage, en secondes, de ce que le Collecteur a vu (mode avec chronomètre)."
     },
     "n4": {
       "titre": "L'enveloppe modifiée",
@@ -453,7 +459,7 @@
     },
     "n5": {
       "titre": "Contre-attaque",
-      "consigne": "Vous pouvez rejouer la scène… avec des protections. Choisissez exactement 3 cartes de défense parmi 9, puis rejouez : l'animation montre à quelle étape l'attaque est arrêtée. Attention : certaines cartes sont de fausses bonnes idées.",
+      "consigne": "Vous pouvez rejouer la scène… avec des protections. Choisissez exactement 3 cartes de défense parmi 9, puis rejouez : l'animation montre à quelle étape l'attaque est arrêtée. Attention : certaines cartes sont de fausses bonnes idées. Pour valider le niveau, vos trois cartes doivent être de vraies parades.",
       "budget": 3,
       "etapes": [
         {
